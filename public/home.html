@@ -1,23 +1,10 @@
-<h3>home</h3>
-<a href="#/about">about me!</a>
+<div class="info-container">
+  <div class="row">
+    <div class="col-xs-4">
+      
+    </div>
+    <div class="col-xs-4">
 
-<div ng-controller="commentController as Cctrl"> <!-- -->
-			<form role = "form" ng-submit="Cctrl.sendComment()"> 
-				<div class="form-group">
-					<!-- ng-model is the two way binding and allows for the user input to automatically be stored in to the SubmitController 
-					property called comment -->
-					Comments: <input type="text" class = "form-control" placeholder="Start a chat" ng-model="Cctrl.comment" required><br>
-					
-					<button type="submit" class="btn btn-default">Submit!</button>
-				</div>	
-			</form>	
-
-			<!-- Outside of the form tag we use ng-repeat which will repeat this html tag for all of the the elements in the array 
-				 commentArr in SubmitController. -->
-			<div disabled class="form-control" id ="userMessages" ng-repeat="comment in Cctrl.history"> 
-								<div class="message"> {{comment.blog}} </div>
-								<div class="time_stamp">	{{comment.time  | date:'medium'}}	</div> <!--Angular filter converts the millseconds to visually ascethtic -->
-
-			</div>				
-			
-		</div>
+    </div>
+  </div>
+</div>

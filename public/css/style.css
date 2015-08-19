@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Universal configuration
+ ******************************************************************************/
+
 body,
 html,
 .main_container {
@@ -8,14 +12,29 @@ html,
   width: 100%;
 }
 
+.full-height{
+  height: 100%;
+}
+
+.row.no-margin{
+  margin: 0;
+}
+/*******************************************************************************
+ * index.html
+ ******************************************************************************/
+
+/*
+ * Navigation Bar CSS
+ */
 .navigation-bar{
   width: 100%;
-  height: 50px;
+  height: 10%;
 }
 
 .navigation-bar .links{
   height: 100%;
   text-align: center;
+  padding-top: 20px;
 }
 
 a.no-underline-link,
@@ -35,88 +54,67 @@ a.no-underline-link:active{
   color: black;
   border-bottom: 1px solid #52bab3;
   padding-bottom: 5px;
+  font-size: 21px;
 }
 
-h1{
-	text-align: center;
-	font-family: Verdana;
+.page-views{
+  height: 90%;
+  width: 100%;
 }
 
-h3{
-	padding-top: 10px;
-	text-align: center;
-	font-family: fantasy;
+/*
+ * Footer CSS
+ */
+
+.footer{
+  background-color: black;
+  height: 60px;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  color: white;
 }
 
-ol{
-	color:blue;
-	}
-
-img{
-	padding: 5px;
-	height: 130px;
-	width: 130px;
-
+.footer .footer-text{
+  opacity: .7;
 }
 
-textarea{
-	 rows:3;
-
+.footer .footer-text:hover{
+  opacity: 1;
 }
 
-.bGTwo{
-	height: 200px;
-	background-color: #00FA9A;
+.footer p.footer-text{
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  padding: 19px;
+}
+.row.footer-design{
+  text-align: center;
 }
 
-.look_nice{
-	height: auto;
-	width: 300px;
-	font-family: cursive;
-	background: #FFFACD;
+.footer img.git-linkedIn-link{
+  opacity: .7;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: white;
+  padding: 0;
+  margin: 10px 0px;
 }
 
-.email_size{
-	width:500px;
+.footer img.git-linkedIn-link:hover{
+  opacity: 1;
 }
 
-.password_size{
-	width: 350px;
-}
+/*******************************************************************************
+ * home.html
+ ******************************************************************************/
 
-.message{
-	float:left;
-}
-
-.time_stamp{
-	float:right;
-}
-
-#left{
-float:left;
-}
-
-#right{
-	float:right;
-}
-
-#interests{
-	color:#87CEEB;
-	font-weight: bold;
-}
-
-#pButton{
-	color:#87CDD0;
-	margin-top:10px;
-}
-
-#userMessages{
-	margin:10px;
-	cursor: default;
-	width: 1000px;
-	background-color: #d4fffc;
-}
-
-#emailTag{
-	width: 300px;
+.info-container{
+  background-color: #eceff1;
+  width: 60%;
+  margin: auto;
+  height: 80%;
+  border-radius: 5%;
 }
