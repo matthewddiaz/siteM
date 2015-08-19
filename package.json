@@ -1,0 +1,14 @@
+{
+  "name": "single_page_app1",
+  "version": "1.0.0",
+  "description": "Creating a single page app with ui.route from github",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Matthew D. Diaz",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.4"
+  }
+}
