@@ -19,6 +19,10 @@ html,
 .row.no-margin{
   margin: 0;
 }
+
+.no-padding{
+  padding: 0;
+}
 /*******************************************************************************
  * index.html
  ******************************************************************************/
@@ -118,3 +122,52 @@ a.no-underline-link:active{
   height: 80%;
   border-radius: 5%;
 }
+
+.profile-content{
+  padding: 5%;
+}
+
+#profile-pic{
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+}
+
+.skills-container{
+  background-color: white;
+  text-align: center;
+}
+
+
+.skills-container .coding-language-col:hover{
+  background-color: grey;
+}
+
+/*******************************************************************************
+ * project.html
+ ******************************************************************************/
+
+.project-container{
+  display: inline-block;
+}
+
+.project-container .project-image{
+  height: 300px;
+  width: 300px;
+  opacity: .5;
+}
+
+.project-container:hover .project-image{
+  opacity: 1;
+}
+
+ /*******************************************************************************
+  * login.html
+  ******************************************************************************/
+
+  .login-container{
+    height: 400px;
+    width: 600px;
+    background-color: yellow;
+    margin: auto;
+  }
