@@ -8,15 +8,15 @@
 
     <div class="col-xs-8 full-height no-padding">
       <div class="row no-margin skills-title-row">
-        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.toggleSkill()">
-            <p>Biography</p>
+        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.showBio()">
+          <p id="Bio" class="on">Biography</p>
         </div>
-        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.toggleSkill()">
-          <p>Technology Stack</p>
+        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.showTech()">
+          <p id="Tech" class="off">Technology Stack</p>
         </div>
       </div>
 
-      <div ng-show="hCtrl.skill" class="skills-container">
+      <div ng-show="hCtrl.isBio" class="skills-container">
         <p>
           I am a Junior at the University of Florida studying Computer Science
           in Engineering. I am an energetic Gator who loves to code and I am
@@ -24,7 +24,7 @@
         </p>
       </div>
 
-      <div ng-hide="hCtrl.skill" class="skills-container">
+      <div ng-hide="hCtrl.isBio" class="skills-container">
         <div class="row no-margin">
           <div class="col-xs-3">
             <p>Languages:</p>

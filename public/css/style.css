@@ -138,12 +138,23 @@ a.no-underline-link:active{
 }
 
 .skills-container{
-    text-align: center;
-    color: black;
-    font-size: 20px;
-    font-family: fantasy;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  font-family: fantasy;
 }
 
+.on{
+  color: blue;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.off{
+  color: red;
+  font-size: 15px;
+  opacity: .5;
+}
 
 .skills-container .coding-language-col:hover{
   background-color: grey;
