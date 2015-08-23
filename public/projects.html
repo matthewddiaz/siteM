@@ -1,5 +1,9 @@
 <div class="full-height" ng-controller="ProjectsController as pCtrl">
-  <div class="project-container" ng-repeat="image in pCtrl.projectImages">
-    <img class="project-image" src="/images/{{image}}">
+  <div class="row no-margin">
+    <div class="col-xs-4" ng-repeat="image in pCtrl.projectImages">
+      <div class="project-container">
+        <img class="project-image" src="/images/{{image}}">
+      </div>
+    </div>
   </div>
 </div>

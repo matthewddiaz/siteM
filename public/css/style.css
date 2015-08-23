@@ -148,13 +148,15 @@ a.no-underline-link:active{
  ******************************************************************************/
 
 .project-container{
-  display: inline-block;
+  width: initial;
 }
 
 .project-container .project-image{
   height: 300px;
   width: 300px;
   opacity: .5;
+  margin: auto;
+  display: block;
 }
 
 .project-container:hover .project-image{
