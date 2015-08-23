@@ -133,9 +133,15 @@ a.no-underline-link:active{
   border-radius: 10px;
 }
 
-.skills-container{
-  background-color: white;
+.skills-title-row{
   text-align: center;
+}
+
+.skills-container{
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-family: fantasy;
 }
 
 
