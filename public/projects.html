@@ -1,6 +1,6 @@
 <div class="full-height" ng-controller="ProjectsController as pCtrl">
-  <div class="row no-margin">
-    <div class="col-xs-4" ng-repeat="image in pCtrl.projectImages">
+  <div class="row no-margin project-row" ng-repeat="row in pCtrl.projectRows">
+    <div class="col-xs-4" ng-repeat="image in row">
       <div class="project-container">
         <img class="project-image" src="/images/{{image}}">
       </div>

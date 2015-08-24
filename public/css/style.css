@@ -163,8 +163,12 @@ a.no-underline-link:active{
 /*******************************************************************************
  * project.html
  ******************************************************************************/
+.project-row{
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 
-.project-container{
+.project-row .project-container{
   width: initial;
 }
 
@@ -180,13 +184,39 @@ a.no-underline-link:active{
   opacity: 1;
 }
 
+
  /*******************************************************************************
   * login.html
   ******************************************************************************/
 
-  .login-container{
-    height: 400px;
-    width: 600px;
-    background-color: yellow;
-    margin: auto;
-  }
+.login-container{
+  height: 400px;
+  width: 600px;
+  background-color: yellow;
+  margin: auto;
+}
+
+/*******************************************************************************
+ * projectTemplate.html
+ ******************************************************************************/
+
+.pop-up-project-container{
+  height: 400px;
+  width: 500px;
+  border: 1px solid black;
+  text-align: center;
+  margin: auto;
+}
+
+.pop-up-project-container .pop-up-project-image{
+ height: 100px;
+ width: 100px;
+}
+
+.pop-up-project-container .project-description{
+ height: 248px;
+ width: 100%;
+ background-color: #F0FBF1;
+ margin: auto;
+ text-align: center;
+}
