@@ -1,5 +1,5 @@
 angular.module('siteM.projectsController', ['ngRoute'])
-  .controller('ProjectsController', function(){
+  .controller('ProjectsController',['projectDescription', function(projectDescription){
     this.projectImages = ['calculator.jpg', 'dictionaryApp.jpg',
                           'internetPermission.jpg', 'NameThatCountry.jpg',
                           'great-wave.jpg', 'great-owl.jpg', 'matt.jpg'
@@ -11,4 +11,10 @@ angular.module('siteM.projectsController', ['ngRoute'])
       this.projectRows.push(this.projectImages.slice(i,i + this.rowLength));
     }
     console.log(this.projectRows);
-  });
+
+    this.showProjectPopUp = function(){
+        console.log('In here');
+        var promise = projectDescription.open(
+          'projectDescription');
+    }
+  }]);

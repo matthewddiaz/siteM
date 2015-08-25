@@ -29,4 +29,82 @@
 				redirectTo: '/home'
 			});
 	}]);
+
+	app.service('projectDescription', function($rootScope, $q){
+		var data = {deferred: null, params: null};
+		return({
+			open: open,
+			params: params,
+			proceedTo: proceedTo,
+			reject: reject,
+			resolve: resolve
+		});
+
+		function open(type, params, pipeResponse){
+			var previousDeferred = data.deferred;
+
+			data.deferred = $q.defer();
+			data.params = params;
+
+			if(previousDeferred && pipeResponse){
+				data.deferred.promise
+					.then(previousDeferred.resolve, previousDeferred.reject);
+			} else if(previousDeferred) {
+				previousDeferred.reject();
+			}
+
+			$rootScope.$emit('projectDescription.open', type);
+			return data.deferred.promise;
+		}
+
+		function params() {return data.params || {}; }
+
+		function proceedTo(type, params) {return open(type, params, true);}
+
+		function reject(reason){
+			if(!data.deferred) return;
+
+			data.deferred.reject(reason);
+			data.deferred = data.params = null;
+			$rootScope.$emit('projectDescription.close');
+		}
+
+		function resolve(response){
+			if(!data.deferred) return;
+
+			data.deferred.resolve(response);
+			data.deferred = data.params = null;
+			$rootScope.$emit('projectDescription.close');
+		}
+	});
+
+	app.directive('projectPopUp', function($rootScope, projectDescription){
+		return{
+			templateUrl: 'projectTemplate.html',
+			link: link
+		};
+
+		function link(scope, element, attributes){
+			scope.popup = null;
+
+			element.on(
+				"click",
+				function(event){
+					if(element[0].firstElementChild !== event.target) return;
+					scope.$apply(projectDescription.reject);
+				}
+			);
+
+			rootScope.$on(
+				'projectDescription.open',
+				function(event, modal) { scope.popup = null;}
+			);
+
+			rootScope.$on(
+				'projectDescription.close',
+				function(event, modal) { scope.popup = null;}
+			);
+		}
+	});
+
 })();
