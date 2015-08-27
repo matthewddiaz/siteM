@@ -95,12 +95,12 @@
 				}
 			);
 
-			rootScope.$on(
+			$rootScope.$on(
 				'projectDescription.open',
-				function(event, modal) { scope.popup = null;}
+				function(event, modal) { scope.popup = modal;}
 			);
 
-			rootScope.$on(
+			$rootScope.$on(
 				'projectDescription.close',
 				function(event, modal) { scope.popup = null;}
 			);

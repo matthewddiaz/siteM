@@ -13,7 +13,7 @@ angular.module('siteM.projectsController', ['ngRoute'])
     console.log(this.projectRows);
 
     this.showProjectPopUp = function(){
-        console.log('In here');
+        console.log('I made it to show');
         var promise = projectDescription.open(
           'projectDescription');
     }

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Universal configuration
  ******************************************************************************/
-
+/*
 body,
 html,
 .main_container {
@@ -9,6 +9,17 @@ html,
   margin: 0;
   padding: 0;
   width: 100%;
+}*/
+
+body,
+html{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.page-views{
+    flex: 1 0 auto;
 }
 
 .full-height{
@@ -55,16 +66,22 @@ a.no-underline-link:active
 }
 
 a.no-underline-link:hover,
-a.no-underline-link:active{
+a.no-underline-link:active,
+a.no-underline-link.active{
   color: black;
   border-bottom: 1px solid #52bab3;
   padding-bottom: 5px;
 }
 
+a.no-underline-link:active{
+  border-bottom: 1px solid #52bab3;
+}
+
+/*
 .page-views{
   height: 90%;
   width: 100%;
-}
+}*/
 
 /*
  * Footer CSS
