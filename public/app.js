@@ -30,6 +30,15 @@
 			});
 	}]);
 
+	function toggleLinkActiveClass(){
+		$('.navigation-bar a').click(function(event){
+			 $('a').removeClass('active');
+			 $(this).addClass('active');
+		 });
+	}
+
+	toggleLinkActiveClass();
+
 	app.service('projectDescription', function($rootScope, $q){
 		var data = {deferred: null, params: null};
 		return({
