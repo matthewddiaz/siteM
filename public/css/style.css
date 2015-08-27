@@ -180,12 +180,19 @@ a.no-underline-link:active{
 /*******************************************************************************
  * project.html
  ******************************************************************************/
-.project-row{
-  padding-top: 20px;
-  padding-bottom: 20px;
+.row.no-margin.project-row{
+  padding: 20px 0px;
+  width: -webkit-fit-content;
+  margin: 0 auto;
 }
 
-.project-row .project-container{
+.project-row .project-col{
+  width: initial;
+  margin: 0;
+  padding: 0px 20px;
+}
+
+.project-col .project-container{
   width: initial;
 }
 
@@ -195,6 +202,7 @@ a.no-underline-link:active{
   opacity: .5;
   margin: auto;
   display: block;
+  border: 1px solid black;
 }
 
 .project-container:hover .project-image{
