@@ -1,24 +1,19 @@
 /*******************************************************************************
  * Universal configuration
  ******************************************************************************/
-/*
-body,
-html,
-.main_container {
-  font-family: "Helvetica Neue";
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}*/
 
+/* -webkit-flex is used for Safari compatibility*/
 body,
 html{
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
   display: flex;
-  min-height: 100vh;
   flex-direction: column;
+  height: 100vh;
 }
 
 .page-views{
+    -webkit-flex: 1 0 auto;
     flex: 1 0 auto;
 }
 
@@ -41,10 +36,13 @@ html{
  * Navigation Bar CSS
  */
 .navigation-bar{
+  display: -webkit-flex;
   width: 100%;
   height: 10%;
   padding-top: 1%;
   padding-bottom: 1%;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .navigation-bar .links{
@@ -93,6 +91,9 @@ a.no-underline-link:active{
   width: 100%;
   bottom: 0;
   color: white;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+
 }
 
 .footer .footer-text{
