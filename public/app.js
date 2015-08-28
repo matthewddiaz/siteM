@@ -88,6 +88,9 @@
 	});
 
 	app.directive('projectPopUp', function($rootScope, projectDescription){
+		this.popup;
+		var directive = this;
+
 		return{
 			templateUrl: 'projectTemplate.html',
 			link: link
@@ -106,12 +109,12 @@
 
 			$rootScope.$on(
 				'projectDescription.open',
-				function(event, modal) { scope.popup = modal;}
+				function(event, modal) { directive.popup = modal;}
 			);
 
 			$rootScope.$on(
 				'projectDescription.close',
-				function(event, modal) { scope.popup = null;}
+				function(event, modal) { directive.popup = null;}
 			);
 		}
 	});
