@@ -226,12 +226,38 @@ a.no-underline-link:active{
  * projectTemplate.html
  ******************************************************************************/
 
+
+ /*******************************************************************************
+ * app-optimization.html
+ ******************************************************************************/
+div#popup-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0px; right: 0px; bottom: 0px; left: 0px;
+  position: fixed;
+}
+
+div#popup-overlay.ng-hide {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .pop-up-project-container{
-  height: 400px;
-  width: 500px;
+  height: 75%;
+  width: 70%;
   border: 1px solid black;
   text-align: center;
   margin: auto;
+}
+
+.pop-up-project-container .project-title{
+  background-color: white;
+  height: 10%;
+  width: 100%;
+}
+
+.pop-up-project-container .project-img-container{
+  background-color: white;
+  height: 40%;
+  width: 100%;
 }
 
 .pop-up-project-container .pop-up-project-image{
@@ -240,7 +266,7 @@ a.no-underline-link:active{
 }
 
 .pop-up-project-container .project-description{
- height: 248px;
+ height: 50%;
  width: 100%;
  background-color: #F0FBF1;
  margin: auto;
