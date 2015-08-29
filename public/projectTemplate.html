@@ -1,15 +1,20 @@
-<div class="pop-up-project-container">
-  <div class="row">
-    <div class="col-xs-12">
-      <p>Project Title</p>
+<div
+  id="popup-overlay"
+  ng-show="popup"
+  ng-switch-when="projectDescription" >
+  <div class="pop-up-project-container">
+    <div class="row no-margin project-title">
+      <div class="col-xs-12">
+        <p>Project Title</p>
+      </div>
+    </div>
+
+    <div class="project-img-container">
+      <img src="images/matt.jpg" class="pop-up-project-image">
+    </div>
+
+    <div class="project-description">
+      <p>Here goes the project description</p>
     </div>
   </div>
-
-  <div>
-    <img src="images/matt.jpg" class="pop-up-project-image">
-  </div>
-
-  <div class="project-description">
-    <p>Here goes the project description</p>
-  </div>
-<div>
+</div>
