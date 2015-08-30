@@ -2,14 +2,26 @@
  * Universal configuration
  ******************************************************************************/
 
+/* -webkit-flex is used for Safari compatibility*/
 body,
-html,
-.main_container {
-  font-family: "Helvetica Neue";
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+html{
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.page-views{
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin: auto;
 }
 
 .full-height{
@@ -31,14 +43,19 @@ html,
  * Navigation Bar CSS
  */
 .navigation-bar{
+  display: -webkit-flex;
   width: 100%;
   height: 10%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .navigation-bar .links{
   height: 100%;
   text-align: center;
-  padding-top: 20px;
+  padding: 15px;
 }
 
 a.no-underline-link,
@@ -54,17 +71,22 @@ a.no-underline-link:active
 }
 
 a.no-underline-link:hover,
-a.no-underline-link:active{
+a.no-underline-link:active,
+a.no-underline-link.active{
   color: black;
   border-bottom: 1px solid #52bab3;
   padding-bottom: 5px;
-  font-size: 21px;
 }
 
+a.no-underline-link:active{
+  border-bottom: 1px solid #52bab3;
+}
+
+/*
 .page-views{
   height: 90%;
   width: 100%;
-}
+}*/
 
 /*
  * Footer CSS
@@ -75,8 +97,10 @@ a.no-underline-link:active{
   height: 60px;
   width: 100%;
   bottom: 0;
-  position: absolute;
   color: white;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+
 }
 
 .footer .footer-text{
@@ -133,11 +157,28 @@ a.no-underline-link:active{
   border-radius: 10px;
 }
 
-.skills-container{
-  background-color: white;
+.skills-title-row{
   text-align: center;
 }
 
+.skills-container{
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  font-family: fantasy, "Helvetica Neue", Arial;
+}
+
+.on{
+  color: blue;
+  font-size: 20px;
+  opacity: 1;
+}
+
+.off{
+  color: red;
+  font-size: 15px;
+  opacity: .5;
+}
 
 .skills-container .coding-language-col:hover{
   background-color: grey;
@@ -146,28 +187,90 @@ a.no-underline-link:active{
 /*******************************************************************************
  * project.html
  ******************************************************************************/
+.row.no-margin.project-row{
+  padding: 20px 0px;
+}
 
-.project-container{
-  display: inline-block;
+.project-row .project-col{
+  padding: 0px 20px;
+}
+
+.project-col .project-container{
+  width: initial;
 }
 
 .project-container .project-image{
   height: 300px;
   width: 300px;
   opacity: .5;
+  display: block;
+  box-shadow: 0 2px 0 0 #E5E5E5;
+  border-radius: 6px;
 }
 
 .project-container:hover .project-image{
   opacity: 1;
 }
 
+
  /*******************************************************************************
   * login.html
   ******************************************************************************/
 
-  .login-container{
-    height: 400px;
-    width: 600px;
-    background-color: yellow;
-    margin: auto;
-  }
+.login-container{
+  height: 400px;
+  width: 600px;
+  background-color: yellow;
+  margin: auto;
+}
+
+/*******************************************************************************
+ * projectTemplate.html
+ ******************************************************************************/
+
+
+ /*******************************************************************************
+ * app-optimization.html
+ ******************************************************************************/
+div#popup-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0px; right: 0px; bottom: 0px; left: 0px;
+  position: fixed;
+}
+
+div#popup-overlay.ng-hide {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.pop-up-project-container{
+  height: 75%;
+  width: 70%;
+  border: 1px solid black;
+  text-align: center;
+  margin: auto;
+}
+
+.pop-up-project-container .project-title{
+  background-color: white;
+  height: 10%;
+  width: 100%;
+}
+
+.pop-up-project-container .project-img-container{
+  background-color: white;
+  height: 40%;
+  width: 100%;
+}
+
+.pop-up-project-container .pop-up-project-image{
+ height: 100px;
+ width: 100px;
+}
+
+.pop-up-project-container .project-description{
+ height: 50%;
+ width: 100%;
+ background-color: #F0FBF1;
+ margin: auto;
+ text-align: center;
+}

@@ -1,54 +1,30 @@
-<div class="info-container">
+<div ng-controller="HomeController as hCtrl" class="info-container">
   <div class="row profile-content no-margin full-height">
     <div class="col-xs-4 full-height no-padding">
       <a href="#/login">
-        <img id="profile-pic" src="images/matt.jpg">
+        <img id="profile-pic" src="images/mattImage.jpg">
       </a>
-      <div>
-        <div class="row no-margin">
-          <div class="col-xs-3 no-padding">
-            <p>Education:</p>
-          </div>
-          <div class="col-xs-9 no-padding">
-            <p>University of Florida</p>
-          </div>
-        </div>
-
-        <div class="row no-margin">
-          <div class="col-xs-3 no-padding">
-            <p>Major:</p>
-          </div>
-          <div class="col-xs-9 no-padding">
-            <p>Computer Science</p>
-          </div>
-        </div>
-
-        <div class="row no-margin">
-          <div class="col-xs-3 no-padding">
-            <p>Email:</p>
-          </div>
-          <div class="col-xs-9 no-padding">
-            <p>matthewdiaz10@ufl.edu</p>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="col-xs-8 full-height no-padding">
-      <div class="skills-container">
-        <p>Biography</p>
+      <div class="row no-margin skills-title-row">
+        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.showBio()">
+          <p id="Bio" class="on">Biography</p>
+        </div>
+        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.showTech()">
+          <p id="Tech" class="off">Technology Stack</p>
+        </div>
+      </div>
+
+      <div ng-show="hCtrl.isBio" class="skills-container">
         <p>
           I am a Junior at the University of Florida studying Computer Science
-          in Engineering. I am an energetic Gator who loves to code and I am very
-          interested in a Software Engineering Internship.
+          in Engineering. I am an energetic Gator who loves to code and I am
+          very interested in a Software Engineering Internship.
         </p>
       </div>
 
-      <div class="skills-container">
-        <div>
-          <p>Technology Stack</p>
-        </div>
-
+      <div ng-hide="hCtrl.isBio" class="skills-container">
         <div class="row no-margin">
           <div class="col-xs-3">
             <p>Languages:</p>
@@ -75,8 +51,8 @@
             <p>NodeJS, ExpressJS, AngularJS</p>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
 </div>
