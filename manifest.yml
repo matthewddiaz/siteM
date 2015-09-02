@@ -1,0 +1,14 @@
+# This manifest helps deploy blog-dev to
+# to development
+# environment
+---
+# Shared configuration
+disk_quota: 200MB
+
+# Application configuration
+applications:
+# Development
+- name: blog-dev
+  host: blog-dev
+  memory: 256MB
+  instances: 1
