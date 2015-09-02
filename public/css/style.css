@@ -196,13 +196,14 @@ a.no-underline-link:active{
 }
 
 .project-col .project-container{
+
   width: initial;
 }
 
 .project-container .project-image{
   height: 300px;
   width: 300px;
-  opacity: .5;
+  opacity: .8;
   display: block;
   box-shadow: 0 2px 0 0 #E5E5E5;
   border-radius: 6px;
@@ -226,11 +227,6 @@ a.no-underline-link:active{
 
 /*******************************************************************************
  * projectTemplate.html
- ******************************************************************************/
-
-
- /*******************************************************************************
- * app-optimization.html
  ******************************************************************************/
 div#popup-overlay {
   background-color: rgba(0, 0, 0, 0.7);
@@ -273,4 +269,22 @@ div#popup-overlay.ng-hide {
  background-color: #F0FBF1;
  margin: auto;
  text-align: center;
+}
+
+/*******************************************************************************
+ * video.html
+ ******************************************************************************/
+
+#background-video{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
 }
