@@ -22,8 +22,8 @@
 			.when('/admin', {
 				templateUrl : 'admin.html'
 			})
-			.when('/projectTemplate', {
-				templateUrl : 'projectTemplate.html'
+			.when('/video', {
+				templateUrl : 'videoTemplate.html'
 			})
 			.otherwise({
 				redirectTo: '/home'

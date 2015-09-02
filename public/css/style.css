@@ -44,18 +44,23 @@ html{
  */
 .navigation-bar{
   display: -webkit-flex;
+  display: flex;
   width: 100%;
   height: 10%;
-  padding-top: 1%;
-  padding-bottom: 1%;
   -webkit-flex-shrink: 0;
   flex-shrink: 0;
+  border-bottom: 1px white solid;
 }
 
 .navigation-bar .links{
   height: 100%;
   text-align: center;
-  padding: 15px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 a.no-underline-link,
@@ -73,24 +78,13 @@ a.no-underline-link:active
 a.no-underline-link:hover,
 a.no-underline-link:active,
 a.no-underline-link.active{
-  color: black;
+  color: white;
   border-bottom: 1px solid #52bab3;
-  padding-bottom: 5px;
 }
 
 a.no-underline-link:active{
   border-bottom: 1px solid #52bab3;
 }
-
-/*
-.page-views{
-  height: 90%;
-  width: 100%;
-}*/
-
-/*
- * Footer CSS
- */
 
 .footer{
   background-color: black;
@@ -100,7 +94,6 @@ a.no-underline-link:active{
   color: white;
   -webkit-flex-shrink: 0;
   flex-shrink: 0;
-
 }
 
 .footer .footer-text{
@@ -187,7 +180,12 @@ a.no-underline-link:active{
 /*******************************************************************************
  * project.html
  ******************************************************************************/
-.row.no-margin.project-row{
+
+.full-height.projects-container{
+  padding: 20px 0px;
+}
+
+.projects-container .row.no-margin.project-row{
   padding: 20px 0px;
 }
 
@@ -196,13 +194,14 @@ a.no-underline-link:active{
 }
 
 .project-col .project-container{
+
   width: initial;
 }
 
 .project-container .project-image{
   height: 300px;
   width: 300px;
-  opacity: .5;
+  opacity: .8;
   display: block;
   box-shadow: 0 2px 0 0 #E5E5E5;
   border-radius: 6px;
@@ -211,7 +210,6 @@ a.no-underline-link:active{
 .project-container:hover .project-image{
   opacity: 1;
 }
-
 
  /*******************************************************************************
   * login.html
@@ -226,11 +224,6 @@ a.no-underline-link:active{
 
 /*******************************************************************************
  * projectTemplate.html
- ******************************************************************************/
-
-
- /*******************************************************************************
- * app-optimization.html
  ******************************************************************************/
 div#popup-overlay {
   background-color: rgba(0, 0, 0, 0.7);
@@ -273,4 +266,22 @@ div#popup-overlay.ng-hide {
  background-color: #F0FBF1;
  margin: auto;
  text-align: center;
+}
+
+/*******************************************************************************
+ * video.html
+ ******************************************************************************/
+
+#background-video{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  background-size: cover;
 }
