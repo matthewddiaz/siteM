@@ -70,7 +70,7 @@ a.no-underline-link:hover,
 a.no-underline-link:active
 {
   text-decoration: none;
-  color: gray;
+  color: white;
   font-size: 20px;
   font-weight: 200;
 }
@@ -78,7 +78,7 @@ a.no-underline-link:active
 a.no-underline-link:hover,
 a.no-underline-link:active,
 a.no-underline-link.active{
-  color: white;
+  font-weight: 400;
   border-bottom: 1px solid #52bab3;
 }
 
