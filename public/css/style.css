@@ -12,15 +12,18 @@ html{
   height: 100vh;
 }
 
-.page-views{
-  -webkit-flex: 1 0 auto;
-  flex: 1 0 auto;
+.vertical-center{
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+
+.page-views{
+  -webkit-flex: 1 0 auto;
+  flex: 1 0 auto;
   margin: auto;
 }
 
@@ -55,12 +58,6 @@ html{
 .navigation-bar .links{
   height: 100%;
   text-align: center;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-justify-content: center;
-  align-items: center;
-  justify-content: center;
 }
 
 a.no-underline-link,
@@ -138,6 +135,7 @@ a.no-underline-link:active{
   margin: auto;
   height: 80%;
   border-radius: 5%;
+  opacity: .9;
 }
 
 .profile-content{
@@ -173,10 +171,6 @@ a.no-underline-link:active{
   opacity: .5;
 }
 
-.skills-container .coding-language-col:hover{
-  background-color: grey;
-}
-
 /*******************************************************************************
  * project.html
  ******************************************************************************/
@@ -194,21 +188,15 @@ a.no-underline-link:active{
 }
 
 .project-col .project-container{
-
   width: initial;
 }
 
 .project-container .project-image{
   height: 300px;
   width: 300px;
-  opacity: .8;
   display: block;
   box-shadow: 0 2px 0 0 #E5E5E5;
   border-radius: 6px;
-}
-
-.project-container:hover .project-image{
-  opacity: 1;
 }
 
  /*******************************************************************************
@@ -272,7 +260,7 @@ div#popup-overlay.ng-hide {
  * video.html
  ******************************************************************************/
 
-#background-video{
+.background-video{
   position: fixed;
   top: 50%;
   left: 50%;
