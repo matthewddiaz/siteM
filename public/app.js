@@ -1,8 +1,10 @@
 //This is in AngularJS
 (function(){
 
-	var app = angular.module('siteM',['ngRoute', 'ui.bootstrap',
-													 'siteM.homeController', 'siteM.projectsController']);//ui.router is a dependency that this app is using, look up on github.
+	var app = angular.module('siteM',['ngFileUpload', 'ngRoute', 'ui.bootstrap',
+													 'siteM.adminController', 'siteM.loginController',
+													 'siteM.homeController', 'siteM.projectsController'
+												 ]);//ui.router is a dependency that this app is using, look up on github.
 
 	/*the app.config allows angular to state which html page should be injected to the index.html when the client types
 	  localhost:3000/ followed by one of the routes below. This allows for Single Page Applications injections to be easily done

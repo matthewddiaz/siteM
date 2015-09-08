@@ -12,24 +12,24 @@ var cloudant = {
   var port = process.env.VCAP_APP_PORT;
 
   // Also parse out Cloudant settings.
-  cloudant = env['cloudantNoSQLDB'][0].credentials;  
+  cloudant = env['cloudantNoSQLDB'][0].credentials;
 }
 
 var nano = require('nano')(cloudant.url);
 var db = nano.db.use('blog_db');
 
 
-/* Insert a blog to cloudant database blog_db 
+/* Insert a blog to cloudant database blog_db
  * using nano module and function insert.
  * first parameter object
  * second parameter is callback function
  */
-function insertBlog(blog){
-  db.insert(blog , function(err,body){
+function insertDocument(doc){
+  db.insert(doc , function(err,body){
     if(err){
-        console.log("Could not insert to blog_db");
+        console.log("Could not insert to projects_db");
     }else{
-      console.log("Blog was inserted successfully to blog_db!");
+      console.log("Blog was inserted successfully to projects_db!");
      }
   });
 }
@@ -41,18 +41,37 @@ function insertBlog(blog){
   To use the function you need to do the following
   blogDB.insertBlog()
 */
-exports.insertBlog = insertBlog;
+exports.insertDocument = insertDocument;
+
+function insertDocWithAttachment(doc, att){
+  if(!att.name || !att.data || !att.type){
+      console.log('An error ocurred');
+      return;
+  }
+  db.multipart.insert(doc,
+   [{name: att.name, data: att.data, content_type: att.type}],
+   'firstFile',
+    function(err, body) {
+      if(err){
+          console.log("Could not insert to blog_db" + err);
+      }else{
+        console.log("Blog was inserted successfully to blog_db!");
+       }
+  });
+}
+exports.insertDocWithAttachment = insertDocWithAttachment;
+
 
 /* Get all previous blogs stored in the blog_db
  * nano fetch method requires a key. If the key does
- * not match a unique ID in the database, fetch will return 
- * everything. Note: the attribute should be called keys.  
+ * not match a unique ID in the database, fetch will return
+ * everything. Note: the attribute should be called keys.
  *
  *next refers to a callback that a user will include
  */
 
 
-/* Next is the optional callback function that returns an error 
+/* Next is the optional callback function that returns an error
  * if any and a JSON body.
  *
  */
@@ -75,7 +94,7 @@ function getBlogs(next){
       });
       //console.log(blogs);
        next(err, blogs);
-    }    
+    }
   });
 }
 

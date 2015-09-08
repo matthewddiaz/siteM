@@ -1,25 +1,41 @@
 
 var express = require('express');
 var router = express.Router();//need to include express so that we can use the Router() method
+var fs = require('fs');
+var projects_Database = require('../config/projects-database');
 
-var blog_Database = require('../config/blog-database');
+router.get('/retrieveProjectPics', function(req, res, next){
+	fs.readFile('./imageFile.json', function (err, data) {
+	  if (err) throw err;
+	  else{
+			res.send(data);
+		}
+	});
+});
 
 /*
 This route will insert the comment sent from the user to Cloduant blog_db
 */
-router.post('/comment',function(req, res, next){
-	console.log(req.body);
-	blog_Database.insertBlog(req.body);
+router.post('/upload',function(req, res, next){
+	projects_Database.insertBlog(req.body);
 });
 
+/*
+	function(code) {
+		return crypto.createHash('sha256').update(code).digest('hex');
+	};
+	var id = function('mycode');
 
-router.get('/history',function(req,res,next){
-  
-  /* the function for getBlogs is the next callback 
-   * function from blog-database.js method 
+*/
+
+
+router.get('/history',function(req, res, next){
+
+  /* the function for getBlogs is the next callback
+   * function from blog-database.js method
    * getBlogs
    */
-  blog_Database.getBlogs(function(err, blogs){
+  projects_Database.getBlogs(function(err, blogs){
     if(err){
       console.log('hi you messed up!');
     }else{
@@ -27,7 +43,7 @@ router.get('/history',function(req,res,next){
       res.send(blogs);
     }
   });
-  
+
 });
 
 

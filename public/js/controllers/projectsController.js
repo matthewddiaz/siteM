@@ -1,20 +1,31 @@
 angular.module('siteM.projectsController', ['ngRoute'])
-  .controller('ProjectsController',['projectDescription', function(projectDescription){
-    this.projectImages = ['calculator.jpg', 'dictionaryApp.jpg',
-                          'internetPermission.jpg', 'NameThatCountry.jpg',
-                          'great-wave.jpg', 'great-owl.jpg', 'matt.jpg'
-                         ];
+  .controller('ProjectsController',['projectDescription', '$http',
+  function(projectDescription, $http){
     this.projectRows = [];
     this.rowLength = 3;
+    var controller = this;
 
-    for(var i = 0; i < this.projectImages.length; i = i + this.rowLength){
-      this.projectRows.push(this.projectImages.slice(i,i + this.rowLength));
-    }
-    console.log(this.projectRows);
+    $http.get('/data/retrieveProjectPics').
+      then(function(response) {
+        console.log('The response data is' + JSON.stringify(response.data));
+        var data = response.data;
+        for(var i = 0; i < data.length; i = i + controller.rowLength){
+          controller.projectRows.push(data.slice(i,i + controller.rowLength));
+        }
+        console.log(controller.projectRows);
 
-    this.showProjectPopUp = function(){
-        console.log('I made it to show');
+      }, function(response) {
+        console.log(response.error);
+      });
+
+    this.showProjectPopUp = function(image){
         var promise = projectDescription.open(
-          'projectDescription');
+          'projectDescription',
+          {
+            image: image.img,
+            docName: image.projectName
+          }
+        );
+        console.log('The image clicked is ' + JSON.stringify(image));
     }
   }]);

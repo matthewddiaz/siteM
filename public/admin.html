@@ -1,0 +1,31 @@
+<div class="row">
+  <form class="col s12" ng-controller="AdminController as ACtrl"
+        ng-submit="ACtrl.postProject()">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="first_name" type="text" class="validate" required
+          ng-model="ACtrl.projectName">
+        <label for="project_nam">Project Name</label>
+      </div>
+
+      <div class="input-field col s6">
+        <input id="first_name" type="text" class="validate" required
+         ng-model="ACtrl.github">
+        <label for="project_name">GitHub URL</label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <textarea id="project-description-box" placeholder="Project Description"
+            ng-model="ACtrl.projectDescription" required>
+          </textarea>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+
+  </form>
+</div>

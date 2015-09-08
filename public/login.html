@@ -1,15 +1,21 @@
-
-<form class="col s12">
+<form class="col s12" ng-controller = "LoginController as lCtrl"
+ng-submit="lCtrl.checkIfAdmin()">
   <div class="row">
     <div class="input-field col s12">
-      <input id="password" type="password" class="validate">
+      <input id="username" type="email" class="validate" required
+      ng-model="lCtrl.email">
+      <label for="email">Email</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="password" type="password" class="validate" required
+      ng-model="lCtrl.password">
       <label for="password">Password</label>
     </div>
   </div>
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="email" type="email" class="validate">
-      <label for="email">Email</label>
-    </div>
+  <div>
+    <button type="submit" class="btn btn-default">Submit</button>
   </div>
 </form>
