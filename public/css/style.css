@@ -117,15 +117,15 @@ a.no-underline-link:active{
   text-align: center;
 }
 
-.footer img.git-linkedIn-link{
-  opacity: .7;
+img.git-linkedIn-link{
   height: 40px;
   width: 40px;
   border-radius: 20px;
+  opacity: .7;
   background-color: white;
 }
 
-.footer img.git-linkedIn-link:hover{
+img.git-linkedIn-link:hover{
   opacity: 1;
 }
 
@@ -217,6 +217,7 @@ a.no-underline-link:active{
 /*******************************************************************************
  * projectTemplate.html
  ******************************************************************************/
+
 div#popup-overlay {
   background-color: rgba(0, 0, 0, 0.7);
   top: 0px; right: 0px; bottom: 0px; left: 0px;
@@ -243,7 +244,7 @@ div#popup-overlay.ng-hide {
 
 .pop-up-project-container .project-img-container{
   background-color: white;
-  height: 40%;
+  height: 35%;
   width: 100%;
 }
 
@@ -253,11 +254,17 @@ div#popup-overlay.ng-hide {
 }
 
 .pop-up-project-container .project-description{
- height: 50%;
+ height: 45%;
  width: 100%;
  background-color: #F0FBF1;
  margin: auto;
  text-align: center;
+}
+.pop-up-project-container .project-footer{
+  height: 10%;
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /*******************************************************************************
