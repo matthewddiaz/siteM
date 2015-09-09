@@ -1,5 +1,6 @@
 
 var cloudantCredentials = require('./db-credentials.json').credentials;
+var crypto = require('crypto');
 
 var cloudant = {
  	url: cloudantCredentials.url
@@ -18,14 +19,19 @@ var cloudant = {
 var nano = require('nano')(cloudant.url);
 var db = nano.db.use('blog_db');
 
+function encryptID(id) {
+  return crypto.createHash('sha256').update(id).digest('hex');
+};
 
 /* Insert a blog to cloudant database blog_db
  * using nano module and function insert.
  * first parameter object
  * second parameter is callback function
  */
-function insertDocument(doc){
-  db.insert(doc , function(err,body){
+function insertDocument(doc, doc_id){
+  var id = encryptID(doc_id);
+
+  db.insert(doc , id, function(err,body){
     if(err){
         console.log("Could not insert to projects_db");
     }else{
@@ -61,6 +67,20 @@ function insertDocWithAttachment(doc, att){
 }
 exports.insertDocWithAttachment = insertDocWithAttachment;
 
+//db.get(docname, [params], [callback])
+function getDocument(doc_id){
+  var id = encryptID(doc_id);
+
+  db.get(id, function(err, body) {
+    if(err){
+      console.log('An error occurred while getting document ' + err);
+    }
+    console.log('The body is '  + JSON.stringify(body));
+    //The extracting the blogs from the returned body
+    //rows = body.rows;
+  });
+}
+exports.getDocument = getDocument;
 
 /* Get all previous blogs stored in the blog_db
  * nano fetch method requires a key. If the key does
@@ -75,7 +95,7 @@ exports.insertDocWithAttachment = insertDocWithAttachment;
  * if any and a JSON body.
  *
  */
-function getBlogs(next){
+function getAllDocuments(next){
   var fakeKey = {
     blog : "blog"
   }
@@ -98,4 +118,4 @@ function getBlogs(next){
   });
 }
 
-exports.getBlogs = getBlogs;
+exports.getAllDocuments = getAllDocuments;

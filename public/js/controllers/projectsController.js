@@ -20,12 +20,13 @@ angular.module('siteM.projectsController', ['ngRoute'])
 
     this.showProjectPopUp = function(image){
         var promise = projectDescription.open(
-          'projectDescription',
-          {
-            image: image.img,
-            docName: image.projectName
-          }
+          'projectDescription'
         );
-        console.log('The image clicked is ' + JSON.stringify(image));
+        $http.post('/data/document', {id:image.projectName}).
+          then(function(response) {
+            console.log(response.status);
+          }, function(response) {
+            console.log(response.error);
+          });
     }
   }]);
