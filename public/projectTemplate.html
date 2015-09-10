@@ -1,12 +1,13 @@
 <div
   id="popup-overlay"
   class="vertical-center"
+  ng-controller="ProjectsPopUpController as PPUCtrl"
   ng-show="popup"
   ng-switch-when="projectDescription">
   <div class="pop-up-project-container">
     <div class="row no-margin project-title">
       <div class="col-xs-12">
-        <p>Project Title</p>
+        <p>{{project.projectName}}</p>
       </div>
     </div>
 
@@ -15,7 +16,7 @@
     </div>
 
     <div class="project-description">
-      <p>Here goes the project description</p>
+      <p>{{project.projectDescription}}</p>
     </div>
 
     <div class="project-footer row no-margin">
@@ -23,7 +24,7 @@
         <p>Created by: Matthew Diaz</p>
       </div>
       <div class="col-xs-6 no-padding full-height vertical-center">
-        <a href="https://www.linkedin.com/in/mddiaz">
+        <a href="{{project.projectUrl}}">
           <img class="git-linkedIn-link" src="images/github.gif">
         </a>
       </div>

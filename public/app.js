@@ -3,7 +3,8 @@
 
 	var app = angular.module('siteM',['ngFileUpload', 'ngRoute', 'ui.bootstrap',
 													 'siteM.adminController', 'siteM.loginController',
-													 'siteM.homeController', 'siteM.projectsController'
+													 'siteM.homeController', 'siteM.projectsController',
+													 'siteM.projectsPopUpController'
 												 ]);//ui.router is a dependency that this app is using, look up on github.
 
 	/*the app.config allows angular to state which html page should be injected to the index.html when the client types
@@ -12,17 +13,20 @@
 	app.config(['$routeProvider', function($routeProvider){
 
 		$routeProvider//Are the specific routes that user types in the browser will inject the specifc html to index.html
+			.when('/admin', {
+				templateUrl : 'admin.html'
+			})
+			.when('/courses', {
+				templateUrl : 'courses.html'
+			})
+			.when('/login', {
+				templateUrl : 'login.html'
+			})
 			.when('/home', {
 				templateUrl : 'home.html' //what the name of the file that is being injected to index.html
 			})
 			.when('/projects', {
 				templateUrl : 'projects.html'
-			})
-			.when('/login', {
-				templateUrl : 'login.html'
-			})
-			.when('/admin', {
-				templateUrl : 'admin.html'
 			})
 			.otherwise({
 				redirectTo: '/home'

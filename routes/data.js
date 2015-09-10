@@ -16,35 +16,25 @@ router.get('/retrieveProjectPics', function(req, res, next){
 /*
 This route will insert the comment sent from the user to Cloduant blog_db
 */
-router.post('/upload',function(req, res, next){
-	projects_Database.insertBlog(req.body);
+router.post('/upload', function(req, res, next){
+	console.log('The request is ' + JSON.stringify(req.body));
+	projects_Database.insertDocument(req.body, req.body.projectName);
 });
 
-/*
-	function(code) {
-		return crypto.createHash('sha256').update(code).digest('hex');
-	};
-	var id = function('mycode');
 
-*/
-
-
-router.get('/history',function(req, res, next){
-
-  /* the function for getBlogs is the next callback
-   * function from blog-database.js method
-   * getBlogs
-   */
-  projects_Database.getBlogs(function(err, blogs){
-    if(err){
-      console.log('hi you messed up!');
-    }else{
-      console.log(blogs);
-      res.send(blogs);
-    }
-  });
-
+router.post('/document', function(req, res, next){
+  projects_Database.getDocument(req.body.id, function(err, body){
+		if(err){
+			console.log(err);
+			return;
+		}
+		var document = {
+			'projectName' : body.projectName,
+			'projectUrl' : body.projectUrl,
+			'projectDescription' : body.projectDescription
+		}
+		res.send(document);
+	});
 });
-
 
 module.exports = router;
