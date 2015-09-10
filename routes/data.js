@@ -26,6 +26,7 @@ router.post('/document', function(req, res, next){
   projects_Database.getDocument(req.body.id, function(err, body){
 		if(err){
 			console.log(err);
+			return;
 		}
 		var document = {
 			'projectName' : body.projectName,

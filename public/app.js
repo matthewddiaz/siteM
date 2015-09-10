@@ -13,17 +13,20 @@
 	app.config(['$routeProvider', function($routeProvider){
 
 		$routeProvider//Are the specific routes that user types in the browser will inject the specifc html to index.html
+			.when('/admin', {
+				templateUrl : 'admin.html'
+			})
+			.when('/courses', {
+				templateUrl : 'courses.html'
+			})
+			.when('/login', {
+				templateUrl : 'login.html'
+			})
 			.when('/home', {
 				templateUrl : 'home.html' //what the name of the file that is being injected to index.html
 			})
 			.when('/projects', {
 				templateUrl : 'projects.html'
-			})
-			.when('/login', {
-				templateUrl : 'login.html'
-			})
-			.when('/admin', {
-				templateUrl : 'admin.html'
 			})
 			.otherwise({
 				redirectTo: '/home'
