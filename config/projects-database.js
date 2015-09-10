@@ -68,16 +68,18 @@ function insertDocWithAttachment(doc, att){
 exports.insertDocWithAttachment = insertDocWithAttachment;
 
 //db.get(docname, [params], [callback])
-function getDocument(doc_id){
+function getDocument(doc_id, next){
   var id = encryptID(doc_id);
 
   db.get(id, function(err, body) {
     if(err){
       console.log('An error occurred while getting document ' + err);
     }
-    console.log('The body is '  + JSON.stringify(body));
+    //console.log('The body is '  + JSON.stringify(body));
     //The extracting the blogs from the returned body
     //rows = body.rows;
+    //optional call back
+    next(err, body);
   });
 }
 exports.getDocument = getDocument;

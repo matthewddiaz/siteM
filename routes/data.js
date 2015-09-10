@@ -23,8 +23,17 @@ router.post('/upload', function(req, res, next){
 
 
 router.post('/document', function(req, res, next){
-	console.log('The request for /document is ' + req.body.id );
-  projects_Database.getDocument(req.body.id);
+  projects_Database.getDocument(req.body.id, function(err, body){
+		if(err){
+			console.log(err);
+		}
+		var document = {
+			'projectName' : body.projectName,
+			'projectUrl' : body.projectUrl,
+			'projectDescription' : body.projectDescription
+		}
+		res.send(document);
+	});
 });
 
 module.exports = router;
