@@ -228,6 +228,13 @@ div#popup-overlay.ng-hide {
   background-color: rgba(0, 0, 0, 0);
 }
 
+img.pop-up-close-button{
+  float: right;
+  width: 20px;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
 .pop-up-project-container{
   height: 75%;
   width: 70%;
