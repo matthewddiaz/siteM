@@ -4,15 +4,20 @@
   ng-controller="ProjectsPopUpController as PPUCtrl"
   ng-show="popup"
   ng-switch-when="projectDescription">
-  <div class="row">
-    <img class="pop-up-close-button"
-         src="images/popup-close-icon.png"
-         alt="close icon"
-         ng-click="cancel()">
-  </div>
+
   <div class="pop-up-project-container">
+    <div class="row no-margin esc-pop-up-row">
+      <div class="col-xs-12 no-padding full-height">
+        <a href="/#/projects">
+          <div class="full-height" ng-click="cancel()">
+            <p class="x-font">X</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
     <div class="row no-margin project-title">
-      <div class="col-xs-12">
+      <div class="col-xs-12 no-padding">
         <p>{{project.projectName}}</p>
       </div>
     </div>
