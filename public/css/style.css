@@ -25,6 +25,7 @@ html{
   -webkit-flex: 1 0 auto;
   flex: 1 0 auto;
   margin: auto;
+  width: 100%;
 }
 
 .full-height{
@@ -219,7 +220,7 @@ img.git-linkedIn-link:hover{
  ******************************************************************************/
 
 div#popup-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
   top: 0px; right: 0px; bottom: 0px; left: 0px;
   position: fixed;
 }
@@ -229,16 +230,35 @@ div#popup-overlay.ng-hide {
 }
 
 .pop-up-project-container{
-  height: 75%;
-  width: 70%;
+  height: 65%;
+  width: 60%;
   border: 1px solid black;
   text-align: center;
   margin: auto;
 }
 
+.pop-up-project-container .esc-pop-up-row{
+    width: 100%;
+    height: 2%;
+    background-color: white;
+}
+
+.esc-pop-up-row img.pop-up-close-button{
+  float: right;
+  height: 100%;
+}
+.esc-pop-up-row p.x-font{
+  margin: 0px;
+  height: 100%;
+  font-size: .7em;
+  float: right;
+  margin-right: .5%;
+  font-weight: bold;
+}
+
 .pop-up-project-container .project-title{
   background-color: white;
-  height: 10%;
+  height: 8%;
   width: 100%;
 }
 
@@ -293,3 +313,11 @@ div#popup-overlay.ng-hide {
     color: black;
     font-size: 1.2em;
  }
+
+ /*******************************************************************************
+  * courses.html
+  ******************************************************************************/
+
+  .courses-chart{
+    width: 600px;
+  }
