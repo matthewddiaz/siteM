@@ -13,6 +13,15 @@ router.get('/retrieveProjectPics', function(req, res, next){
 	});
 });
 
+router.get('/retrieveCourses', function(req, res, next){
+	fs.readFile('./coursesFile.json', function (err, data) {
+	  if (err) throw err;
+	  else{
+			res.send(data);
+		}
+	});
+});
+
 /*
 This route will insert the comment sent from the user to Cloduant blog_db
 */
