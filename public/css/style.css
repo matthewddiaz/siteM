@@ -25,6 +25,7 @@ html{
   -webkit-flex: 1 0 auto;
   flex: 1 0 auto;
   margin: auto;
+  width: 100%;
 }
 
 .full-height{
@@ -300,3 +301,11 @@ img.pop-up-close-button{
     color: black;
     font-size: 1.2em;
  }
+
+ /*******************************************************************************
+  * courses.html
+  ******************************************************************************/
+
+  .courses-chart{
+    width: 600px;
+  }
