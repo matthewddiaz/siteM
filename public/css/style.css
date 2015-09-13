@@ -302,7 +302,12 @@ div#popup-overlay.ng-hide {
   z-index: -100;
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+  background: url(images/homeUFinspiration.jpg) no-repeat;
   background-size: cover;
+}
+
+.background-video#project-video{
+  background: url(images/projectNashInspiration.jpg) no-repeat;
 }
 
  #project-description-box{
