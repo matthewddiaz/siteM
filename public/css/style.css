@@ -260,6 +260,14 @@ div#popup-overlay.ng-hide {
   background-color: white;
   height: 8%;
   width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pop-up-project-container .project-title .title-font-style{
+  font-family: cursive;
+  font-size: 1.3em;
+  font-weight: bolder;
+  margin: 0px;
 }
 
 .pop-up-project-container .project-img-container{
@@ -269,17 +277,31 @@ div#popup-overlay.ng-hide {
 }
 
 .pop-up-project-container .pop-up-project-image{
- height: 100px;
- width: 100px;
+ height: 150px;
+ width: 150px;
 }
 
 .pop-up-project-container .project-description{
  height: 45%;
  width: 100%;
- background-color: #F0FBF1;
+ background-color: #f5f5f5;
  margin: auto;
  text-align: center;
 }
+
+.pop-up-project-container .project-description .paragraph-area-container{
+  width: 80%;
+  height: 100%;
+  margin: auto;
+}
+
+.project-description .paragraph-area-container .paragraph-style{
+  margin: 0px;
+  font-family: inherit;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+
 .pop-up-project-container .project-footer{
   height: 10%;
   width: 100%;

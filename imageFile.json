@@ -1,18 +1,18 @@
 [
   {
-    "img" : "great-wave.jpg",
-    "projectName" : "Color Generator"
-  },
-  {
     "img" : "NameThatCountry.jpg",
     "projectName" : "Name That Country"
+  },
+  {
+    "img" : "color-generator.jpg",
+    "projectName" : "Color Generator"
   },
   {
     "img" : "calculator.jpg",
     "projectName" : "Simple Four Function Calculator"
   },
   {
-    "img" : "dictionaryApp.jpg",
+    "img" : "dictionary.jpg",
     "projectName" : "Android Dictionary"
   },
   {
@@ -20,7 +20,7 @@
     "projectName" : "Internet Permission"
   },
   {
-    "img" : "great-owl.jpg",
+    "img" : "pi-estimator.jpg",
     "projectName" : "Pi estimate"
   }
 ]
