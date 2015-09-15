@@ -4,8 +4,8 @@
     "projectName" : "Name That Country"
   },
   {
-    "img" : "color-generator.jpg",
-    "projectName" : "Color Generator"
+    "img" : "color-list-view.jpg",
+    "projectName" : "Color List View"
   },
   {
     "img" : "calculator.jpg",
@@ -13,7 +13,7 @@
   },
   {
     "img" : "dictionary.jpg",
-    "projectName" : "Android Dictionary"
+    "projectName" : "Dictionary Creator"
   },
   {
     "img" : "internetPermission.jpg",
@@ -21,6 +21,6 @@
   },
   {
     "img" : "pi-estimator.jpg",
-    "projectName" : "Pi estimate"
+    "projectName" : "Pi Estimator"
   }
 ]
