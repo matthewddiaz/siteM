@@ -211,10 +211,27 @@ img.git-linkedIn-link:hover{
   ******************************************************************************/
 
 .login-container{
-  height: 400px;
-  width: 600px;
-  background-color: yellow;
-  margin: auto;
+  width: 100%;
+}
+
+.login-container .warning-container{
+  height: 100px;
+  width: 100%;
+}
+
+.login-container .warning-container .admin-only-warning{
+  font-size: 50px;
+  font-family: cursive;
+  color: #52bab3;
+  margin: 0px;
+}
+
+.login-container .row form.col.s12.login-form{
+  width: 50%;
+}
+
+.login-container .empty-container{
+  height: 150px;
 }
 
 /*******************************************************************************
