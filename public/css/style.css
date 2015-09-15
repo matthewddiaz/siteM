@@ -39,6 +39,14 @@ html{
 .no-padding{
   padding: 0;
 }
+
+a.no-decoration,
+a.no-decoration:link,
+a.no-decoration:visited,
+a.no-decoration:hover,
+a.no-decoration:active{
+  text-decoration: none;
+}
 /*******************************************************************************
  * index.html
  ******************************************************************************/
@@ -62,26 +70,20 @@ html{
   text-align: center;
 }
 
-a.no-underline-link,
-a.no-underline-link:link,
-a.no-underline-link:visited,
-a.no-underline-link:hover,
-a.no-underline-link:active
-{
-  text-decoration: none;
+.navigation-bar p.nav-links{
   color: white;
   font-size: 20px;
   font-weight: 200;
+  margin: 0px;
 }
 
-a.no-underline-link:hover,
-a.no-underline-link:active,
-a.no-underline-link.active{
+.navigation-bar p.nav-links:hover,
+.navigation-bar p.nav-links.active{
   font-weight: 400;
   border-bottom: 1px solid #52bab3;
 }
 
-a.no-underline-link:active{
+.navigation-bar a.active{
   border-bottom: 1px solid #52bab3;
 }
 
@@ -332,27 +334,27 @@ div#popup-overlay.ng-hide {
   background: url(images/projectNashInspiration.jpg) no-repeat;
 }
 
- #project-description-box{
-    width: 600px;
-    height: 10rem;
-    text-decoration: none;
-    border: solid 2px #52bab3;
-    color: black;
-    font-size: 1.2em;
- }
+#project-description-box{
+  width: 600px;
+  height: 10rem;
+  text-decoration: none;
+  border: solid 2px #52bab3;
+  color: black;
+  font-size: 1.2em;
+}
 
  /*******************************************************************************
   * courses.html
   ******************************************************************************/
 
-  .courses-chart{
-    width: 600px;
-  }
+.courses-chart{
+  width: 600px;
+}
 
 .courses-chart .collapsible-body .course-style{
   padding: 1rem 2rem;
 }
 
 .courses-chart .collapsible-body .course-style:hover{
-  background-color: #f5f5f5; 
+  background-color: #f5f5f5;
 }
