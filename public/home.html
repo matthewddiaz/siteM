@@ -1,61 +1,68 @@
-<video autoplay muted loop src="videos/homeGatorsVideo.mp4" class="background-video">
+<video autoplay muted loop poster="images/homeUFinspiration.jpg" src="videos/homeGatorsVideo.mp4"
+  class="background-video">
 </video>
 
 <div ng-controller="HomeController as hCtrl" class="info-container">
   <div class="row profile-content no-margin full-height">
-    <div class="col-xs-4 full-height no-padding">
+
+    <div class="col-xs-4 image-container">
       <a href="#/login">
         <img id="profile-pic" src="images/mattImage.jpg">
       </a>
     </div>
 
-    <div class="col-xs-8 full-height no-padding">
+    <div class="col-xs-8 bio-container">
       <div class="row no-margin skills-title-row">
-        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.showBio()">
-          <p id="Bio" class="on">Biography</p>
+        <div class="col-xs-6 no-padding full-height" ng-mouseover="hCtrl.showBio()">
+          <p id="Bio" class="on skill-title-style">Biography</p>
         </div>
-        <div class="col-xs-6 no-padding" ng-mouseover="hCtrl.showTech()">
-          <p id="Tech" class="off">Technology Stack</p>
+        <div class="col-xs-6 no-padding full-height" ng-mouseover="hCtrl.showTech()">
+          <p id="Tech" class="off skill-title-style">Technology Stack</p>
         </div>
       </div>
 
-      <div ng-show="hCtrl.isBio" class="skills-container">
-        <p>
-          I am a Junior at the University of Florida studying Computer Science
-          in Engineering. I am an energetic Gator who loves to code and I am
-          very interested in a Software Engineering Internship.
-        </p>
-      </div>
+      <div class="row no-margin vertical-center skills-content-row">
+        <div class="col-xs-12 no-padding">
 
-      <div ng-hide="hCtrl.isBio" class="skills-container">
-        <div class="row no-margin">
-          <div class="col-xs-3">
-            <p>Languages:</p>
-          </div>
-          <div class="coding-language-col col-xs-9">
-            <p>Java, C++, JavaScript, Android
+          <div ng-show="hCtrl.isBio" class="skills-container">
+            <p class="skill-description-style">
+              I am a Junior at the University of Florida studying Computer Science
+              in Engineering. I am an energetic Gator who loves to code and I am
+              very interested in a Software Engineering Internship.
             </p>
           </div>
-        </div>
 
-        <div class="row no-margin">
-          <div class="col-xs-3">
-          </div>
-          <div class="coding-language-col col-xs-9">
-            <p>Html5, CSS, SQL, NOSQL, Git</p>
-          </div>
-        </div>
+          <div ng-hide="hCtrl.isBio" class="skills-container">
+            <div class="row no-margin">
+              <div class="col-xs-3 col-property-style">
+                <p class="skill-description-style">Languages:</p>
+              </div>
+              <div class="col-xs-9 col-coding-language vertical-center">
+                <p class="skill-description-style">Java, C++, JavaScript, Android
+                </p>
+              </div>
+            </div>
 
-        <div class="row no-margin">
-          <div class="col-xs-3">
-            <p>FrameWorks:</p>
+            <div class="row no-margin">
+              <div class="col-xs-3 col-property-style">
+              </div>
+              <div class="col-xs-9 col-coding-language vertical-center">
+                <p class="skill-description-style">Html5, CSS, SQL, NOSQL, Git</p>
+              </div>
+            </div>
+
+            <div class="row no-margin">
+              <div class="col-xs-3 col-property-style">
+                <p class="skill-description-style">FrameWorks:</p>
+              </div>
+              <div class="col-xs-9 col-coding-language vertical-center">
+                <p class="skill-description-style">NodeJS, ExpressJS, AngularJS</p>
+              </div>
+            </div>
           </div>
-          <div class="coding-language-col col-xs-9">
-            <p>NodeJS, ExpressJS, AngularJS</p>
-          </div>
+
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -1,21 +1,36 @@
-<form class="col s12" ng-controller = "LoginController as lCtrl"
-ng-submit="lCtrl.checkIfAdmin()">
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="username" type="email" class="validate" required
-      ng-model="lCtrl.email">
-      <label for="email">Email</label>
+<div class="login-container full-height">
+  <div class="row no-margin warning-container">
+    <div class="col-xs-12 no-padding full-height vertical-center">
+      <p class="admin-only-warning">Admin Only</p>
     </div>
   </div>
 
-  <div class="row">
-    <div class="input-field col s12">
-      <input id="password" type="password" class="validate" required
-      ng-model="lCtrl.password">
-      <label for="password">Password</label>
+  <div class="row no-margin vertical-center">
+    <form class="col s12 login-form" ng-controller = "LoginController as lCtrl"
+          ng-submit="lCtrl.checkIfAdmin()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="username" type="email" class="validate" required
+          ng-model="lCtrl.email">
+          <label for="email">Email</label>
+        </div>
+      </div>
+
+      <div class="row no-margin">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate" required
+          ng-model="lCtrl.password">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="row no-margin empty-container">
+    <div class="col-xs-12 no-padding">
     </div>
   </div>
-  <div>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </div>
-</form>
+</div>
