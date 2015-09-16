@@ -50,10 +50,12 @@ function insertDocument(doc, doc_id){
 exports.insertDocument = insertDocument;
 
 function insertDocWithAttachment(doc, att){
+  /*
   if(!att.name || !att.data || !att.type){
       console.log('An error ocurred');
       return;
-  }
+  }*/
+
   db.multipart.insert(doc,
    [{name: att.name, data: att.data, content_type: att.type}],
    'firstFile',
@@ -61,7 +63,7 @@ function insertDocWithAttachment(doc, att){
       if(err){
           console.log("Could not insert to blog_db" + err);
       }else{
-        console.log("Blog was inserted successfully to blog_db!");
+        console.log("Blog with documents was inserted successfully to blog_db!");
        }
   });
 }

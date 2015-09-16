@@ -6,6 +6,7 @@ angular.module('siteM.adminController', [ 'ngRoute'])
     var controller = this;
 
     this.postProject = function(){
+      /*
       var projectInfo = {
           'projectName' : controller.projectName,
           'projectUrl' : controller.github,
@@ -13,6 +14,20 @@ angular.module('siteM.adminController', [ 'ngRoute'])
       }
 
       $http.post('/data/upload', projectInfo).
+        then(function(response) {
+          console.log('The response is ' + response.status);
+        }, function(response) {
+          console.log(response.error);
+        });
+      */
+
+      var projectInfo = {
+          'projectName' : controller.projectName,
+          'projectUrl' : controller.github,
+          'projectDescription' : controller.projectDescription
+      }
+
+      $http.post('/data/uploadDocs', projectInfo).
         then(function(response) {
           console.log('The response is ' + response.status);
         }, function(response) {

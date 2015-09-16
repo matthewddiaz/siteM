@@ -31,6 +31,20 @@ router.post('/upload', function(req, res, next){
 });
 
 
+router.post('/uploadDocs', function(req, res, next){
+	fs.readFile('./public/images/calculator.jpg', function(err, data) {
+	  if (!err) {
+			req.body.att = {
+					'name' : 'calculator.jpg',
+					'data' : data,
+					'content_type' : 'image/jpg'
+	  	};
+			//console.log(JSON.stringify(req.body));
+			projects_Database.insertDocWithAttachment(req.body.projectName, req.body.att);
+		};
+	});
+});
+
 router.post('/document', function(req, res, next){
   projects_Database.getDocument(req.body.id, function(err, body){
 		if(err){
