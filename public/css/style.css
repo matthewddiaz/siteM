@@ -146,10 +146,14 @@ img.git-linkedIn-link:hover{
 
 .info-container .profile-content{
   padding: 5%;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
 }
 
 .info-container .profile-content .image-container{
   padding: 0px 15px 0px 0px;
+  height: initial;
 }
 
 .info-container .profile-content .image-container #profile-pic{
@@ -160,6 +164,7 @@ img.git-linkedIn-link:hover{
 
 .info-container .profile-content .bio-container{
   padding: 0px 0px 0px 15px;
+  height: initial;
 }
 
 .bio-container .skills-title-row{
