@@ -1,9 +1,16 @@
 
 <div ng-controller="CoursesController">
-  <ul class="collapsible courses-chart" data-collapsible="accordion" watch>
+  <ul class="collapsible popout courses-chart" data-collapsible="accordion" watch>
     <li ng-repeat="semester in semesters">
       <div class="collapsible-header"><i class="material-icons">school</i>{{semester.term}}</div>
-      <div class="collapsible-body"><p>{{semester}}</p></div>
+      <div class="collapsible-body">
+        <a class="no-decoration" ng-repeat="course in semester.courses"
+         href="http://www.registrar.ufl.edu/cdesc?crs={{course.courseUrl}}">
+          <p class="course-style">
+            {{course.courseNumber}} {{course.name}}
+          </p>
+        </a>
+      </div>
     </li>
   </ul>
 </div>

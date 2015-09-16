@@ -1,7 +1,152 @@
 [
-    {"term" : "Fall 2015"},
-    {"term" : "Spring 2014"},
-    {"term" : "Fall 2014"},
-    {"term" : "Spring 2014"},
-    {"term" : "Fall 2013"}
+  { "term" : "Fall 2015",
+    "courses" : [
+      {
+        "name" : "DESIGN PATTERNS",
+        "courseNumber" : "CIS 4930",
+        "courseUrl" : "CIS4930"
+      },
+      {
+        "name" : "OPERATING SYSTEMS",
+        "courseNumber" : "CIS 4600",
+        "courseUrl" : "CIS4600"
+      },
+      {
+        "name" : "PRIN OF MARKETING",
+        "courseNumber" : "MAR 3023",
+        "courseUrl" : "MAR3023"
+      },
+      {
+        "name" : "SURVEY ARCH HISTORY",
+        "courseNumber" : "ARC 1720",
+        "courseUrl" : "ARC1720"
+      }
+    ]
+  },
+  { "term" : "Spring 2015",
+    "courses": [
+      {
+        "name" : "ANDROID MOB APP DEV",
+        "courseNumber" : "CIS 4390",
+        "courseUrl" : "CIS4390"
+      },
+      {
+        "name" : "INFO & DATABASE SYS 1",
+        "courseNumber" : "CIS 4301",
+        "courseUrl" : "CIS4301"
+      },
+      {
+        "name" : "COMP LINEAR ALG",
+        "courseNumber" : "MAS 3114",
+        "courseUrl" : "MAS3114"
+      },
+      {
+        "name" : "PRIN MICROECONOMICS",
+        "courseNumber" : "ECO 2023",
+        "courseUrl" : "ECO2023"
+      },
+      {
+        "name" : "GEN CHEM 1",
+        "courseNumber" : "CHM 2045",
+        "courseUrl" : "CHM2045"
+      },
+      {
+        "name" : "GEN CHEM LAB 1",
+        "courseNumber" : "CHM 2045L",
+        "courseUrl" : "CHM2045L"
+      }
+    ]
+  },
+  { "term" : "Fall 2014",
+    "courses":[
+      {
+        "name" : "DATA STRUC/ALGORITHMS",
+        "courseNumber" : "COP 3530",
+        "courseUrl" : "COP3530"
+      },
+      {
+        "name" : "INTRO TO COMPU ORG",
+        "courseNumber" : "CDA 3101",
+        "courseUrl" : "CDA3101"
+      },
+      {
+        "name" : "ENRICHED PHYSICS W/ CAL 2",
+        "courseNumber" : "PHY 2061",
+        "courseUrl" : "PHY2061"
+      },
+      {
+        "name" : "PHYSICS LAB 2",
+        "courseNumber" : "PHY 2049L",
+        "courseUrl" : "PHY2049L"
+      },
+      {
+        "name" : "SCIENCE FOR LIFE SEM",
+        "courseNumber" : "BCH 4905",
+        "courseUrl" : "BCH4905"
+      }
+    ]
+  },
+  { "term" : "Spring 2014",
+    "courses":[
+      {
+        "name" : "PROG FUNDAMENTALS 2",
+        "courseNumber" : "COP 3503",
+        "courseUrl" : "COP3503"
+      },
+      {
+        "name" : "APPLI DISCRETE STRUC",
+        "courseNumber" : "COT 3100",
+        "courseUrl" : "COT3100"
+      },
+      {
+        "name" : "ANALYT GEOM & CALC 3",
+        "courseNumber" : "MAC 2313",
+        "courseUrl" : "MAC2313"
+      },
+      {
+        "name" : "PHYSICS WITH CALC 1",
+        "courseNumber" : "PHY 2048",
+        "courseUrl" : "PHY2048"
+      },
+      {
+        "name" : "PHYSICS LAB 1",
+        "courseNumber" : "PHY 2048L",
+        "courseUrl" : "PHY2048L"
+      },
+      {
+        "name" : "SYMPHONIC BAND",
+        "courseNumber" : "MUN 3133",
+        "courseUrl" : "MUN3133"
+      }
+    ]
+  },
+  { "term" : "Fall 2013",
+    "courses":[
+      {
+        "name" : "PROG FUNDAMENTALS 1",
+        "courseNumber" : "COP 3502",
+        "courseUrl" : "COP3502"
+      },
+      {
+        "name" : "ANALYT GEOM & CALC 2",
+        "courseNumber" : "MAC 2312",
+        "courseUrl" : "MAC2312"
+      },
+      {
+        "name" : "SOCIAL GEOGRAPHY",
+        "courseNumber" : "GEO 2410",
+        "courseUrl" : "GEO2410"
+      },
+      {
+        "name" : "WHAT IS THE GOOD LIFE",
+        "courseNumber" : "HUM 2305",
+        "courseUrl" : "HUM2305"
+      },
+      {
+        "name" : "SYMPHONIC BAND",
+        "courseNumber" : "MUN 3133",
+        "courseUrl" : "MUN3133"
+      }
+    ]
+  }
 ]
