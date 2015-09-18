@@ -1,6 +1,6 @@
 <div class="row">
   <form class="col s12" ng-controller="AdminController as ACtrl"
-        ng-submit="ACtrl.postProject()">
+        ng-submit="ACtrl.postProject()" name="adminForm">
     <div class="row">
       <div class="input-field col s6">
         <input id="first_name" type="text" class="validate" required
@@ -21,6 +21,26 @@
           </textarea>
         </label>
       </div>
+    </div>
+
+    <div>
+        <br>Photo:
+        <input type="file" ngf-select ng-model="picFile" name="file"
+               accept="image/*" ngf-max-size="2MB" required>
+        <i ng-show="adminForm.file.$error.required">*required</i><br>
+        <i ng-show="adminForm.file.$error.maxSize">File too large
+            {{picFile.size / 1000000|number:1}}MB: max {{picFile.$errorParam}}</i>
+        <img ng-show="adminForm.file.$valid" ngf-src="!picFile.$error && picFile"
+             class="thumb">
+        <br>
+        <button 
+                ng-click="uploadPic(picFile)">Submit</button>
+        <span class="progress" ng-show="picFile.progress >= 0">
+          <div style="width:{{picFile.progress}}%"
+              ng-bind="picFile.progress + '%'"></div>
+        </span>
+        <span ng-show="picFile.result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </div>
 
     <div>

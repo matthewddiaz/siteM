@@ -39,27 +39,14 @@ function insertDocument(doc, doc_id){
      }
   });
 }
-
-/*This line exports insertBlog() so that another file can use this function.
-  Requires it using
-  var blogDB = require('.../blog-database');
-
-  To use the function you need to do the following
-  blogDB.insertBlog()
-*/
 exports.insertDocument = insertDocument;
 
 function insertDocWithAttachment(doc, att){
-  /*
-  if(!att.name || !att.data || !att.type){
-      console.log('An error ocurred');
-      return;
-  }*/
+  var id = encryptID(doc.projectName);
 
   db.multipart.insert(doc,
-   [{name: att.name, data: att.data, content_type: att.type}],
-   'firstFile',
-    function(err, body) {
+   [{name: att.fileName, data: att.file, content_type: att.fileType}],
+   id, function(err, body) {
       if(err){
           console.log("Could not insert to blog_db" + err);
       }else{
@@ -85,6 +72,20 @@ function getDocument(doc_id, next){
   });
 }
 exports.getDocument = getDocument;
+
+function getDocumentWithAttachment(doc_id, next){
+  var id = encryptID(doc_id);
+
+  db.multipart.get(id, function(err, buffer) {
+    if (err){
+      console.log('An error occurred while getting document ' + err);
+    }
+    console.log(buffer.toString());
+
+    next(err, body);
+  });
+}
+exports.getDocumentWithAttachment = getDocumentWithAttachment;
 
 /* Get all previous blogs stored in the blog_db
  * nano fetch method requires a key. If the key does
