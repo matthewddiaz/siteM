@@ -37,7 +37,6 @@ router.post('/upload', function(req, res, next){
  * @return {[type]}               [description]
  */
 router.post('/uploadDocs', function(req, res, next){
-	console.log(req.body);
 	var form = new multiparty.Form();
 	form.parse(req, function(err, fields, files) {
 		fs.readFile(files.file[0].path, function (err, data) {
@@ -55,7 +54,12 @@ router.post('/uploadDocs', function(req, res, next){
 					"file" : data,
 					"fileType" : fields.imageType[0]
 				}
-				projects_Database.insertDocWithAttachment(extractedData, extractedFile);
+				projects_Database.insertDocWithAttachment(extractedData, extractedFile, function(err, body){
+					if(err){
+						res.send(err);
+					}
+					res.send(body);
+				});
 			}
 		});
 	});

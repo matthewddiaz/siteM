@@ -41,17 +41,18 @@ function insertDocument(doc, doc_id){
 }
 exports.insertDocument = insertDocument;
 
-function insertDocWithAttachment(doc, att){
+function insertDocWithAttachment(doc, att, next){
   var id = encryptID(doc.projectName);
 
   db.multipart.insert(doc,
    [{name: att.fileName, data: att.file, content_type: att.fileType}],
    id, function(err, body) {
       if(err){
-          console.log("Could not insert to blog_db" + err);
+          console.log("Could not insert to blog_db " + err);
       }else{
         console.log("Blog with documents was inserted successfully to blog_db!");
-       }
+      }
+      next(err, body);
   });
 }
 exports.insertDocWithAttachment = insertDocWithAttachment;
@@ -64,10 +65,6 @@ function getDocument(doc_id, next){
     if(err){
       console.log('An error occurred while getting document ' + err);
     }
-    //console.log('The body is '  + JSON.stringify(body));
-    //The extracting the blogs from the returned body
-    //rows = body.rows;
-    //optional call back
     next(err, body);
   });
 }
@@ -117,7 +114,6 @@ function getAllDocuments(next){
           time : row.doc.time_posted
         }
       });
-      //console.log(blogs);
        next(err, blogs);
     }
   });

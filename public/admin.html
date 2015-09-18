@@ -33,8 +33,9 @@
         <img ng-show="adminForm.file.$valid" ngf-src="!picFile.$error && picFile"
              class="thumb">
         <br>
-        <button 
-                ng-click="uploadPic(picFile)">Submit</button>
+        <br>
+        <button type="submit" class="btn btn-default"
+                ng-click="uploadPic(picFile)" ng-disabled="adminForm.$invalid">Submit</button>
         <span class="progress" ng-show="picFile.progress >= 0">
           <div style="width:{{picFile.progress}}%"
               ng-bind="picFile.progress + '%'"></div>
@@ -42,10 +43,5 @@
         <span ng-show="picFile.result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </div>
-
-    <div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </div>
-
   </form>
 </div>

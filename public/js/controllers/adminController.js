@@ -20,33 +20,13 @@ angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
           "imageType" : file.type
         }, // Any data needed to be submitted along with the files
         file: file
+      }).success(function(data, status, headers, config) {
+        if(data.ok){
+          console.log('The document and attachments were submitted successfully');
+        }else{
+          console.log('Could not update document and attachment to db do to an error');
+        }
+      }).error(function(data, status, headers, config) {
       });
-
-      /*
-      $http.post('/data/uploadDocs', projectInfo).
-        then(function(response) {
-          console.log('The response is ' + response.status);
-        }, function(response) {
-          console.log(response.error);
-        });*/
-    };
-
-    /*
-    this.postProject = function(){
-      /*
-      var projectInfo = {
-          'projectName' : controller.projectName,
-          'projectUrl' : controller.github,
-          'projectDescription' : controller.projectDescription
-      }
-
-      $http.post('/data/upload', projectInfo).
-        then(function(response) {
-          console.log('The response is ' + response.status);
-        }, function(response) {
-          console.log(response.error);
-        });
-
-    };*/
-
+    }
   }]);
