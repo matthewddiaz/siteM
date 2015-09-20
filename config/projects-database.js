@@ -46,7 +46,7 @@ function insertDocWithAttachment(doc, att, next){
   var id = encryptID(doc.projectName);
 
   db.multipart.insert(doc,
-   [{name: 'name', data: att.file, content_type: att.fileType}],
+   [{name: 'image', data: att.file, content_type: att.fileType}],
    id, function(err, body) {
       if(err){
           console.log("Could not insert to blog_db " + err);
@@ -83,7 +83,7 @@ function getDocumentWithAttachment(doc_id, next){
       "projectName" : buffer.projectName,
       "projectUrl" : buffer.projectUrl,
       "projectDescription" : buffer.projectDescription,
-      "projectAtt" : buffer._attachments.name.data
+      "projectAtt" : buffer._attachments.image.data
     }
     next(err, docAndAtt);
   });

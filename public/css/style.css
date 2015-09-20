@@ -364,11 +364,15 @@ div#popup-overlay.ng-hide {
   margin: auto;
 }
 
-.project-description .paragraph-area-container .paragraph-style{
+.paragraph-style{
   margin: 0px;
   font-family: inherit;
   font-size: 1.1em;
   font-weight: 300;
+}
+
+.paragraph-style span{
+  font-family: cursive;
 }
 
 .pop-up-project-container .project-footer{
