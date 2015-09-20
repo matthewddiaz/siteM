@@ -84,4 +84,13 @@ router.post('/document', function(req, res, next){
 	});
 });
 
+router.post('/documentWithAttachment', function(req, res, next){
+  projects_Database.getDocumentWithAttachment(req.body.id, function(err, body){
+		if(err){
+			console.log(err);
+		}
+		res.send(body);
+	});
+});
+
 module.exports = router;

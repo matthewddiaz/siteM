@@ -1,6 +1,7 @@
 
 var cloudantCredentials = require('./db-credentials.json').credentials;
 var crypto = require('crypto');
+var multiparty = require('multiparty');
 
 var cloudant = {
  	url: cloudantCredentials.url
@@ -45,7 +46,7 @@ function insertDocWithAttachment(doc, att, next){
   var id = encryptID(doc.projectName);
 
   db.multipart.insert(doc,
-   [{name: att.fileName, data: att.file, content_type: att.fileType}],
+   [{name: 'name', data: att.file, content_type: att.fileType}],
    id, function(err, body) {
       if(err){
           console.log("Could not insert to blog_db " + err);
@@ -77,9 +78,14 @@ function getDocumentWithAttachment(doc_id, next){
     if (err){
       console.log('An error occurred while getting document ' + err);
     }
-    console.log(buffer.toString());
 
-    next(err, body);
+    var docAndAtt = {
+      "projectName" : buffer.projectName,
+      "projectUrl" : buffer.projectUrl,
+      "projectDescription" : buffer.projectDescription,
+      "projectAtt" : buffer._attachments.name.data
+    }
+    next(err, docAndAtt);
   });
 }
 exports.getDocumentWithAttachment = getDocumentWithAttachment;
