@@ -138,14 +138,14 @@ img.git-linkedIn-link:hover{
 
 .info-container{
   background-color: #eceff1;
-  width: 68%;
+  width: 65%;
   margin: auto;
   border-radius: 10px;
   opacity: .9;
 }
 
 .info-container .profile-content{
-  padding: 3%;
+  padding: 2%;
   display: -webkit-flex;
   display: flex;
   position: relative;
@@ -214,8 +214,8 @@ img.git-linkedIn-link:hover{
 
 .off{
   color: red;
-  font-size: 15px;
-  opacity: .5;
+  font-size: 20px;
+  opacity: .4;
 }
 
 /*******************************************************************************
@@ -243,6 +243,30 @@ img.git-linkedIn-link:hover{
   width: 300px;
   display: block;
   border-radius: 6px;
+}
+
+.project-container .title-container{
+  background: rgba(0,0,0,0.5);
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  margin: 0px 20px;
+  border-radius: 6px;
+}
+
+.project-container .title-style{
+  margin: 0px;
+  color: white;
+  font-family: cursive;
+  font-size: 1.3em;
+  font-weight: bolder;
+}
+
+.project-container:hover .title-container{
+  opacity: 1;
 }
 
  /*******************************************************************************
