@@ -242,7 +242,6 @@ img.git-linkedIn-link:hover{
   height: 300px;
   width: 300px;
   display: block;
-  box-shadow: 0 2px 0 0 #E5E5E5;
   border-radius: 6px;
 }
 
@@ -273,6 +272,16 @@ img.git-linkedIn-link:hover{
 .login-container .empty-container{
   height: 150px;
 }
+
+/*******************************************************************************
+ * admin.html
+ ******************************************************************************/
+
+ .thumb{
+   height: 30px;
+   width: 30px;
+   border: 1px solid black;
+ }
 
 /*******************************************************************************
  * projectTemplate.html
@@ -354,11 +363,15 @@ div#popup-overlay.ng-hide {
   margin: auto;
 }
 
-.project-description .paragraph-area-container .paragraph-style{
+.paragraph-style{
   margin: 0px;
   font-family: inherit;
   font-size: 1.1em;
   font-weight: 300;
+}
+
+.paragraph-style span{
+  font-family: cursive;
 }
 
 .pop-up-project-container .project-footer{

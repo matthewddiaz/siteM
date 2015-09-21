@@ -1,6 +1,7 @@
 
 var cloudantCredentials = require('./db-credentials.json').credentials;
 var crypto = require('crypto');
+var multiparty = require('multiparty');
 
 var cloudant = {
  	url: cloudantCredentials.url
@@ -39,30 +40,20 @@ function insertDocument(doc, doc_id){
      }
   });
 }
-
-/*This line exports insertBlog() so that another file can use this function.
-  Requires it using
-  var blogDB = require('.../blog-database');
-
-  To use the function you need to do the following
-  blogDB.insertBlog()
-*/
 exports.insertDocument = insertDocument;
 
-function insertDocWithAttachment(doc, att){
-  if(!att.name || !att.data || !att.type){
-      console.log('An error ocurred');
-      return;
-  }
+function insertDocWithAttachment(doc, att, next){
+  var id = encryptID(doc.projectName);
+
   db.multipart.insert(doc,
-   [{name: att.name, data: att.data, content_type: att.type}],
-   'firstFile',
-    function(err, body) {
+   [{name: 'image', data: att.file, content_type: att.fileType}],
+   id, function(err, body) {
       if(err){
-          console.log("Could not insert to blog_db" + err);
+          console.log("Could not insert to blog_db " + err);
       }else{
-        console.log("Blog was inserted successfully to blog_db!");
-       }
+        console.log("Blog with documents was inserted successfully to blog_db!");
+      }
+      next(err, body);
   });
 }
 exports.insertDocWithAttachment = insertDocWithAttachment;
@@ -75,14 +66,29 @@ function getDocument(doc_id, next){
     if(err){
       console.log('An error occurred while getting document ' + err);
     }
-    //console.log('The body is '  + JSON.stringify(body));
-    //The extracting the blogs from the returned body
-    //rows = body.rows;
-    //optional call back
     next(err, body);
   });
 }
 exports.getDocument = getDocument;
+
+function getDocumentWithAttachment(doc_id, next){
+  var id = encryptID(doc_id);
+
+  db.multipart.get(id, function(err, buffer) {
+    if (err){
+      console.log('An error occurred while getting document ' + err);
+    }
+
+    var docAndAtt = {
+      "projectName" : buffer.projectName,
+      "projectUrl" : buffer.projectUrl,
+      "projectDescription" : buffer.projectDescription,
+      "projectAtt" : buffer._attachments.image.data
+    }
+    next(err, docAndAtt);
+  });
+}
+exports.getDocumentWithAttachment = getDocumentWithAttachment;
 
 /* Get all previous blogs stored in the blog_db
  * nano fetch method requires a key. If the key does
@@ -114,7 +120,6 @@ function getAllDocuments(next){
           time : row.doc.time_posted
         }
       });
-      //console.log(blogs);
        next(err, blogs);
     }
   });
