@@ -4,20 +4,20 @@
     <div class="row">
       <div class="input-field col s6">
         <input id="first_name" type="text" class="validate" required
-          ng-model="ACtrl.projectName">
+          ng-model="formProperties.projectName">
         <label for="project_nam">Project Name</label>
       </div>
 
       <div class="input-field col s6">
         <input id="first_name" type="text" class="validate" required
-         ng-model="ACtrl.github">
+         ng-model="formProperties.github">
         <label for="project_name">GitHub URL</label>
       </div>
 
       <div class="form-group">
         <label>
           <textarea id="project-description-box" placeholder="Project Description"
-            ng-model="ACtrl.projectDescription" required>
+            ng-model="formProperties.projectDescription" required>
           </textarea>
         </label>
       </div>
@@ -25,22 +25,22 @@
 
     <div>
         <br>Photo:
-        <input type="file" ngf-select ng-model="picFile" name="file"
+        <input type="file" ngf-select ng-model="formProperties.picFile" name="file"
                accept="image/*" ngf-max-size="2MB" required>
         <i ng-show="adminForm.file.$error.required">*required</i><br>
         <i ng-show="adminForm.file.$error.maxSize">File too large
-            {{picFile.size / 1000000|number:1}}MB: max {{picFile.$errorParam}}</i>
-        <img ng-show="adminForm.file.$valid" ngf-src="!picFile.$error && picFile"
+            {{formProperties.picFile.size / 1000000|number:1}}MB: max {{formProperties.picFile.$errorParam}}</i>
+        <img ng-show="adminForm.file.$valid" ngf-src="!formProperties.picFile.$error && formProperties.picFile"
              class="thumb">
         <br>
         <br>
         <button type="submit" class="btn btn-default"
-                ng-click="uploadPic(picFile)" ng-disabled="adminForm.$invalid">Submit</button>
+                ng-click="uploadPic(formProperties.picFile)" ng-disabled="adminForm.$invalid">Submit</button>
         <span class="progress" ng-show="picFile.progress >= 0">
-          <div style="width:{{picFile.progress}}%"
-              ng-bind="picFile.progress + '%'"></div>
+          <div style="width:{{formProperties.picFile.progress}}%"
+              ng-bind="formProperties.picFile.progress + '%'"></div>
         </span>
-        <span ng-show="picFile.result">Upload Successful</span>
+        <span ng-show="formProperties.picFile.result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </div>
   </form>
