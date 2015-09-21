@@ -22,9 +22,9 @@ angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
         file: file
       }).success(function(data, status, headers, config) {
         if(data.ok){
-          console.log('The document and attachments were submitted successfully');
+          toastr.success("Upload Complete", "Success!");
         }else{
-          console.log('Could not update document and attachment to db do to an error');
+          toastr.error('Could not Submit', 'Error!');
         }
       }).error(function(data, status, headers, config) {
       });
