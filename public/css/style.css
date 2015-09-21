@@ -257,16 +257,16 @@ img.git-linkedIn-link:hover{
   border-radius: 6px;
 }
 
-.project-container .title-style{
+.project-container:hover .title-container{
+  opacity: 1;
+}
+
+.project-container .title-container .title-style{
   margin: 0px;
   color: white;
   font-family: cursive;
   font-size: 1.3em;
   font-weight: bolder;
-}
-
-.project-container:hover .title-container{
-  opacity: 1;
 }
 
  /*******************************************************************************
