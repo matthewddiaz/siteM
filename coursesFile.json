@@ -8,8 +8,8 @@
       },
       {
         "name" : "OPERATING SYSTEMS",
-        "courseNumber" : "CIS 4600",
-        "courseUrl" : "CIS4600"
+        "courseNumber" : "COP 4600",
+        "courseUrl" : "COP4600"
       },
       {
         "name" : "PRIN OF MARKETING",
@@ -27,8 +27,8 @@
     "courses": [
       {
         "name" : "ANDROID MOB APP DEV",
-        "courseNumber" : "CIS 4390",
-        "courseUrl" : "CIS4390"
+        "courseNumber" : "CIS 4930",
+        "courseUrl" : "CIS4930"
       },
       {
         "name" : "INFO & DATABASE SYS 1",

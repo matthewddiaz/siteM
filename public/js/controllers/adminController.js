@@ -1,23 +1,37 @@
-angular.module('siteM.adminController', [ 'ngRoute'])
-  .controller('AdminController', ['$scope', '$http', function($scope, $http){
-    this.projectName;
-    this.github;
-    this.projectDescription;
-    var controller = this;
+angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
+  .controller('AdminController', ['$scope', '$http', 'Upload', '$timeout',
+              function($scope, $http, Upload, $timeout){
+    $scope.formProperties = {
+      projectName: "",
+      github: "",
+      projectDescription: "",
+      picFile: ""
+    }
+    var originalForm = angular.copy($scope.formProperties);
 
-    this.postProject = function(){
-      var projectInfo = {
-          'projectName' : controller.projectName,
-          'projectUrl' : controller.github,
-          'projectDescription' : controller.projectDescription
+    $scope.uploadPic = function(file) {
+      var  projectInfo = {
       }
-
-      $http.post('/data/upload', projectInfo).
-        then(function(response) {
-          console.log('The response is ' + response.status);
-        }, function(response) {
-          console.log(response.error);
-        });
-    };
-
+      //console.log(JSON.stringify(file.type));
+      Upload.upload({
+        url: 'data/uploadDocs',
+        method: 'POST',
+        fields: {
+          "projectName" : $scope.formProperties.projectName,
+          "projectUrl" : $scope.formProperties.github,
+          "projectDescription" : $scope.formProperties.projectDescription,
+          "imageType" : file.type
+        }, // Any data needed to be submitted along with the files
+        file: file
+      }).success(function(data, status, headers, config) {
+        if(data.ok){
+          toastr.success("Upload Complete", "Success!");
+           $scope.adminForm.$setPristine();
+           $scope.formProperties = angular.copy(originalForm);
+        }else{
+          toastr.error('Could not Submit', 'Error!');
+        }
+      }).error(function(data, status, headers, config) {
+      });
+    }
   }]);
