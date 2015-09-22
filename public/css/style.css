@@ -190,7 +190,7 @@ img.git-linkedIn-link:hover{
   text-align: center;
   color: black;
   font-size: 20px;
-  font-family: fantasy, "Helvetica Neue", Arial;
+  font-family: 'Poiret One', "Helvetica Neue", Arial;
 }
 
 .bio-container .skills-content-row .skills-container .col-property-style{
@@ -199,7 +199,7 @@ img.git-linkedIn-link:hover{
 
 .bio-container .skills-content-row .skills-container .skill-description-style{
   margin: 0px;
-  float: left;
+  text-align: left;
 }
 
 .bio-container .skills-content-row .skills-container .col-coding-language{
@@ -264,9 +264,9 @@ img.git-linkedIn-link:hover{
 .project-container .title-container .title-style{
   margin: 0px;
   color: white;
-  font-family: cursive;
-  font-size: 1.3em;
-  font-weight: bolder;
+  font-family: 'Tangerine', cursive;
+  font-size: 2em;
+  font-weight: 500;
 }
 
  /*******************************************************************************
@@ -283,8 +283,8 @@ img.git-linkedIn-link:hover{
 }
 
 .login-container .warning-container .admin-only-warning{
-  font-size: 50px;
-  font-family: cursive;
+  font-size: 55px;
+  font-family:'Tangerine', cursive;
   color: #52bab3;
   margin: 0px;
 }
@@ -356,8 +356,8 @@ div#popup-overlay.ng-hide {
 }
 
 .pop-up-project-container .project-title .title-font-style{
-  font-family: cursive;
-  font-size: 1.3em;
+  font-family: 'Tangerine', cursive;
+  font-size: 2em;
   font-weight: bolder;
   margin: 0px;
 }
@@ -395,7 +395,9 @@ div#popup-overlay.ng-hide {
 }
 
 .paragraph-style span{
-  font-family: cursive;
+  font-family: 'Tangerine', cursive;
+  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .pop-up-project-container .project-footer{
