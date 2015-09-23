@@ -453,7 +453,8 @@ div#popup-overlay.ng-hide {
   line-height: 3.5rem;
 }
 
-.courses-chart .semester-header-container:hover{
+.courses-chart .semester-header-container:hover,
+.courses-chart .collapsible-body .course-style:hover{
   background-color: #f5f5f5;
   color: #52bab3;
 }
@@ -461,9 +462,4 @@ div#popup-overlay.ng-hide {
 .courses-chart .collapsible-body .course-style{
   padding: 1rem 2rem;
   color: black;
-}
-
-.courses-chart .collapsible-body .course-style:hover{
-  background-color: #f5f5f5;
-  color: #52bab3;
 }
