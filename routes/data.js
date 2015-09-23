@@ -4,6 +4,13 @@ var multiparty = require('multiparty');
 var fs = require('fs');
 var projects_Database = require('../config/projects-database');
 
+/**
+ *  router.get
+ * @param  {path} '/retrieveProjectPics' path to get project images from imageFile.json
+ * @param  {function} req == get request. and res == response that will be returned
+ * @return {object}  res will send the content of imageFile.json in the form of data
+ * NOTE: In siteM this route was used in projectsController.js
+ */
 router.get('/retrieveProjectPics', function(req, res, next){
 	fs.readFile('./imageFile.json', function (err, data) {
 	  if (err) throw err;
@@ -13,6 +20,13 @@ router.get('/retrieveProjectPics', function(req, res, next){
 	});
 });
 
+/**
+ *  router.get
+ * @param  {path} '/retrieveCourses' path to get courses from coursesFile.json
+ * @param  {function} req == get request. and res == response that will be returned
+ * @return {object}  res will send the content of coursesFile.json in the form of data
+ * NOTE: In siteM this route was used in coursesController.js
+ */
 router.get('/retrieveCourses', function(req, res, next){
 	fs.readFile('./coursesFile.json', function (err, data) {
 	  if (err) throw err;
@@ -22,19 +36,27 @@ router.get('/retrieveCourses', function(req, res, next){
 	});
 });
 
-/*
-This route will insert the comment sent from the user to Cloduant blog_db
-*/
+/**
+ * router.post
+ * @param  {path} '/upload' is the path to upload a document to blog_db
+ * @param  {function} req == request to post contains the content that the client
+ * wants to insert to the blog_db. The res == response; nothing in this case
+ * @return {none}
+ * NOTE: This route was not used in siteM
+ */
 router.post('/upload', function(req, res, next){
 	console.log('The request is ' + JSON.stringify(req.body));
 	projects_Database.insertDocument(req.body, req.body.projectName);
 });
 
 /**
- * [post description]
- * @param  {[type]} '/uploadDocs' [description]
- * @param  {[type]} function(req, res,          next [description]
- * @return {[type]}               [description]
+ * router.post
+ * @param  {path} '/uploadDocs' is the path to upload documents that have attachments
+ * to blog_db
+ * @param  {function} req == post request containing the document & attachment wanted to insert
+ *                    res == response that blog_db returns
+ * @return {object}   either an err object == failed or body object == successfull
+ * NOTE: In siteM this route was used in adminController.js
  */
 router.post('/uploadDocs', function(req, res, next){
 	var form = new multiparty.Form();
@@ -65,9 +87,13 @@ router.post('/uploadDocs', function(req, res, next){
 	});
 });
 
-/*
- Using getDocument optional next function to be able to get back the body!
- In this case the body is the documents!
+/**
+ * router.post
+ * @param  {path} '/document' is the path to retrieve a document from blog_db
+ * @param  {function} req == post request that contains a docName of the document
+ *         in blog_db that the cient wants to retrieve
+ * @return {object}  res sends back 'document' object obtained from blog_db
+ * NOTE This route was never used in blog_db
  */
 router.post('/document', function(req, res, next){
   projects_Database.getDocument(req.body.id, function(err, body){
@@ -83,7 +109,16 @@ router.post('/document', function(req, res, next){
 		res.send(document);
 	});
 });
-
+/**
+ * router.post
+ * @param  {path} '/documentWithAttachment' [description]
+ * @param  {function} req == post request whicn contains docName to retrieve
+ * desired document with attachment
+ * res == resonse from blog_db. Returns the document and attachment
+ * @return {object} returns body that contains the document & attachment from
+ * blog_db
+ * NOTE This route was used in projectsController.js
+ */
 router.post('/documentWithAttachment', function(req, res, next){
   projects_Database.getDocumentWithAttachment(req.body.id, function(err, body){
 		if(err){

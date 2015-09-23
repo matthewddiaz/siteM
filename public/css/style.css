@@ -12,6 +12,7 @@ html{
   height: 100vh;
 }
 
+/*Using flex to vertically and horizontal align elements*/
 .vertical-center{
   display: -webkit-flex;
   display: flex;
@@ -444,7 +445,12 @@ div#popup-overlay.ng-hide {
   ******************************************************************************/
 
 .courses-chart{
-  width: 600px;
+  width: 700px;
+}
+
+.courses-chart .semester-header-container{
+  height: 3.5rem;
+  line-height: 3.5rem;
 }
 
 .courses-chart .collapsible-body .course-style{

@@ -1,3 +1,6 @@
+<!-- The video tag allows for html5 video support. The properties muted == no sound
+     The loop == video is repeated over and over. poster == image background until video has loaded
+-->
 <video autoplay muted loop poster="images/homeUFinspiration.jpg" src="videos/homeGatorsVideo.mp4"
   class="background-video">
 </video>
@@ -24,15 +27,16 @@
       <div class="row no-margin vertical-center skills-content-row">
         <div class="col-xs-12 no-padding">
 
-          <div ng-show="hCtrl.isBio" class="skills-container">
+          <!-- This div will only be displayed when isBio is true  -->
+          <div ng-show="isBio" class="skills-container">
             <p class="skill-description-style">
               I am a Junior at the University of Florida studying Computer Science
               in Engineering. I am an energetic Gator who loves to code and I am
               very interested in a Software Engineering Internship.
             </p>
           </div>
-
-          <div ng-hide="hCtrl.isBio" class="skills-container">
+          <!-- This div will not be displayed when isBio is true  -->
+          <div ng-hide="isBio" class="skills-container">
             <div class="row no-margin">
               <div class="col-xs-3 col-property-style">
                 <p class="skill-description-style">Languages:</p>
