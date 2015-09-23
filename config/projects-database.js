@@ -1,4 +1,3 @@
-
 var cloudantCredentials = require('./db-credentials.json').credentials;
 var crypto = require('crypto');
 var multiparty = require('multiparty');
@@ -24,27 +23,39 @@ function encryptID(id) {
   return crypto.createHash('sha256').update(id).digest('hex');
 };
 
-/* Insert a blog to cloudant database blog_db
- * using nano module and function insert.
- * first parameter object
- * second parameter is callback function
+/**
+ * insertDocument function inserts a document to blog-db
+ * @param  {object} doc is the object that will be inserted
+ * @param  {string} doc_id is the intended document name.
+ * NOTE can be used for retrieval of document
+ * @return {none}
  */
 function insertDocument(doc, doc_id){
   var id = encryptID(doc_id);
 
+  //NOTE function defined by descape/nano github
   db.insert(doc , id, function(err,body){
     if(err){
-        console.log("Could not insert to projects_db");
+        console.log("Could not insert to blog_db");
     }else{
-      console.log("Blog was inserted successfully to projects_db!");
+      console.log("Blog was inserted successfully to blog_db!");
      }
   });
 }
 exports.insertDocument = insertDocument;
 
+/**
+ * insertDocWithAttachment function that inserts a document with an attachment
+ * to blog-dev
+ * @param  {object}   doc is an object that contains the document information
+ * @param  {att}   att is an object that contains the attachment information
+ * @param  {Function} next is a callback function that returns an error and body
+ * @return {object}  Either body or error depeding on insertion result
+ */
 function insertDocWithAttachment(doc, att, next){
   var id = encryptID(doc.projectName);
 
+  //NOTE this function with its parameters is defined by nano js
   db.multipart.insert(doc,
    [{name: 'image', data: att.file, content_type: att.fileType}],
    id, function(err, body) {
@@ -58,10 +69,16 @@ function insertDocWithAttachment(doc, att, next){
 }
 exports.insertDocWithAttachment = insertDocWithAttachment;
 
-//db.get(docname, [params], [callback])
+/**
+ * getDocument will get a document from blog-db using doc_ib
+ * @param  {string}   doc_id is the docName of the document in blog-db
+ * @param  {Function} next is the callback function with an err or body object
+ * @return {object}   body is the object that blog_db returns
+ */
 function getDocument(doc_id, next){
   var id = encryptID(doc_id);
 
+  //NOTE function defined by descape/nano github
   db.get(id, function(err, body) {
     if(err){
       console.log('An error occurred while getting document ' + err);
@@ -71,14 +88,21 @@ function getDocument(doc_id, next){
 }
 exports.getDocument = getDocument;
 
+/**
+ * getDocumentWithAttachment gets a document along with its attachment using docName
+ * @param  {string}   doc_id is the docName of the document with attachment
+ * @param  {Function} next is the callback function that returns an err and document object
+ * @return {object}   returns either a err or docAndAtt object
+ */
 function getDocumentWithAttachment(doc_id, next){
   var id = encryptID(doc_id);
 
+  //NOTE function defined by descape/nano github
   db.multipart.get(id, function(err, buffer) {
     if (err){
       console.log('An error occurred while getting document ' + err);
     }
-
+    //projectAtt is the actual image
     var docAndAtt = {
       "projectName" : buffer.projectName,
       "projectUrl" : buffer.projectUrl,
@@ -90,30 +114,24 @@ function getDocumentWithAttachment(doc_id, next){
 }
 exports.getDocumentWithAttachment = getDocumentWithAttachment;
 
-/* Get all previous blogs stored in the blog_db
- * nano fetch method requires a key. If the key does
- * not match a unique ID in the database, fetch will return
- * everything. Note: the attribute should be called keys.
- *
- *next refers to a callback that a user will include
- */
-
-
-/* Next is the optional callback function that returns an error
- * if any and a JSON body.
- *
+/**
+ * getAllDocuments function that gets all of the objects in the
+ * database at the same time
+ * @param  {Function} next callback function
+ * @return {object}  either an err object or body containing all of the documents
+ * in blog_db
  */
 function getAllDocuments(next){
   var fakeKey = {
     blog : "blog"
   }
+  //NOTE function defined by descape/nano github
   db.fetch(fakeKey,function(err, body) {
     if(!err){
-      //The extracting the blogs from the returned body
+      //Extracting the documents from the returned body
       rows = body.rows;
 
-      //creating an array called blog that will have a JSON elements
-      //of whtat is returned!
+      //Array called blogs will have an JSON object of what is returned!
       var blogs = rows.map(function(row){
         return {
           blog : row.doc.comment,

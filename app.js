@@ -2,7 +2,7 @@
 var express = require('express');//creates a express module. Express the behavior of the server.
 var app = express();//creates the app.
 
-/*The body-parser module provides the follwoing parsers:
+/*The body-parser module provides the following parsers:
   1) JSON body parser
   2) Raw body parser
   3) Text body parser
@@ -11,8 +11,11 @@ var app = express();//creates the app.
   Creates middleware taht will populate the req.body property
   with the parsed body or provide an error to the callback.
 
-  Note: you might need to do the following in the terminal
+  NOTE
+	1) you might need to do the following in the terminal
   npm install body-parser
+  2) body-parser does not provide parsers for blob (aka images or videos)
+	   use "multiparty" module from github
  */
 var bodyParser = require('body-parser');
 var user_data = require('./routes/data'); //this is the route to our data.js file
