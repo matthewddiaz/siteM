@@ -12,6 +12,7 @@ html{
   height: 100vh;
 }
 
+/*Using flex to vertically and horizontal align elements*/
 .vertical-center{
   display: -webkit-flex;
   display: flex;
@@ -138,14 +139,14 @@ img.git-linkedIn-link:hover{
 
 .info-container{
   background-color: #eceff1;
-  width: 68%;
+  width: 65%;
   margin: auto;
   border-radius: 10px;
   opacity: .9;
 }
 
 .info-container .profile-content{
-  padding: 3%;
+  padding: 2%;
   display: -webkit-flex;
   display: flex;
   position: relative;
@@ -190,7 +191,7 @@ img.git-linkedIn-link:hover{
   text-align: center;
   color: black;
   font-size: 20px;
-  font-family: fantasy, "Helvetica Neue", Arial;
+  font-family: 'Poiret One', "Helvetica Neue", Arial;
 }
 
 .bio-container .skills-content-row .skills-container .col-property-style{
@@ -199,7 +200,7 @@ img.git-linkedIn-link:hover{
 
 .bio-container .skills-content-row .skills-container .skill-description-style{
   margin: 0px;
-  float: left;
+  text-align: left;
 }
 
 .bio-container .skills-content-row .skills-container .col-coding-language{
@@ -214,8 +215,8 @@ img.git-linkedIn-link:hover{
 
 .off{
   color: red;
-  font-size: 15px;
-  opacity: .5;
+  font-size: 20px;
+  opacity: .4;
 }
 
 /*******************************************************************************
@@ -245,6 +246,30 @@ img.git-linkedIn-link:hover{
   border-radius: 6px;
 }
 
+.project-container .title-container{
+  background: rgba(0,0,0,0.5);
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  margin: 0px 20px;
+  border-radius: 6px;
+}
+
+.project-container:hover .title-container{
+  opacity: 1;
+}
+
+.project-container .title-container .title-style{
+  margin: 0px;
+  color: white;
+  font-family: 'Tangerine', cursive;
+  font-size: 2em;
+  font-weight: 500;
+}
+
  /*******************************************************************************
   * login.html
   ******************************************************************************/
@@ -259,8 +284,8 @@ img.git-linkedIn-link:hover{
 }
 
 .login-container .warning-container .admin-only-warning{
-  font-size: 50px;
-  font-family: cursive;
+  font-size: 55px;
+  font-family:'Tangerine', cursive;
   color: #52bab3;
   margin: 0px;
 }
@@ -332,8 +357,8 @@ div#popup-overlay.ng-hide {
 }
 
 .pop-up-project-container .project-title .title-font-style{
-  font-family: cursive;
-  font-size: 1.3em;
+  font-family: 'Tangerine', cursive;
+  font-size: 2em;
   font-weight: bolder;
   margin: 0px;
 }
@@ -371,7 +396,9 @@ div#popup-overlay.ng-hide {
 }
 
 .paragraph-style span{
-  font-family: cursive;
+  font-family: 'Tangerine', cursive;
+  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .pop-up-project-container .project-footer{
@@ -418,7 +445,17 @@ div#popup-overlay.ng-hide {
   ******************************************************************************/
 
 .courses-chart{
-  width: 600px;
+  width: 700px;
+}
+
+.courses-chart .semester-header-container{
+  height: 3.5rem;
+  line-height: 3.5rem;
+}
+
+.courses-chart .semester-header-container:hover{
+  background-color: #f5f5f5;
+  color: #52bab3;
 }
 
 .courses-chart .collapsible-body .course-style{

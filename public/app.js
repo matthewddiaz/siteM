@@ -1,14 +1,17 @@
-//This is in AngularJS
+//Intializing Angular module siteM
 (function(){
-
-	var app = angular.module('siteM',['ngFileUpload', 'ngRoute', 'ui.bootstrap',
+  /* Following angular-seed on Github to seperate each indiviual angular controller
+	*  into there on file for better encapsulation and to prevent monolithic app.js
+	*/
+	var app = angular.module('siteM', ['ngFileUpload', 'ngRoute', 'ui.bootstrap',
 													 'siteM.adminController', 'siteM.coursesController',
 													 'siteM.loginController', 'siteM.homeController',
 													 'siteM.projectsController', 'siteM.projectsPopUpController'
-												 ]);//ui.router is a dependency that this app is using, look up on github.
+												 ]);
 
-	/*the app.config allows angular to state which html page should be injected to the index.html when the client types
-	  localhost:3000/ followed by one of the routes below. This allows for Single Page Applications injections to be easily done
+	/*the app.config allows angular to state which html page should be injected to
+	* the index.html when the client types localhost:3000/ followed by one of the
+	* routes below. This allows for Single Page Applications injections to be easily done
 	*/
 	app.config(['$routeProvider', function($routeProvider){
 
@@ -33,15 +36,33 @@
 			});
 	}]);
 
+	/**
+	 * toggleLinkActiveClass function that shows which route the user is currently
+	 * on from the possible home, projects, and courses. Adds class 'active' to the
+	 * link that is currently active and removes the previous one.
+	 * @return {none}
+	 */
 	function toggleLinkActiveClass(){
 		$('.navigation-bar a').click(function(event){
 			 $('a').removeClass('active');
 			 $(this).addClass('active');
 		 });
 	}
-
 	toggleLinkActiveClass();
 
+	/**
+	 * service, used to produce modal on projects.html
+	 * @param  {name} 'projectDescription'  == name of the serivce
+	 * @param  {function} callback function with parameters $rootScope and $q
+	 * @return {object}  will contain information for the modal
+	 *         {
+	 *					 open: open,
+	 *					 params: params,
+	 *					 proceedTo: proceedTo,
+	 *					 reject: reject,
+	 * 					 resolve: resolve
+ 	 *				 }
+	 */
 	app.service('projectDescription', function($rootScope, $q){
 		var data = {deferred: null, params: null};
 		return({
@@ -90,6 +111,22 @@
 		}
 	});
 
+	/**
+	 * directive for projectTemplate.html modal. Used in projects.html
+	 * @param  {name} 'projectPopUp' == name of the directive
+	 * @param  {function} callback function with parameters $rootScope and $q
+	 * @return {object}   The returned object contains the following properties
+	 *         {
+	 *         	templateUrl : 'html template of the modal',
+	 *         	link : sets scope.popup from null to modal on projectDescription.open
+	 *         	NOTE in projects.html ng-switch is attached to scope.popup and in
+	 *         			 projectTemplate.html ng-show is attached to scope.popup.
+	 *         			 That means in projects.html a swap of the DOM structure
+	 *         			 ocurrs when scope.popup is true. Finally ng-show in
+	 *         			 projectTemplate.html will also display the content only when
+	 *         			 scope.popup is true.
+	 *         }
+	 */
 	app.directive('projectPopUp', function($rootScope, projectDescription){
 		return{
 			templateUrl: 'projectTemplate.html',

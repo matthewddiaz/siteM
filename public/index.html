@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!--css directories or links. Ex: google font, bootstrap css, materialize css,...-->
+		<link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link type="text/css" rel="stylesheet" href="/css/materialize.css"  media="screen,projection"/>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -10,8 +13,12 @@
 		<title>Matt Diaz</title>
 	</head>
 
+	<!--Initialize siteM html with the angular module siteM -->
 	<body ng-app="siteM">
-		<!-- Navigation Bar -->
+		<!-- Navigation Bar
+				NOTE col-xs-(number) is a bootstrap class for arrangin columns. They should
+				be wrapped by a bootstrap row class.
+		-->
     <div class="row no-margin navigation-bar">
       <div class="col-xs-4 vertical-center links">
         <a class="no-decoration active" href="#/home">
@@ -30,8 +37,13 @@
       </div>
 		</div>
 
+		<!-- Following the single-page principle. All of the content in this page is
+		     reused for all of the routes in SiteM. The html content that is inside
+				 ng-view is specific that route.
+		-->
 		<div ng-view class="page-views vertical-center">
 		</div>
+
 		<!-- Footer -->
 		<div class="footer">
 			<div class="row no-margin footer-design full-height">
@@ -63,6 +75,10 @@
 			</div>
 		</div>
 
+		<!-- Necessary Javascript files or links. Ex: jquery, bootstrap, angularJS, toastr.js
+				NOTE each controller file needsd to be included in index.html or else it will
+				appear as if that controller is undefined.
+		-->
   	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>

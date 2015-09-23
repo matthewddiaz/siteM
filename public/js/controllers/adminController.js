@@ -1,6 +1,11 @@
 angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
-  .controller('AdminController', ['$scope', '$http', 'Upload', '$timeout',
-              function($scope, $http, Upload, $timeout){
+  .controller('AdminController', ['$scope', '$http', 'Upload',
+              function($scope, $http, Upload){
+    /**
+     * [formProperties is a JSON object of all the properties of adminForm.
+     *  the form is initially in its pristine state]
+     * @type {Object}
+     */
     $scope.formProperties = {
       projectName: "",
       github: "",
@@ -9,10 +14,24 @@ angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
     }
     var originalForm = angular.copy($scope.formProperties);
 
+    /**
+     * [uploadPic] executed on clicking the submit button in admin.html
+     * @param  {file} the file that the user uploaded. Ex: image, video
+     * @return {none}
+     */
     $scope.uploadPic = function(file) {
       var  projectInfo = {
       }
-      //console.log(JSON.stringify(file.type));
+      /**
+       * [upload] is a function provided by ng-file-upload module to send a
+       * post request contain the project file and attachment.
+       * @param  {url} path of the post request
+       * @param  {mthod} request type... ex: Post,Get
+       * @param  {object} fields contains both the document and attachment of form
+       * @param  {file} file inserted by the user
+       * @return {object} The data object proerty ok tells if the submission was successful
+       *                  to the database or if an error ocurred.
+       */
       Upload.upload({
         url: 'data/uploadDocs',
         method: 'POST',
@@ -21,13 +40,13 @@ angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
           "projectUrl" : $scope.formProperties.github,
           "projectDescription" : $scope.formProperties.projectDescription,
           "imageType" : file.type
-        }, // Any data needed to be submitted along with the files
+        },
         file: file
       }).success(function(data, status, headers, config) {
-        if(data.ok){
+        if(data.ok){//if submission is success a toast will display the message below.
           toastr.success("Upload Complete", "Success!");
            $scope.adminForm.$setPristine();
-           $scope.formProperties = angular.copy(originalForm);
+           $scope.formProperties = angular.copy(originalForm);//the form will also reset to pristine value
         }else{
           toastr.error('Could not Submit', 'Error!');
         }
