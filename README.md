@@ -21,4 +21,4 @@ Below is Site M's home page:
 ![](https://github.com/matthewddiaz/siteM/blob/master/public/images/siteM-home.jpg)
 
 ## Check out my website
-<a href="matthewddiaz.com">matthewddiaz.com</a>
+<a href="http://matthewddiaz.com">matthewddiaz.com</a>
