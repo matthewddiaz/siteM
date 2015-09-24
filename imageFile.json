@@ -4,6 +4,10 @@
     "projectName" : "Name That Country"
   },
   {
+    "img" : "siteM-home.jpg",
+    "projectName" : "Site M"
+  },
+  {
     "img" : "color-list-view.jpg",
     "projectName" : "Color List View"
   },
@@ -14,10 +18,6 @@
   {
     "img" : "dictionary.jpg",
     "projectName" : "Dictionary Creator"
-  },
-  {
-    "img" : "internetPermission.jpg",
-    "projectName" : "Internet Permission"
   },
   {
     "img" : "pi-estimator.jpg",
