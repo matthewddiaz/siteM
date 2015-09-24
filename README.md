@@ -14,5 +14,11 @@ Site M includes the following:
 
 * **Restful API** methodology is used to communicate with **Cloudant NoSQL database** that contains each projects specific content information.
 
+## Design
+Site M was inspired by the beauty in simplicity.
+Below is Site M's home page:
+
+![](https://github.com/matthewddiaz/siteM/blob/master/public/images/siteM-home.jpg)
+
 ## Check out my website
 <a href="matthewddiaz.com">matthewddiaz.com</a>
