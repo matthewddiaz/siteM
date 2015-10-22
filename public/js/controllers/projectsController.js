@@ -12,6 +12,31 @@ angular.module('siteM.projectsController', ['ngRoute'])
      *         	"img":               ex. "pic1.jpg"
      *         	"projectname" :      ex. "pic 1"
      *         }
+     *
+     * 	var matt = {
+     * 									"name"	: "Matthew",
+     * 									"age" : 20,
+     * 									"major" : "computer science"
+     * 								 }
+     *
+     *	var students [matt,
+     *								{
+     *									"name" : "john",
+     *									"age" : 25,
+     *									"major" : "mechanical"
+     *								},
+     *								{
+     *									"name" : "sarah",
+     *									"age" : 18,
+     *									"major" : "biology"
+     *								}
+     *								]
+     *
+     * 	students.forEach(function(student){
+     *  	console.log("Hey my name is: " + student.name );
+     *  	console.log("I am " + student.age + " years old");
+     *  	console.log("My major is " + student.major);
+     * 	});
      */
     $http.get('/data/retrieveProjectPics').
       then(function(response) {

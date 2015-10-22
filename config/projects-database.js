@@ -103,13 +103,20 @@ function getDocumentWithAttachment(doc_id, next){
       console.log('An error occurred while getting document ' + err);
     }
     //projectAtt is the actual image
-    var docAndAtt = {
-      "projectName" : buffer.projectName,
-      "projectUrl" : buffer.projectUrl,
-      "projectDescription" : buffer.projectDescription,
-      "projectAtt" : buffer._attachments.image.data
+    //
+    if(buffer){//protecting app if database is down. only returns docAndAtt if buffer is not undefined!
+      var docAndAtt = {
+        "projectName" : buffer.projectName,
+        "projectUrl" : buffer.projectUrl,
+        "projectDescription" : buffer.projectDescription,
+        "projectAtt" : buffer._attachments.image.data
+      }
+      next(err, docAndAtt);
+    }else{
+      console.log("The database result is undefined");
     }
-    next(err, docAndAtt);
+
+
   });
 }
 exports.getDocumentWithAttachment = getDocumentWithAttachment;
