@@ -8,7 +8,7 @@ disk_quota: 200MB
 # Application configuration
 applications:
 # Development
-- name: blog-dev
-  host: blog-dev
+- name: matthewddiaz
+  host: matthewddiaz
   memory: 256MB
   instances: 1

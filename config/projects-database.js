@@ -1,4 +1,4 @@
-var cloudantCredentials = require('./db-credentials.json').credentials;
+var cloudantCredentials = require('./database.json').credentials;
 var crypto = require('crypto');
 var multiparty = require('multiparty');
 
@@ -17,7 +17,7 @@ var cloudant = {
 }
 
 var nano = require('nano')(cloudant.url);
-var db = nano.db.use('blog_db');
+var db = nano.db.use('matt_projects');
 
 function encryptID(id) {
   return crypto.createHash('sha256').update(id).digest('hex');
