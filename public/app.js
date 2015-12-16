@@ -39,6 +39,13 @@
 			});
 	}]);
 
+
+
+	$(window).load(function(){
+		$('body').addClass('loaded');
+	});
+
+
 	/**
 	 * toggleLinkActiveClass function that shows which route the user is currently
 	 * on from the possible home, projects, and courses. Adds class 'active' to the

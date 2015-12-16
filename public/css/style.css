@@ -465,7 +465,7 @@ div#popup-overlay.ng-hide {
 }
 
 /*******************************************************************************
- * courses.html
+ * preloader.html
  ******************************************************************************/
 
  #loader-wrapper{
@@ -487,7 +487,7 @@ div#popup-overlay.ng-hide {
    margin: -75px 0 0 -75px;
    border-top: 3px solid #3498db;
    border-radius: 50%;
-   -webkit-animation: sip 2s linear infinite;
+   -webkit-animation: spin 2s linear infinite;
    animation: spin 2s linear infinite;
    z-index: 1001;
  }
