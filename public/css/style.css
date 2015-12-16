@@ -463,3 +463,152 @@ div#popup-overlay.ng-hide {
   padding: 1rem 2rem;
   color: black;
 }
+
+/*******************************************************************************
+ * courses.html
+ ******************************************************************************/
+
+ #loader-wrapper{
+   position: fixed;
+   top:0;
+   left:0;
+   width: 100%;
+   height: 100%;
+   z-index: 1000;
+ }
+
+ #loader{
+   display: block;
+   position: relative;
+   left: 50%;
+   top: 50%;
+   width: 150px;
+   height: 150px;
+   margin: -75px 0 0 -75px;
+   border-top: 3px solid #3498db;
+   border-radius: 50%;
+   -webkit-animation: sip 2s linear infinite;
+   animation: spin 2s linear infinite;
+   z-index: 1001;
+ }
+
+ #loader:before{
+   content: "";
+   position: absolute;
+   top: 5px;
+   left: 5px;
+   right: 5px;
+   bottom: 5px;
+   border-top: 3px solid #e74c3c;
+   border-radius: 50%;
+   -webkit-animation: spin 3s linear infinite;
+   animation: spin  3s linear infinite;
+ }
+
+ #loader:after{
+   content: "";
+   position: absolute;
+   top: 15px;
+   left: 15px;
+   right: 15px;
+   bottom: 15px;
+   border-top: 3px solid #ffff00;
+   border-radius: 50%;
+   -webkit-animation: sip 1.5s linear infinite;
+   animation: spin 1.5s linear infinite;
+ }
+
+ @-webkit-keyframes spin {
+   0%{
+     -webkit-transform: rotate(0deg);
+     -ms-transform: rotate(0deg);
+     transform: rotate(0deg);
+   }
+   100%{
+     -webkit-transform: rotate(360deg);
+     -ms-transform: rotate(360deg);
+     transform: rotate(360deg);
+   }
+}
+
+@keyframes spin {
+  0%{
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+#loader-wrapper .loader-section{
+  position: fixed;
+  top: 0;
+  width: 51%;
+  height: 100%;
+  background: #222;
+  z-index:1000;
+}
+
+#loader-wrapper .loader-section.section-left{
+  left:0;
+}
+
+
+#loader-wrapper .loader-section.section-right{
+  right:0;
+}
+
+
+/*Loaded styles */
+/*  translateX moves section-left
+    div all the way to the left
+
+    transition is the amount of time the animation takes
+*/
+.loaded #loader-wrapper .loader-section.section-left{
+  -webkit-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  transform: translateX(-100%);
+
+  -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+/*
+  NOTE:the second time interval is for delaying
+ */
+.loaded #loader-wrapper .loader-section.section-right{
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+
+  -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+/*Order of Animation
+  1) loader fades out
+  2) section-left and section-right (enhance a delay of .3s)
+  3) id loader-wrapper moves all the way to the top of page
+     and thus delay of 1s (.3s + .7s)
+*/
+.loaded #loader{
+  opacity: 0;
+
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.loaded #loader-wrapper{
+  visibility: hidden;
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+
+  -webkit-transition: all 0.3s 1s ease-out;
+  transition: all 0.3s 1s ease-out;
+}

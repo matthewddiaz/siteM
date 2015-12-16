@@ -31,6 +31,9 @@
 			.when('/projects', {
 				templateUrl : 'projects.html'
 			})
+			.when('/preloader', {
+				templateUrl : 'preloader.html'
+			})
 			.otherwise({
 				redirectTo: '/home'
 			});
