@@ -1,8 +1,37 @@
 [
+  { "term" : "Spring 2016",
+    "courses" : [
+      {
+        "name" : "OBJECT ORIENTED PROGRAMMING",
+        "courseNumber" : "COP 4331",
+        "courseUrl" : "COP4331"
+      },
+      {
+        "name" : "COMPU NETWORK FUNDAMENTALS",
+        "courseNumber" : "CNT 4007C",
+        "courseUrl" : "CNT4007C"
+      },
+      {
+        "name" : "PRIN OF MANAGEMENT",
+        "courseNumber" : "MAN 3025",
+        "courseUrl" : "MAN3025"
+      },
+      {
+        "name" : "PROFESSIONAL COM FOR ENGINEERS",
+        "courseNumber" : "ENC 3246",
+        "courseUrl" : "ENC3246"
+      },
+      {
+        "name" : "PROFESSIONAL ETHICS",
+        "courseNumber" : "EGS 4034",
+        "courseUrl" : "EGS4034"
+      }
+    ]
+  },
   { "term" : "Fall 2015",
     "courses" : [
       {
-        "name" : "DESIGN PATTERNS",
+        "name" : "DESIGN PATTERNS IN OOP",
         "courseNumber" : "CIS 4930",
         "courseUrl" : "CIS4930"
       },

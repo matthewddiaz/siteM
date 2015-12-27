@@ -4,7 +4,7 @@
 
 <div class="full-height projects-container" ng-controller="ProjectsController as pCtrl">
   <div class="row no-margin project-row" ng-repeat="row in projectRows">
-    <div class="col-xs-4 project-col" ng-repeat="image in row">
+    <div class="col-md-4 project-col" ng-repeat="image in row">
       <div class="project-container" ng-click="pCtrl.showProjectPopUp(image)">
         <a href="">
           <img class="project-image" src="/images/{{image.img}}">
