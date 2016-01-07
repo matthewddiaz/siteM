@@ -84,7 +84,7 @@ a.no-decoration:active{
   border-bottom: 1px solid #52bab3;
 }
 
-.navigation-bar a.active{
+.active-page-link{
   border-bottom: 1px solid #52bab3;
 }
 

@@ -1,7 +1,6 @@
 angular.module('siteM.homeController', ['ngRoute'])
   .controller('HomeController', ['$scope', function($scope){
     $scope.isBio = true;
-
     /**
      * showBio is executed on hover on ids Tech and Bio in home.html
      * changes the content that is displayed using ng-show/hide

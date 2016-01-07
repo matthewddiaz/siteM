@@ -19,19 +19,26 @@
 				NOTE col-xs-(number) is a bootstrap class for arrangin columns. They should
 				be wrapped by a bootstrap row class.
 		-->
-    <div class="row no-margin navigation-bar">
+    <div class="row no-margin navigation-bar"
+			ng-controller="NavigationController">
       <div class="col-xs-4 vertical-center links">
-        <a class="no-decoration active" href="#/home">
+        <a ng-class="{'active-page-link' : isActive('/home')}"
+				 class="no-decoration active"
+ 				 ng-click="loading()" href="#/home">
 					<p class="nav-links">Home</p>
 				</a>
       </div>
 			<div class="col-xs-4 vertical-center links">
-        	<a class="no-decoration" href="#/projects">
+        	<a ng-class="{'active-page-link' : isActive('/projects')}"
+					class="no-decoration"
+					ng-click="loading()" href="#/projects">
 						<p class="nav-links">Projects</p>
 				</a>
       </div>
       <div class="col-xs-4 vertical-center links">
-        <a class="no-decoration" href="#/courses">
+        <a ng-class="{'active-page-link' : isActive('/courses')}"
+					class="no-decoration"
+					ng-click="loading()" href="#/courses">
 					<p class="nav-links">Courses</p>
 				</a>
       </div>
@@ -96,11 +103,13 @@
 		<script src="js/ui-bootstrap-0.13.3.min.js"></script>
 		<script src="js/angular-materialize.js"></script>
 		<script src="js/ng-file-upload.min.js"></script>
+		<script src="/js/utils.js"></script>
   	<script src="/app.js"></script>
 		<script src="js/controllers/adminController.js"></script>
 		<script src="js/controllers/coursesController.js"></script>
 		<script src="js/controllers/loginController.js"></script>
 		<script src="js/controllers/homeController.js"></script>
+		<script src="js/controllers/navigationController.js"></script>
 		<script src="js/controllers/projectsController.js"></script>
 		<script src="js/controllers/projectsPopUpController.js"></script>
 	</body>

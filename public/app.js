@@ -6,6 +6,7 @@
 	var app = angular.module('siteM', ['ngFileUpload', 'ngRoute', 'ui.bootstrap',
 													 'siteM.adminController', 'siteM.coursesController',
 													 'siteM.loginController', 'siteM.homeController',
+													 'siteM.navigationController',
 													 'siteM.projectsController', 'siteM.projectsPopUpController'
 												 ]);
 
@@ -39,26 +40,7 @@
 			});
 	}]);
 
-
-
-	$(window).load(function(){
-		$('body').addClass('loaded');
-	});
-
-
-	/**
-	 * toggleLinkActiveClass function that shows which route the user is currently
-	 * on from the possible home, projects, and courses. Adds class 'active' to the
-	 * link that is currently active and removes the previous one.
-	 * @return {none}
-	 */
-	function toggleLinkActiveClass(){
-		$('.navigation-bar a').click(function(event){
-			 $('a').removeClass('active');
-			 $(this).addClass('active');
-		 });
-	}
-	toggleLinkActiveClass();
+	 preloader();
 
 	/**
 	 * service, used to produce modal on projects.html
