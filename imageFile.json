@@ -1,11 +1,15 @@
 [
   {
+    "img" : "siteM-home.jpg",
+    "projectName" : "Site M"
+  },
+  {
     "img" : "NameThatCountry.jpg",
     "projectName" : "Name That Country"
   },
   {
-    "img" : "siteM-home.jpg",
-    "projectName" : "Site M"
+    "img" : "projectHope.jpg",
+    "projectName" : "Project Hope"
   },
   {
     "img" : "color-list-view.jpg",
@@ -18,9 +22,5 @@
   {
     "img" : "dictionary.jpg",
     "projectName" : "Dictionary Creator"
-  },
-  {
-    "img" : "pi-estimator.jpg",
-    "projectName" : "Pi Estimator"
   }
 ]

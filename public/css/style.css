@@ -168,12 +168,6 @@ img.git-linkedIn-link:hover{
   opacity: .9;
 }
 
-@media screen and (max-device-width: 480px) and (orientation: portrait){
-  .info-container{
-    width: 90%;
-  }
-}
-
 .info-container .profile-content{
   padding: 2%;
   display: -webkit-flex;
@@ -223,6 +217,8 @@ img.git-linkedIn-link:hover{
   font-family: 'Poiret One', "Helvetica Neue", Arial;
 }
 
+
+
 .bio-container .skills-content-row .skills-container .col-property-style{
   padding: 5px 15px 5px 0px;
 }
@@ -246,6 +242,24 @@ img.git-linkedIn-link:hover{
   color: red;
   font-size: 20px;
   opacity: .4;
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .info-container{
+    width: 90%;
+  }
+
+  .bio-container .skills-content-row .skills-container{
+    font-size: 25px;
+  }
+
+  .on{
+    font-size: 35px;
+  }
+
+  .off{
+    font-size: 35px;
+  }
 }
 
 /*******************************************************************************
