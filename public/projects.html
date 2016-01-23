@@ -7,7 +7,7 @@
     <div class="col-xs-4 project-col" ng-repeat="image in row">
       <div class="project-container" ng-click="pCtrl.showProjectPopUp(image)">
         <a href="">
-          <img class="project-image" src="/images/{{image.img}}">
+          <img class="project-image" ng-src="/images/{{image.img}}">
           <div class="title-container vertical-center">
             <p class="title-style">{{image.projectName}}</p>
           </div>

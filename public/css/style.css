@@ -78,6 +78,12 @@ a.no-decoration:active{
   margin: 0px;
 }
 
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .navigation-bar p.nav-links{
+    font-size: 40px;
+  }
+}
+
 .navigation-bar p.nav-links:hover,
 .navigation-bar p.nav-links.active{
   font-weight: 400;
@@ -90,7 +96,7 @@ a.no-decoration:active{
 
 .footer{
   background-color: black;
-  height: 60px;
+  height: 70px;
   width: 100%;
   bottom: 0;
   color: white;
@@ -133,6 +139,23 @@ img.git-linkedIn-link:hover{
   opacity: 1;
 }
 
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .footer{
+    height: 140px;
+  }
+
+  .footer p.footer-text{
+    font-size: 25px;
+  }
+
+  img.git-linkedIn-link{
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+  }
+}
+
+
 /*******************************************************************************
  * home.html
  ******************************************************************************/
@@ -143,6 +166,12 @@ img.git-linkedIn-link:hover{
   margin: auto;
   border-radius: 10px;
   opacity: .9;
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .info-container{
+    width: 90%;
+  }
 }
 
 .info-container .profile-content{
@@ -438,6 +467,7 @@ div#popup-overlay.ng-hide {
   border: solid 2px #52bab3;
   color: black;
   font-size: 1.2em;
+  outline: none;
 }
 
  /*******************************************************************************
