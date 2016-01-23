@@ -503,9 +503,36 @@ div#popup-overlay.ng-hide {
   color: #52bab3;
 }
 
+.courses-chart .semester-header-container .school-icon-position{
+  line-height: 3.5rem;
+}
+
 .courses-chart .collapsible-body .course-style{
   padding: 1rem 2rem;
   color: black;
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .courses-chart{
+    width: 800px;
+    font-size: 40px;
+  }
+
+  .courses-chart .semester-header-container{
+    height: 10rem;
+    line-height: 10rem;
+  }
+
+  .courses-chart .semester-header-container .school-icon-position{
+    line-height: 10rem;
+    font-size: 3rem;
+    margin-right: 1.5rem;
+  }
+
+  .courses-chart .collapsible-body .course-style{
+    font-size: 30px;
+    padding:   2rem;
+  }
 }
 
 /*******************************************************************************
