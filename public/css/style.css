@@ -445,11 +445,27 @@ div#popup-overlay.ng-hide {
   .pop-up-project-container{
     width: 90%;
   }
+
+  .pop-up-project-container .project-top-row .project-title p.title-font-style{
+    font-size: 4em;
+  }
+
+  .pop-up-project-container .esc-pop-up-col{
+    font-size: 3em;
+  }
+
+  .pop-up-project-container .paragraph-style{
+    font-size: 2em;
+  }
 }
 
 @media screen and (max-device-width: 768px) and (orientation: landscape){
   .pop-up-project-container{
     height: 90%;
+  }
+
+  .pop-up-project-container .esc-pop-up-col{
+    font-size: 2em;
   }
 }
 
