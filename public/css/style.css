@@ -162,7 +162,7 @@ img.git-linkedIn-link:hover{
 
 .info-container{
   background-color: #eceff1;
-  width: 65%;
+  width: 70%;
   margin: auto;
   border-radius: 10px;
   opacity: .9;
@@ -217,8 +217,6 @@ img.git-linkedIn-link:hover{
   font-family: 'Poiret One', "Helvetica Neue", Arial;
 }
 
-
-
 .bio-container .skills-content-row .skills-container .col-property-style{
   padding: 5px 15px 5px 0px;
 }
@@ -250,9 +248,9 @@ img.git-linkedIn-link:hover{
   }
 
   .bio-container .skills-content-row .skills-container{
-    font-size: 25px;
+    font-size: 30px;
   }
-
+  
   .on{
     font-size: 35px;
   }
