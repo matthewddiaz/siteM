@@ -354,7 +354,6 @@ img.git-linkedIn-link:hover{
 /*******************************************************************************
  * projectTemplate.html
  ******************************************************************************/
-
 div#popup-overlay {
   background-color: rgba(0, 0, 0, 0.8);
   top: 0px; right: 0px; bottom: 0px; left: 0px;
@@ -373,50 +372,29 @@ div#popup-overlay.ng-hide {
   margin: auto;
 }
 
-@media screen and (max-device-width: 480px) and (orientation: portrait){
-  .pop-up-project-container{
-    width: 90%;
-  }
-}
-
-@media screen and (max-device-width: 768px) and (orientation: landscape){
-  .pop-up-project-container{
-    height: 90%;
-  }
-}
-
-
-.pop-up-project-container .esc-pop-up-row{
-    width: 100%;
-    height: 2%;
-    background-color: white;
-}
-
-.esc-pop-up-row img.pop-up-close-button{
-  float: right;
-  height: 100%;
-}
-.esc-pop-up-row p.x-font{
-  margin: 0px;
-  height: 100%;
-  font-size: .7em;
-  float: right;
-  margin-right: .5%;
-  font-weight: bold;
-}
-
-.pop-up-project-container .project-title{
+.pop-up-project-container .project-top-row{
   background-color: white;
-  height: 8%;
-  width: 100%;
+  height: 10%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.pop-up-project-container .project-title .title-font-style{
+.pop-up-project-container .project-top-row .project-title{
+  width: 90%;
+  float: left;
+}
+
+.pop-up-project-container .project-top-row .project-title p.title-font-style{
   font-family: 'Tangerine', cursive;
   font-size: 2em;
   font-weight: bolder;
-  margin: 0px;
+  margin: 0% 0% 0% 10%;
+}
+
+.pop-up-project-container .esc-pop-up-col{
+    width: 10%;
+    float: right;
+    text-align: right;
+    padding-right: 1%;
 }
 
 .pop-up-project-container .project-img-container{
@@ -443,14 +421,14 @@ div#popup-overlay.ng-hide {
   margin: auto;
 }
 
-.paragraph-style{
+.pop-up-project-container .paragraph-style{
   margin: 0px;
   font-family: inherit;
   font-size: 1.1em;
   font-weight: 300;
 }
 
-.paragraph-style span{
+.pop-up-project-container .paragraph-style span{
   font-family: 'Tangerine', cursive;
   font-weight: bold;
   font-size: 1.3em;
@@ -461,6 +439,18 @@ div#popup-overlay.ng-hide {
   width: 100%;
   background-color: white;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait){
+  .pop-up-project-container{
+    width: 90%;
+  }
+}
+
+@media screen and (max-device-width: 768px) and (orientation: landscape){
+  .pop-up-project-container{
+    height: 90%;
+  }
 }
 
 /*******************************************************************************

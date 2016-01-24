@@ -6,19 +6,17 @@
   ng-switch-when="projectDescription">
 
   <div class="pop-up-project-container">
-    <div class="row no-margin esc-pop-up-row">
-      <div class="col-xs-12 no-padding full-height">
-        <a href="/#/projects">
+    <div class="row no-margin project-top-row">
+      <div class="vertical-center full-height project-title">
+        <p class="title-font-style">{{project.projectName}}</p>
+      </div>
+
+      <div class="esc-pop-up-col full-height">
+        <a class="no-decoration" href="/#/projects">
           <div class="full-height" ng-click="cancel()">
-            <p class="x-font">X</p>
+            <p>X</p>
           </div>
         </a>
-      </div>
-    </div>
-
-    <div class="row no-margin project-title">
-      <div class="col-xs-12 no-padding full-height vertical-center">
-        <p class="title-font-style">{{project.projectName}}</p>
       </div>
     </div>
 
