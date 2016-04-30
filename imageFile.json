@@ -8,6 +8,10 @@
     "projectName" : "Name That Country"
   },
   {
+    "img" : "slothstInSpace.png",
+    "projectName" : "Slothst in Space"
+  },
+  {
     "img" : "projectHope1.jpg",
     "projectName" : "Project Hope"
   },
@@ -16,11 +20,11 @@
     "projectName" : "Color List View"
   },
   {
-    "img" : "calculator.jpg",
-    "projectName" : "Simple Four Function Calculator"
-  },
-  {
     "img" : "dictionary.jpg",
     "projectName" : "Dictionary Creator"
+  },
+  {
+    "img" : "calculator.jpg",
+    "projectName" : "Simple Four Function Calculator"
   }
 ]
