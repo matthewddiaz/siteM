@@ -18,7 +18,7 @@ Site M includes the following:
 Site M was inspired by the beauty in simplicity.
 Below is Site M's home page:
 
-![](https://github.com/matthewddiaz/siteM/blob/master/public/images/siteM-home.jpg)
+![](https://github.com/matthewddiaz/siteM/blob/master/public/images/siteMHome.jpg)
 
 ## Check out my website
 <a href="http://matthewddiaz.com">matthewddiaz.com</a>
