@@ -3,6 +3,14 @@ var router = express.Router();//need to include express so that we can use the R
 var multiparty = require('multiparty');
 var fs = require('fs');
 var projects_Database = require('../config/projects-database');
+var loginCredentials  = require('../config/loginCredentials.json').credentials;
+var loggedinCode = require('../config/loggedInCode.json').code;
+
+router.post('/login', function(req, res){
+	var email = req.body.email;
+	var password = req.body.password;
+	res.send(((email === loginCredentials.email) && (password === loginCredentials.password)) ? loggedinCode : null);
+});
 
 /**
  *  router.get

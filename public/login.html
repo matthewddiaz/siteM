@@ -7,11 +7,11 @@
 
   <div class="row no-margin vertical-center">
     <form class="col s12 login-form" ng-controller = "LoginController as lCtrl"
-          ng-submit="lCtrl.checkIfAdmin()">
+          ng-submit="lCtrl.checkIfAdmin()" name="loginForm">
       <div class="row">
         <div class="input-field col s12">
           <input id="username" type="email" class="validate" required
-          ng-model="email">
+          ng-model="formProperties.email">
           <label for="email">Email</label>
         </div>
       </div>
@@ -19,7 +19,7 @@
       <div class="row no-margin">
         <div class="input-field col s12">
           <input id="password" type="password" class="validate" required
-          ng-model="password">
+          ng-model="formProperties.password">
           <label for="password">Password</label>
         </div>
       </div>

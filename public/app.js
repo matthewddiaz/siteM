@@ -14,11 +14,27 @@
 	* the index.html when the client types localhost:3000/ followed by one of the
 	* routes below. This allows for Single Page Applications injections to be easily done
 	*/
-	app.config(['$routeProvider', function($routeProvider){
+	app.config(['$routeProvider', function($routeProvider, $location){
+		//this function is used in the resolve for route '/admin' this route should
+		//redirect a user to home if he/she has not entered the correct credentials 
+		 var checkLoggedin = function(Auth, $q, $location){
+			var defer = $q.defer();
+			if(Auth.isLoggedIn()){
+				defer.resolve();
+			}else{
+				defer.reject();
+				$location.url('/home');
+			}
+			return defer.promise;
+		};
 
 		$routeProvider//Are the specific routes that user types in the browser will inject the specifc html to index.html
 			.when('/admin', {
-				templateUrl : 'admin.html'
+				templateUrl : 'admin.html',
+				resolve: {
+        	loggedIn: checkLoggedin
+				}
+				//console.log(loggedIn);
 			})
 			.when('/courses', {
 				templateUrl : 'courses.html'
@@ -41,6 +57,18 @@
 	}]);
 
 	 preloader();
+
+	 app.service('Auth', function(){
+		 var token;
+		 return {
+			 authenticate : function(userToken){
+				 token = userToken;
+			 },
+			 isLoggedIn : function(){
+				 return (token) ? true : false;
+			 }
+		 }
+	 });
 
 	/**
 	 * service, used to produce modal on projects.html
