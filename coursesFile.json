@@ -1,4 +1,28 @@
 [
+  { "term" : "Fall 2016",
+    "courses" : [
+      {
+        "name" : "ANALYSIS OF ALGORITHMS",
+        "courseNumber" : "COT 5405",
+        "courseUrl" : "CIS4930"
+      },
+      {
+        "name" : "INTRO TO SOFTWARE ENGINEERING",
+        "courseNumber" : "CEN 3031",
+        "courseUrl" : "CEN3031"
+      },
+      {
+        "name" : "STATISTICS FOR ENGINEERS",
+        "courseNumber" : "STA 3032",
+        "courseUrl" : "STA3032"
+      },
+      {
+        "name" : "PUBLIC SPEAKING",
+        "courseNumber" : "SPC 2608",
+        "courseUrl" : "SPC2608"
+      }
+    ]
+  },
   { "term" : "Spring 2016",
     "courses" : [
       {

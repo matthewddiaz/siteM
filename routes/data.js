@@ -117,6 +117,17 @@ router.post('/document', function(req, res, next){
 		res.send(document);
 	});
 });
+
+router.get('/allDocuments', function(req, res,next){
+	projects_Database.list({limit: 3}, function(err, body){
+		if(err){
+			console.log("you messed up matt");
+			return;
+		}
+		console.log(body);
+	});
+});
+
 /**
  * router.post
  * @param  {path} '/documentWithAttachment' [description]

@@ -3,6 +3,14 @@ angular.module('siteM.projectsController', ['ngRoute'])
   function(projectDescription, $scope, $http){
     $scope.projectRows = [];
     $scope.rowLength = 3;
+
+    $http.get('/data/allDocuments').
+      then(function(response) {
+        console.log(response);
+      }, function(response) {
+        console.log(response.error);
+    });
+
     /**
      * http request get request to all of the project images and names
      * @param  {path} request is sent to '/data/retrieveProjectPics'
