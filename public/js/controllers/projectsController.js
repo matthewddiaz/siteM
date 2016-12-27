@@ -4,12 +4,12 @@ angular.module('siteM.projectsController', ['ngRoute'])
     $scope.projectRows = [];
     $scope.rowLength = 3;
 
-    $http.get('/data/allDocuments').
-      then(function(response) {
-        console.log(response);
-      }, function(response) {
-        console.log(response.error);
-    });
+    // $http.get('/data/allDocuments').
+    //   then(function(response) {
+    //     console.log(response);
+    //   }, function(response) {
+    //     console.log(response.error);
+    // });
 
     /**
      * http request get request to all of the project images and names
@@ -82,14 +82,19 @@ angular.module('siteM.projectsController', ['ngRoute'])
      * 									and sets document equal to response.data
      */
     this.showProjectPopUp = function(image){
-        $http.post('/data/documentWithAttachment', {id:image.projectName}).
-          then(function(response) {
-            var promise = projectDescription.open(
-              'projectDescription',
-              { document: response.data }
-            );
-          }, function(response) {
-            console.log(response.error);
-        });
+        //console.log(image.projectName);
+
+        $http.get('/data/allDataBases');
+
+        // $http.post('/data/documentWithAttachment', {id:image.projectName}).
+        //   then(function(response) {
+        //     console.log("The response from this post is " + JSON.stringify(response));
+        //     // var promise = projectDescription.open(
+        //     //   'projectDescription',
+        //     //   { document: response.data }
+        //     // );
+        //   }, function(response) {
+        //     console.log(response.error);
+        // });
     }
   }]);

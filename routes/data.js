@@ -3,6 +3,7 @@ var router = express.Router();//need to include express so that we can use the R
 var multiparty = require('multiparty');
 var fs = require('fs');
 var projects_Database = require('../config/projects-database');
+var updated_Database = require('../config/cloudantDatabaseAdapters');
 var loginCredentials  = require('../config/loginCredentials.json').credentials;
 var loggedinCode = require('../config/loggedInCode.json').code;
 
@@ -128,6 +129,11 @@ router.get('/allDocuments', function(req, res,next){
 	});
 });
 
+router.get('/allDataBases', function(req, res){
+	//updated_Database.getAllDatabases();
+	updated_Database.getAllDocs();
+});
+
 /**
  * router.post
  * @param  {path} '/documentWithAttachment' [description]
@@ -139,7 +145,8 @@ router.get('/allDocuments', function(req, res,next){
  * NOTE This route was used in projectsController.js
  */
 router.post('/documentWithAttachment', function(req, res, next){
-  projects_Database.getDocumentWithAttachment(req.body.id, function(err, body){
+		var documentID = req.body.id;
+  projects_Database.getDocumentWithAttachment(documentID, function(err, body){
 		if(err){
 			console.log(err);
 		}

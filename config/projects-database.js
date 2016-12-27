@@ -17,7 +17,7 @@ var cloudant = {
 }
 
 var nano = require('nano')(cloudant.url);
-var db = nano.db.use('matt_projects');
+var db = nano.db.use(cloudantCredentials.projectsDatabase);
 
 function encryptID(id) {
   return crypto.createHash('sha256').update(id).digest('hex');
@@ -95,28 +95,30 @@ exports.getDocument = getDocument;
  * @return {object}   returns either a err or docAndAtt object
  */
 function getDocumentWithAttachment(doc_id, next){
-  var id = encryptID(doc_id);
+  var encypted_id = encryptID(doc_id);
+  //console.log(doc_id);
 
   //NOTE function defined by descape/nano github
-  db.multipart.get(id, function(err, buffer) {
+  db.multipart.get(encypted_id, function(err, buffer) {
     if (err){
       console.log('An error occurred while getting document ' + err);
     }
     //projectAtt is the actual image
-    //
     if(buffer){//protecting app if database is down. only returns docAndAtt if buffer is not undefined!
-      var docAndAtt = {
-        "projectName" : buffer.projectName,
-        "projectUrl" : buffer.projectUrl,
-        "projectDescription" : buffer.projectDescription,
-        "projectAtt" : buffer._attachments.image.data
-      }
-      next(err, docAndAtt);
+      console.log(JSON.stringify(buffer));
+
+      // var docAndAtt = {
+      //   "projectName" : buffer.projectName,
+      //   "projectUrl" : buffer.projectUrl,
+      //   "projectDescription" : buffer.projectDescription
+      //   //"projectAtt" : buffer._attachments.image.data
+      // }
+
+      //console.log("The project description is " + docAndAtt.projectDescription);
+      //next(err, docAndAtt);
     }else{
       console.log("The database result is undefined");
     }
-
-
   });
 }
 exports.getDocumentWithAttachment = getDocumentWithAttachment;
