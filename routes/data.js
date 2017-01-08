@@ -118,13 +118,13 @@ router.post('/document', function(req, res, next){
 	});
 });
 
-router.get('/allDocuments', function(req, res,next){
-	projects_Database.list({limit: 3}, function(err, body){
+router.get('/allDocuments', function(request, response, next){
+	projects_Database.getAllDocumentsWithAttachments(function(err, projects){
 		if(err){
-			console.log("you messed up matt");
-			return;
+			console.log(err);
+			response.send(err);
 		}
-		console.log(body);
+			response.send(projects);
 	});
 });
 
@@ -139,11 +139,23 @@ router.get('/allDocuments', function(req, res,next){
  * NOTE This route was used in projectsController.js
  */
 router.post('/documentWithAttachment', function(req, res, next){
-  projects_Database.getDocumentWithAttachment(req.body.id, function(err, body){
+	var documentID = req.body.id;
+  projects_Database.getDocumentWithAttachment(documentID, function(err, body){
 		if(err){
 			console.log(err);
 		}
+		//console.log(body);
 		res.send(body);
+	});
+});
+
+router.post('/documentAttachment', function(req, res, callback){
+	var attachmentDetails = req.body;
+	projects_Database.getDocumentAttachment(attachmentDetails, function(err, buffer){
+		if(err){
+			console.log(err);
+		}
+		res.send(buffer);
 	});
 });
 
