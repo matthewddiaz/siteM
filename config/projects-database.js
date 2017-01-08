@@ -83,61 +83,12 @@ function getDocument(doc_id, next){
   db.get(id, function(err, body) {
     if(err){
       console.log('An error occurred while getting document ' + err);
+      console.log(body);
     }
     next(err, body);
   });
 }
 exports.getDocument = getDocument;
-
-/**
- * getDocumentWithAttachment gets a document along with its attachment using docName
- * @param  {string}   doc_id is the docName of the document with attachment
- * @param  {Function} next is the callback function that returns an err and document object
- * @return {object}   returns either a err or docAndAtt object
- */
-function getDocumentWithAttachment(doc_id, callback){
-  var encypted_id = encryptID(doc_id);
-  //console.log(doc_id);
-
-  //NOTE function defined by descape/nano github
-  db.multipart.get(encypted_id, function(err, buffer) {
-    if (err){
-      console.log('An error occurred while getting document ' + err);
-    }
-    //projectAtt is the actual image
-    if(buffer){//protecting app if database is down. only returns docAndAtt if buffer is not undefined!
-      //console.log(buffer.toString('base64'));
-      //console.log("hey matt");
-      console.log(JSON.stringify(JSON.parse(buffer.toString('utf8'))));
-
-      var newLine = '\r\n\r\n';
-
-      var startOfDocument = buffer.indexOf("_id");
-      // console.log(startOfDocument);
-
-      var endOfDocument = buffer.indexOf("}}}", startOfDocument);
-      //console.log(endOfDocument);
-
-      var documentJSON = JSON.parse(buffer.toString('utf8', startOfDocument - 2, endOfDocument + 3));
-
-      var startOfAttachment = buffer.indexOf(newLine, endOfDocument);
-      var endOfAttachment = buffer.indexOf('--', startOfAttachment);
-      //console.log(buffer.toString('utf8', startOfAttachment));
-
-      var projectInfo = {
-        projectName : documentJSON.projectName,
-        projectUrl : documentJSON.projectUrl,
-        projectDescription : documentJSON.projectDescription,
-        encodedImage : buffer.toString('base64', startOfAttachment, endOfAttachment)
-      }
-
-      callback(err, projectInfo);
-    }else{
-      console.log("The database result is undefined");
-    }
-  });
-}
-exports.getDocumentWithAttachment = getDocumentWithAttachment;
 
 /**
  * getAllDocuments function that gets all of the objects in the
@@ -146,49 +97,85 @@ exports.getDocumentWithAttachment = getDocumentWithAttachment;
  * @return {object}  either an err object or body containing all of the documents
  * in blog_db
  */
-function getAllDocuments(){
-  request({
-      method : 'GET',
-      uri: cloudantCredentials.url + '/' + cloudantCredentials.projectsDatabase
-       + '/_all_docs' + '?include_docs=true',
-    },function(err, response){
-        if(err){
-          console.log("Error while retrieving attachment");
-        }
-        console.log(response.body);
+function getAllDocuments(callback){
+  //NOTE using an arbitrary key retrieves all Docs info from database
+  var arbitraryKey = {
+    secret : "code"
+  }
+  //NOTE function defined by descape/nano github
+  db.fetch(arbitraryKey,function(err, allDocsInfo) {
+    if(err){
+      console.log('Could not retrieve document information from '
+        + cloudantCredentials.projectsDatabase);
+    }
+      callback(err, allDocsInfo);
   });
 }
 exports.getAllDocuments = getAllDocuments;
 
-function getDocumentAttachment(attachmentDetails, callback){
-  // db.attachment.get(attachmentDetails.doc, attachmentDetails.att, function(err, buffer){
-  //   if(err){
-  //     console.log("Error while retrieving attachment");
-  //   }
-  //
-  //   var encodedImage = {
-  //    imageRepresentation : buffer.toString()
-  //   }
-  //   //console.log(encodedImage);
-  //   callback(err, encodedImage);
-  // });
+/**
+ * getDocumentAttachment function gets attachment of a document as a buffer
+ * @param {documentName}
+ * @param {attachmentName}
+ * @param  {Function} callback callback function
+ * @return {string}  either an err object or base64 string
+ *
+ */
+function getDocumentAttachment(documentName, attachmentName, callback){
+  db.attachment.get(documentName, attachmentName, function(err, attachmentBuffer){
+    if(err){
+      console.log("Error while retrieving attachment");
+    }
 
-  request({
-      method : 'GET',
-      uri: cloudantCredentials.url + '/' + cloudantCredentials.projectsDatabase
-       + '/_all_docs',
-    },function(err, response){
-        if(err){
-          console.log("Error while retrieving attachment");
-        }
-        console.log(response.body);
-        console.log(response.statusCode);
-        console.log("hey");
+    callback(err, attachmentBuffer);
   });
 }
-
 exports.getDocumentAttachment = getDocumentAttachment;
 
-function retrieveDocsWithAtt(stratingProjectIndex, callback){
+/**
+ * getDocumentWithAttachment gets a document along with its attachment using docName
+ * @param  {string}   doc_id is the docName of the document with attachment
+ * @param  {Function} next is the callback function that returns an err and document object
+ * @return {object}   returns either a err or docAndAtt object
+ */
+function getAllDocumentsWithAttachments(callback){
+  //retrieve all documents brief descriptions
+  getAllDocuments(function(err, allDocsInfo){
+    if(err){
+      console.log(err);
+    }
 
+    var projectInfoArr = allDocsInfo.rows;
+    //console.log(projectInfoArr);
+    var totalNumOfProjects = allDocsInfo.total_rows;
+
+    function retrieveCompleteProjectInfo(partialProject){
+        var documentJSON = partialProject.doc;
+        var projectID = partialProject.id;
+        //NOTE currently all attachment's names are hardcoded to image
+        var attachmentName = 'image';
+        //console.log(partialProject);
+        return completeProjectDescription = {
+          projectName : documentJSON.projectName,
+          projectDescription : documentJSON.projectDescription,
+          projectUrl : documentJSON.projectUrl
+        };
+        //console.log(completeProjectDescription);
+
+        //retriving document's attachment using partialProject info
+        //  getDocumentAttachment(projectID, attachmentName, function(err, attachmentBuffer){
+        //    var encodedImage = attachmentBuffer.toString('Base64');
+        //    completeProjectDescription["projectEncodedImage"] = encodedImage;
+        //    //console.log(completeProjectDescription);
+        //    return completeProjectDescription;
+        //  });
+    };
+
+    var projectDocs = projectInfoArr.map(retrieveCompleteProjectInfo);
+    console.log(projectDocs);
+
+    // var projectsArr = projectInfoArr.map(retrieveCompleteProjectInfo());
+    //  callback(err, projectsArr);
+  });
 }
+exports.getAllDocumentsWithAttachments = getAllDocumentsWithAttachments;
