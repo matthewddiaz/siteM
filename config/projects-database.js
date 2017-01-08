@@ -133,9 +133,8 @@ function getDocumentAttachment(documentName, attachmentName, callback){
 exports.getDocumentAttachment = getDocumentAttachment;
 
 /**
- * getDocumentWithAttachment gets a document along with its attachment using docName
- * @param  {string}   doc_id is the docName of the document with attachment
- * @param  {Function} next is the callback function that returns an err and document object
+ * getDocumentsWithAttachments gets all documents along with their attachments using docName
+ * @param  {Function} callback is the callback function that returns an err and the documents array
  * @return {object}   returns either a err or docAndAtt object
  */
 function getAllDocumentsWithAttachments(callback){
@@ -146,36 +145,37 @@ function getAllDocumentsWithAttachments(callback){
     }
 
     var projectInfoArr = allDocsInfo.rows;
-    //console.log(projectInfoArr);
     var totalNumOfProjects = allDocsInfo.total_rows;
 
-    function retrieveCompleteProjectInfo(partialProject){
-        var documentJSON = partialProject.doc;
-        var projectID = partialProject.id;
-        //NOTE currently all attachment's names are hardcoded to image
-        var attachmentName = 'image';
-        //console.log(partialProject);
-        return completeProjectDescription = {
-          projectName : documentJSON.projectName,
-          projectDescription : documentJSON.projectDescription,
-          projectUrl : documentJSON.projectUrl
-        };
-        //console.log(completeProjectDescription);
+    function retrieveCompleteProject(partialProject){
+      var projectDocs = partialProject.doc;
+      var projectID = partialProject.id;
+      var attachmentName = 'image';
+      return new Promise(function(resolve, reject){
+        getDocumentAttachment(projectID, attachmentName, function(err, attachment){
+          if(err){
+            reject(err);
+          }
 
-        //retriving document's attachment using partialProject info
-        //  getDocumentAttachment(projectID, attachmentName, function(err, attachmentBuffer){
-        //    var encodedImage = attachmentBuffer.toString('Base64');
-        //    completeProjectDescription["projectEncodedImage"] = encodedImage;
-        //    //console.log(completeProjectDescription);
-        //    return completeProjectDescription;
-        //  });
+          var completeProjectDescription = {
+              projectName : projectDocs.projectName,
+              projectDescription : projectDocs.projectDescription,
+              projectUrl : projectDocs.projectUrl,
+              projectImage : attachment.toString('Base64')
+          };
+          resolve(completeProjectDescription);
+        });
+      });
     };
 
-    var projectDocs = projectInfoArr.map(retrieveCompleteProjectInfo);
-    console.log(projectDocs);
-
-    // var projectsArr = projectInfoArr.map(retrieveCompleteProjectInfo());
-    //  callback(err, projectsArr);
+    var projectDocs = projectInfoArr.map(retrieveCompleteProject);
+    Promise.all(projectDocs)
+        .then(function(result){
+          callback(err, result);
+        }).catch(function(err) {
+          // Will catch failure of first failed promise
+          console.log("Failed:", err);
+        });
   });
 }
 exports.getAllDocumentsWithAttachments = getAllDocumentsWithAttachments;
