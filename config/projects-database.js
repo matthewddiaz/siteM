@@ -1,7 +1,6 @@
 var cloudantCredentials = require('./database.json').credentials;
 var crypto = require('crypto');
 var multiparty = require('multiparty');
-var request = require('request');
 
 var cloudant = {
  	url: cloudantCredentials.url
