@@ -250,7 +250,7 @@ img.git-linkedIn-link:hover{
   .bio-container .skills-content-row .skills-container{
     font-size: 30px;
   }
-  
+
   .on{
     font-size: 35px;
   }
@@ -348,6 +348,24 @@ img.git-linkedIn-link:hover{
    width: 30px;
    border: 1px solid black;
  }
+
+.admin-controller div.row.photo-uploading-container{
+  height: 150px;
+}
+
+div.front-display-photo{
+  float: left;
+  width: 50%;
+}
+
+div.pop-up-info-photo{
+  float: right;
+  width: 50%;
+}
+
+input.uploaded-file-image{
+  padding-bottom: 10px;
+}
 
 /*******************************************************************************
  * projectTemplate.html

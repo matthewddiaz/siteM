@@ -1,16 +1,16 @@
-<div class="row">
+<div class="row admin-container">
   <form class="col s12" ng-controller="AdminController as ACtrl"
-        ng-submit="ACtrl.postProject()" name="adminForm">
+  ng-submit="ACtrl.postProject()" name="adminForm">
     <div class="row">
       <div class="input-field col s6">
         <input id="first_name" type="text" class="validate" required
-          ng-model="formProperties.projectName">
+        ng-model="formProperties.projectName">
         <label for="project_nam">Project Name</label>
       </div>
 
       <div class="input-field col s6">
         <input id="first_name" type="text" class="validate" required
-         ng-model="formProperties.github">
+        ng-model="formProperties.github">
         <label for="project_name">GitHub URL</label>
       </div>
 
@@ -23,25 +23,42 @@
       </div>
     </div>
 
-    <div>
-        <br>Photo:
-        <input type="file" ngf-select ng-model="formProperties.picFile" name="file"
-               accept="image/*" ngf-max-size="2MB" required>
-        <i ng-show="adminForm.file.$error.required">*required</i><br>
-        <i ng-show="adminForm.file.$error.maxSize">File too large
-            {{formProperties.picFile.size / 1000000|number:1}}MB: max {{formProperties.picFile.$errorParam}}</i>
-        <img ng-show="adminForm.file.$valid" ngf-src="!formProperties.picFile.$error && formProperties.picFile"
-             class="thumb">
-        <br>
-        <br>
+    <div class="row photo-uploading-container">
+      <div class = "row">
+        <div class ="front-display-photo">
+          <p>Front Display Photo:</p>
+          <input class="uploaded-file-image" type="file" ngf-select ng-model="formProperties.frontDisplayPhoto" name="frontDisplayPhoto"
+          accept="image/*" ngf-max-size="2MB" required>
+          <i ng-show="adminForm.frontDisplayPhoto.$error.required">*required</i>
+          <i ng-show="adminForm.frontDisplayPhoto.$error.maxSize">File too large
+            {{formProperties.frontDisplayPhoto.size / 1000000|number:1}}MB: max {{formProperties.frontDisplayPhoto.$errorParam}}</i>
+          <img ng-show="adminForm.frontDisplayPhoto.$valid" ngf-src="!formProperties.frontDisplayPhoto.$error && formProperties.frontDisplayPhoto"
+            class="thumb">
+        </div>
+
+        <div class = "pop-up-info-photo">
+          <p>Pop up Info Photo:</p>
+          <input class="uploaded-file-image" type="file" ngf-select ng-model="formProperties.popUpInfoPhoto" name="popUpInfoPhoto"
+          accept="image/*" ngf-max-size="2MB" required>
+          <i ng-show="adminForm.popUpInfoPhoto.$error.required">*required</i>
+          <i ng-show="adminForm.popUpInfoPhoto.$error.maxSize">File too large
+            {{formProperties.popUpInfoPhoto.size / 1000000|number:1}}MB: max {{formProperties.popUpInfoPhoto.$errorParam}}</i>
+          <img ng-show="adminForm.popUpInfoPhoto.$valid" ngf-src="!formProperties.popUpInfoPhoto.$error && formProperties.popUpInfoPhoto"
+          class="thumb">
+        </div>
+      </div>
+
+      <div class="row submit-form-container">
         <button type="submit" class="btn btn-default"
-                ng-click="uploadPic(formProperties.picFile)" ng-disabled="adminForm.$invalid">Submit</button>
+        ng-click="uploadPic(formProperties.picFile)" ng-disabled="adminForm.$invalid">Submit</button>
         <span class="progress" ng-show="picFile.progress >= 0">
           <div style="width:{{formProperties.picFile.progress}}%"
-              ng-bind="formProperties.picFile.progress + '%'"></div>
+          ng-bind="formProperties.picFile.progress + '%'"></div>
         </span>
         <span ng-show="formProperties.picFile.result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+      </div>
     </div>
+
   </form>
 </div>

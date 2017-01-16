@@ -69,6 +69,7 @@ router.post('/upload', function(req, res, next){
 router.post('/uploadDocs', function(req, res, next){
 	var form = new multiparty.Form();
 	form.parse(req, function(err, fields, files) {
+		console.log(files);
 		fs.readFile(files.file[0].path, function (err, data) {
 		  if (err) throw err;
 		  else{

@@ -10,7 +10,8 @@ angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
       projectName: "",
       github: "",
       projectDescription: "",
-      picFile: ""
+      frontDisplayPhoto: "",
+      popUpInfoPhoto: ""
     }
     var originalForm = angular.copy($scope.formProperties);
 
@@ -19,7 +20,7 @@ angular.module('siteM.adminController', [ 'ngRoute', 'ngFileUpload'])
      * @param  {file} the file that the user uploaded. Ex: image, video
      * @return {none}
      */
-    $scope.uploadPic = function(file) {
+    $scope.uploadPic = function(frontPhotoFile, popUpPhotoFile) {
       var  projectInfo = {
       }
       /**

@@ -1,4 +1,38 @@
 [
+  { "term" : "Spring 2017",
+    "courses" : [
+      {
+        "name" : "AI FOR COMPUTER GAMES",
+        "courseNumber" : "CAP 4053",
+        "courseUrl" : "CAP4053"
+      },
+      {
+        "name" : "SENIOR PROJECT",
+        "courseNumber" : "CIS 4914",
+        "courseUrl" : "CIS4914"
+      },
+      {
+        "name" : "GRADUATE COMP SCIENCE SEMINAR",
+        "courseNumber" : "CIS 6935",
+        "courseUrl" : "CIS4930"
+      },
+      {
+        "name" : "DIGITAL LOGIC & COMP SYSTEMS",
+        "courseNumber" : "EEL 3701C",
+        "courseUrl" : "EEL3701C"
+      },
+      {
+        "name" : "INTRO TO NUMERICAL ANALYSIS",
+        "courseNumber" : "MAD 4401",
+        "courseUrl" : "MAD4401"
+      },
+      {
+        "name" : " UNCOMMON READ: BIG SHORT",
+        "courseNumber" : "IDH 2930",
+        "courseUrl" : "IDH2930 "
+      }
+    ]
+  },
   { "term" : "Fall 2016",
     "courses" : [
       {
