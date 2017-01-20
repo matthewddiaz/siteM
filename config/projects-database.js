@@ -36,9 +36,9 @@ function insertDocument(doc, doc_id){
   //NOTE function defined by descape/nano github
   db.insert(doc , id, function(err,body){
     if(err){
-        console.log("Could not insert to blog_db");
+        console.log("Could not insert to " + cloudantCredentials.projectsDatabase);
     }else{
-      console.log("Blog was inserted successfully to blog_db!");
+      console.log("Document was inserted successfully to " + cloudantCredentials.projectsDatabase);
      }
   });
 }
@@ -48,21 +48,19 @@ exports.insertDocument = insertDocument;
  * insertDocWithAttachment function that inserts a document with an attachment
  * to blog-dev
  * @param  {object}   doc is an object that contains the document information
- * @param  {att}   att is an object that contains the attachment information
+ * @param  {attachments}   attachments is an object that contains the attachment information
  * @param  {Function} next is a callback function that returns an error and body
  * @return {object}  Either body or error depeding on insertion result
  */
-function insertDocWithAttachment(doc, att, next){
-  var id = encryptID(doc.projectName);
-
+function insertDocWithAttachment(doc, attachments, next){
+  var docID = encryptID(doc.projectName);
   //NOTE this function with its parameters is defined by nano js
-  db.multipart.insert(doc,
-   [{name: 'image', data: att.file, content_type: att.fileType}],
-   id, function(err, body) {
+  db.multipart.insert(doc, attachments, docID, function(err, body) {
       if(err){
-          console.log("Could not insert to blog_db " + err);
+          console.log("Could not insert to " + cloudantCredentials.projectsDatabase + err);
       }else{
-        console.log("Blog with documents was inserted successfully to blog_db!");
+        console.log("Document with attachment was successfully inserted to " +
+        cloudantCredentials.projectsDatabase);
       }
       next(err, body);
   });

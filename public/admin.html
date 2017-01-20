@@ -50,12 +50,12 @@
 
       <div class="row submit-form-container">
         <button type="submit" class="btn btn-default"
-        ng-click="uploadPic(formProperties.picFile)" ng-disabled="adminForm.$invalid">Submit</button>
-        <span class="progress" ng-show="picFile.progress >= 0">
-          <div style="width:{{formProperties.picFile.progress}}%"
-          ng-bind="formProperties.picFile.progress + '%'"></div>
+        ng-click="uploadPic(formProperties.frontDisplayPhoto, formProperties.popUpInfoPhoto)" ng-disabled="adminForm.$invalid">Submit</button>
+        <span class="progress" ng-show="frontDisplayPhoto.progress >= 0">
+          <div style="width:{{formProperties.frontDisplayPhoto.progress}}%"
+          ng-bind="formProperties.frontDisplayPhoto.progress + '%'"></div>
         </span>
-        <span ng-show="formProperties.picFile.result">Upload Successful</span>
+        <span ng-show="formProperties.frontDisplayPhoto.result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
       </div>
     </div>
