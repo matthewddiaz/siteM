@@ -141,7 +141,10 @@ function getAllDocumentsWithAttachments(callback){
       console.log(err);
     }
 
-    var projectInfoArr = allDocsInfo.rows;
+    var projectInfoArr = allDocsInfo.rows.filter(function(project){
+      return (project.doc.projectName);
+    });
+    console.log(projectInfoArr);
     var totalNumOfProjects = allDocsInfo.total_rows;
 
     function retrieveCompleteProject(partialProject){
