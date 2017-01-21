@@ -5,7 +5,7 @@ angular.module('siteM.projectsController', ['ngRoute'])
     $scope.projectsArray = [];
     $scope.rowLength = 3;
 
-    $http.get('/data/allDocuments')
+    $http.get('/data//allDocumentsWithAttachments')
       .then(function(projects){
         $scope.projectsArray = projects.data;
         console.log($scope.projectsArray);

@@ -169,7 +169,31 @@ router.post('/document', function(req, res, next){
 	});
 });
 
+/**
+ *This route returns a list of all the projects in projects_Database
+ *NOTE: projects do not come with their attachment included.
+ * @param  {route} '/allDocuments'   [description]
+ * @param  {function} function(request, response,     next [description]
+ * @return {object}   listOfProjects
+ */
 router.get('/allDocuments', function(request, response, next){
+	projects_Database.getAllDocuments(function(err, listOfProjects){
+		if(err){
+			console.log(err);
+			response.send(err);
+		}
+			response.send(listOfProjects);
+	});
+});
+
+/**
+ * This route returns the full list of all projects in projects_database.
+ * Each project comes with their attachment included.
+ * @param  {path} '/allDocumentswithAttachments' [description]
+ * @param  {function} response sends back all documents with their attachments
+ * @return {object} projects
+ */
+router.get('/allDocumentsWithAttachments', function(request, response, callback){
 	projects_Database.getAllDocumentsWithAttachments(function(err, projects){
 		if(err){
 			console.log(err);
