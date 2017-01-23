@@ -52,17 +52,19 @@ exports.insertDocument = insertDocument;
  * @param  {Function} next is a callback function that returns an error and body
  * @return {object}  Either body or error depeding on insertion result
  */
-function insertDocWithAttachment(doc, attachments, next){
+function insertDocWithAttachment(doc, attachments){
   var docID = encryptID(doc.projectName);
   //NOTE this function with its parameters is defined by nano js
-  db.multipart.insert(doc, attachments, docID, function(err, body) {
-      if(err){
-          console.log("Could not insert to " + cloudantCredentials.projectsDatabase + err);
-      }else{
-        console.log("Document with attachment was successfully inserted to " +
-        cloudantCredentials.projectsDatabase);
-      }
-      next(err, body);
+  return new Promise(function(resolve, reject){
+    db.multipart.insert(doc, attachments, docID, function(err, body) {
+        if(err){
+            reject("Could not insert to " + cloudantCredentials.projectsDatabase + err);
+        }else{
+          console.log("Document with attachment was successfully inserted to " +
+          cloudantCredentials.projectsDatabase);
+          resolve(body);
+        }
+    });
   });
 }
 exports.insertDocWithAttachment = insertDocWithAttachment;
@@ -140,6 +142,8 @@ function getAllDocumentsWithAttachments(callback){
     if(err){
       console.log(err);
     }
+
+    http://matthewddiazhelper.mybluemix.net/data/allDocsSortedByCommit
 
     var projectInfoArr = allDocsInfo.rows.filter(function(project){
       return (project.doc.projectName);

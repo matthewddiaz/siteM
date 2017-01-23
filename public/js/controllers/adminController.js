@@ -30,7 +30,7 @@ $scope.uploadPic = function(frontPhotoFile, popUpPhotoFile) {
    * @type {Object}
    */
   var req = {
-    url: 'data/uploadDocs',
+    url: 'data/uploadDocWithAttachment',
     method: 'POST',
     fields: {
       projectName : $scope.formProperties.projectName,

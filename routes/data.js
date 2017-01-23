@@ -5,6 +5,7 @@ var fs = require('fs');
 var projects_Database = require('../config/projects-database');
 var loginCredentials  = require('../config/loginCredentials.json').credentials;
 var loggedinCode = require('../config/loggedInCode.json').code;
+var utils = require('../utils/utils');
 
 router.post('/login', function(req, res){
 	var email = req.body.email;
@@ -58,41 +59,79 @@ router.post('/upload', function(req, res, next){
 });
 
 /**
- * router.post
- * @param  {path} '/uploadDocs' is the path to upload documents that have attachments
+ * readFile returns a new Promise, if resolved returns the file created from
+ * reading data from the file's path asychronously.
+ * @param  {Object} file [json object that contains fileName, filePath;
+ *                       but is not the actual file]
+ * @return {Promise}      [this promise object if resolved returns the actual file]
+ */
+function readFile(file){
+	return new Promise(function(resolve, reject){
+		fs.readFile(file.path, function(err, fileBuffer){
+			if(err){
+					reject(err);
+			}
+			console.log(Buffer.isBuffer(fileBuffer));
+			var fileBufferAndInformation = {
+				name : file.originalFilename,
+				data : fileBuffer
+			};
+
+			resolve(fileBufferAndInformation);
+		});
+	});
+};
+
+/**
+ *This function formats attachments to send to insertDoc
+ * nanoJS requires that attachments be an Array of objects
+ * Object follow the following format
+ * object = {
+ *		name : myObj,
+ *	 data : myData,
+ *	 content_type : png
+ *	}
+ *	NOTE: formatAttachment function returns another function!
+ *				the outter function allows an extra parameter to be used
+ *				in the inner parameter function.
+ * NOTE:  promise functions only take in one parameter! For example in this
+ * 				case uploadedFilesArray is an object returned from a resolved promise.
+ * @param  {Object} fields is the content part of the document.
+ *                         That is everything about project except for
+ *                         the attachments.
+ * @return {Promise}        insertDocWithAttachment is an asynchronous tasks
+ *                          which returns a promise that will get resolved or
+ *                          rejected.
+ */
+function formatAttachment(fields){
+	return function(uploadedFilesArray){
+		console.log(uploadedFilesArray);
+		uploadedFilesArray[0]['content_type'] = fields.frontPhotoFileType.toString();
+		uploadedFilesArray[1]['content_type'] = fields.popUpPhotoFile.toString();
+
+		var extractedData = {
+			"projectName" : fields.projectName[0],
+			"projectUrl" : fields.projectUrl[0],
+			"projectDescription" : fields.projectDescription[0]
+		}
+		console.log(extractedData);
+		return projects_Database.insertDocWithAttachment(extractedData, uploadedFilesArray);
+	};
+}
+
+/**
+ * Route path to upload a doc that has an attachment
+ * @param  {path} '/uploadDocWithAttachment' is the path to upload documents that have attachments
  * to blog_db
  * @param  {function} req == post request containing the document & attachment(s) wanted to insert
  *                    res == response that projects_Database returns
  * @return {object}   either an err object == failed or body object == successfull
  * NOTE: In siteM this route was used in adminController.js
  */
-router.post('/uploadDocs', function(req, res, next){
+router.post('/uploadDocWithAttachment', function(req, res, next){
 	var form = new multiparty.Form();
 	form.parse(req, function(err, fields, files) {
 		var filesArray = files.file;
-		/**
-		 * readFile returns a new Promise, if resolved returns the file created from
-		 * reading data from the file's path asychronously.
-		 * @param  {Object} file [json object that contains fileName, filePath;
-		 *                       but is not the actual file]
-		 * @return {Promise}      [this promise object if resolved returns the actual file]
-		 */
-		function readFile(file){
-			return new Promise(function(resolve, reject){
-				fs.readFile(file.path, function(err, fileBuffer){
-					if(err){
-							reject(err);
-					}
-					console.log(Buffer.isBuffer(fileBuffer));
-					var fileBufferAndInformation = {
-						name : file.originalFilename,
-						data : fileBuffer
-					};
-
-					resolve(fileBufferAndInformation);
-				});
-			});
-		};
 
 		//creating an array of Promises to be fulfilled.
 		//allows for asynchronous tasks to be handled more easy
@@ -110,38 +149,14 @@ router.post('/uploadDocs', function(req, res, next){
 		 *                                        got rejected]
 		 */
 		Promise.all(fileUploadsPromises)
-				.then(function(uploadedFilesArray){
-					/**
-					*	format attachments to send to insertDoc
-					* nanoJS requires that attachments be an Array of objects
-					* Object follow the following order
-					* object = {
-					*		name : myObj,
-					*	 data : myData,
-					*	 content_type : png
-					*	}
-					*/
-					uploadedFilesArray[0]['content_type'] = fields.frontPhotoFileType.toString();
-					uploadedFilesArray[1]['content_type'] = fields.popUpPhotoFile.toString();
-
-					var extractedData = {
-						"projectName" : fields.projectName[0],
-						"projectUrl" : fields.projectUrl[0],
-						"projectDescription" : fields.projectDescription[0]
-					}
-
-					projects_Database.insertDocWithAttachment(
-						extractedData, uploadedFilesArray,
-						function(err, body){
-							if(err){
-								res.send(err);
-							}
-							res.send(body);
-					});
-				}).catch(function(err) {
+				.then(formatAttachment(fields))
+				.then(function(result){
+					res.send(result);
+				})
+				.catch(function(err) {
 					// Will catch failure of first failed promise. This will happen if
 					// any of the Promises from fileUploadsPromises get rejected
-					console.log("Failed: ", err);
+					res.send(err);
 				});
 	});
 });
