@@ -264,13 +264,13 @@ router.get('/allDocuments', function(request, response, next){
 * @param  {function} response sends back all documents with their attachments
 * @return {object} projects
 */
-router.get('/allDocumentsWithAttachments', function(request, response, callback){
-	projects_Database.getAllDocumentsWithAttachments(function(err, projects){
-		if(err){
-			console.log(err);
-			response.send(err);
-		}
-		response.send(projects);
+router.get('/allDocumentsWithAttachments', function(request, response){
+	projects_Database.getAllDocumentsWithAttachments()
+	.then(function(result){
+		console.log(result);
+		response.send(result);
+	}).catch(function(err){
+		response.send(err);
 	});
 });
 
@@ -297,7 +297,7 @@ router.post('/documentWithAttachment', function(req, res, next){
 /**
  * retrieves a document attachment for a given doc
  * @param  {route} '/documentAttachment'
- * @param  {callback} 
+ * @param  {callback}
  * @return {buffer} buffer contains the attachment
  */
 router.post('/documentAttachment', function(req, res, callback){

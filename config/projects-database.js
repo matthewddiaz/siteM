@@ -224,17 +224,10 @@ function mapProjects(projectsArray){
 
 /**
 * getDocumentsWithAttachments gets all documents along with their attachments using docName
-* @param  {Function} callback is the callback function that returns an err and the documents array
 * @return {object}   returns either a err or docAndAtt object
 */
-function getAllDocumentsWithAttachments(callback){
-  getAllProjectsSortedByLastCommit()
-  .then(mapProjects)
-  .then(function(completeProjects){
-    console.log(completeProjects);
-  }).catch(function(error){
-    console.log(error);
-  });
+function getAllDocumentsWithAttachments(){
+  return getAllProjectsSortedByLastCommit().then(mapProjects);
 
   // var projectInfoArr = allDocsInfo.rows.filter(function(project){
   //   return (project.doc.projectName);
