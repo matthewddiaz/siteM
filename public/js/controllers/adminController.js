@@ -41,8 +41,6 @@ $scope.uploadPic = function(frontPhotoFile, popUpPhotoFile) {
     },
     file : [frontPhotoFile, popUpPhotoFile]
   }
-  console.log(req);
-
     /**
     * [upload] is a function provided by ng-file-upload module to send a
     * post request contain the project file and attachment.
