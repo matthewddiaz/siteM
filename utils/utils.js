@@ -11,3 +11,12 @@ exports.makeHttpRequest = function(requestOption){
       });
   });
 }
+
+/**
+ * checks the type of an object
+ * @param  {Object} object which we do not now the type of
+ * @return {String} the String tells the program what type of object the input is
+ */
+exports.checkObjectType = function(object){
+  return Object.prototype.toString.call(object);
+};

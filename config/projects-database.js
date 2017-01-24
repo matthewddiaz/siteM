@@ -1,12 +1,13 @@
 var cloudantCredentials = require('./database.json').credentials;
 var crypto = require('crypto');
 var multiparty = require('multiparty');
+var utils = require('../utils/utils');
 
 var cloudant = {
- 	url: cloudantCredentials.url
- };
+  url: cloudantCredentials.url
+};
 
- if (process.env.hasOwnProperty("VCAP_SERVICES")) {
+if (process.env.hasOwnProperty("VCAP_SERVICES")) {
   // Running on Bluemix. Parse out the port and host that we've been assigned.
   var env = JSON.parse(process.env.VCAP_SERVICES);
   var host = process.env.VCAP_APP_HOST;
@@ -24,57 +25,57 @@ function encryptID(id) {
 };
 
 /**
- * insertDocument function inserts a document to blog-db
- * @param  {object} doc is the object that will be inserted
- * @param  {string} doc_id is the intended document name.
- * NOTE can be used for retrieval of document
- * @return {none}
- */
+* insertDocument function inserts a document to blog-db
+* @param  {object} doc is the object that will be inserted
+* @param  {string} doc_id is the intended document name.
+* NOTE can be used for retrieval of document
+* @return {none}
+*/
 function insertDocument(doc, doc_id){
   var id = encryptID(doc_id);
 
   //NOTE function defined by descape/nano github
   db.insert(doc , id, function(err,body){
     if(err){
-        console.log("Could not insert to " + cloudantCredentials.projectsDatabase);
+      console.log("Could not insert to " + cloudantCredentials.projectsDatabase);
     }else{
       console.log("Document was inserted successfully to " + cloudantCredentials.projectsDatabase);
-     }
+    }
   });
 }
 exports.insertDocument = insertDocument;
 
 /**
- * insertDocWithAttachment function that inserts a document with an attachment
- * to blog-dev
- * @param  {object}   doc is an object that contains the document information
- * @param  {attachments}   attachments is an object that contains the attachment information
- * @param  {Function} next is a callback function that returns an error and body
- * @return {object}  Either body or error depeding on insertion result
- */
+* insertDocWithAttachment function that inserts a document with an attachment
+* to blog-dev
+* @param  {object}   doc is an object that contains the document information
+* @param  {attachments}   attachments is an object that contains the attachment information
+* @param  {Function} next is a callback function that returns an error and body
+* @return {object}  Either body or error depeding on insertion result
+*/
 function insertDocWithAttachment(doc, attachments){
   var docID = encryptID(doc.projectName);
   //NOTE this function with its parameters is defined by nano js
   return new Promise(function(resolve, reject){
     db.multipart.insert(doc, attachments, docID, function(err, body) {
-        if(err){
-            reject("Could not insert to " + cloudantCredentials.projectsDatabase + err);
-        }else{
-          console.log("Document with attachment was successfully inserted to " +
-          cloudantCredentials.projectsDatabase);
-          resolve(body);
-        }
+      if(err){
+        reject("Could not insert to " + cloudantCredentials.projectsDatabase + err);
+      }else{
+        console.log("Document with attachment was successfully inserted to " +
+        cloudantCredentials.projectsDatabase);
+        resolve(body);
+      }
     });
   });
 }
 exports.insertDocWithAttachment = insertDocWithAttachment;
 
 /**
- * getDocument will get a document from blog-db using doc_ib
- * @param  {string}   doc_id is the docName of the document in blog-db
- * @param  {Function} next is the callback function with an err or body object
- * @return {object}   body is the object that blog_db returns
- */
+* getDocument will get a document from blog-db using doc_ib
+* @param  {string}   doc_id is the docName of the document in blog-db
+* @param  {Function} next is the callback function with an err or body object
+* @return {object}   body is the object that blog_db returns
+*/
 function getDocument(doc_id, next){
   var id = encryptID(doc_id);
 
@@ -90,12 +91,12 @@ function getDocument(doc_id, next){
 exports.getDocument = getDocument;
 
 /**
- * getAllDocuments function that gets all of the objects in the
- * database at the same time
- * @param  {Function} next callback function
- * @return {object}  either an err object or body containing all of the documents
- * in blog_db
- */
+* getAllDocuments function that gets all of the objects in the
+* database at the same time
+* @param  {Function} next callback function
+* @return {object}  either an err object or body containing all of the documents
+* in blog_db
+*/
 function getAllDocuments(callback){
   //NOTE using an arbitrary key retrieves all Docs info from database
   var arbitraryKey = {
@@ -105,81 +106,150 @@ function getAllDocuments(callback){
   db.fetch(arbitraryKey,function(err, allDocsInfo) {
     if(err){
       console.log('Could not retrieve document information from '
-        + cloudantCredentials.projectsDatabase);
+      + cloudantCredentials.projectsDatabase);
     }
-      callback(err, allDocsInfo);
+    callback(err, allDocsInfo);
   });
 }
 exports.getAllDocuments = getAllDocuments;
 
 /**
- * getDocumentAttachment function gets attachment of a document as a buffer
- * @param {documentName}
- * @param {attachmentName}
- * @param  {Function} callback callback function
- * @return {string}  either an err object or base64 string
- *
- */
-function getDocumentAttachment(documentName, attachmentName, callback){
-  db.attachment.get(documentName, attachmentName, function(err, attachmentBuffer){
-    if(err){
-      console.log("Error while retrieving attachment");
-    }
-
-    callback(err, attachmentBuffer);
+* getDocumentAttachment function gets attachment of a document as a buffer
+* @param {documentName}
+* @param {attachmentName}
+* @return {Promise}  either an err object or base64 string
+*
+*/
+function getDocumentAttachment(documentName, attachmentName){
+  return new Promise(function(resolve, reject){
+    db.attachment.get(documentName, attachmentName, function(err, attachmentBuffer){
+      if(err){
+        reject(err);
+      }
+      resolve(attachmentBuffer);
+    });
   });
 }
 exports.getDocumentAttachment = getDocumentAttachment;
 
+// /**
+//  * [retrieveCompleteProject description]
+//  * @param  {[type]} partialProject [description]
+//  * @return {[type]}                [description]
+//  */
+// function retrieveCompleteProject(partialProject){
+//   var projectDocs = partialProject.doc;
+//   var projectID = partialProject.id;
+//   var attachmentName = 'image';
+//   return new Promise(function(resolve, reject){
+//     getDocumentAttachment(projectID, attachmentName, function(err, attachment){
+//       if(err){
+//         reject(err);
+//       }
+//
+//       var completeProjectDescription = {
+//           projectName : projectDocs.projectName,
+//           projectDescription : projectDocs.projectDescription,
+//           projectUrl : projectDocs.projectUrl,
+//           projectImage : attachment.toString('Base64')
+//       };
+//       resolve(completeProjectDescription);
+//     });
+//   });
+// };
+
 /**
- * getDocumentsWithAttachments gets all documents along with their attachments using docName
- * @param  {Function} callback is the callback function that returns an err and the documents array
- * @return {object}   returns either a err or docAndAtt object
- */
-function getAllDocumentsWithAttachments(callback){
-  //retrieve all documents brief descriptions
-  getAllDocuments(function(err, allDocsInfo){
-    if(err){
-      console.log(err);
+* [getAllProjectsSortedByLastCommit description]
+* @return {[type]} [description]
+*/
+function getAllProjectsSortedByLastCommit(){
+  var requestObject = {
+    url:  'http://matthewddiazhelper.mybluemix.net' + '/data/allDocsSortedByCommit',
+    method : "GET",
+    headers: {
+      'User-Agent': "siteM"
+    },
+    options: {
+      'content-type' : 'application/json'
     }
+  };
+  return utils.makeHttpRequest(requestObject);
+}
 
-    http://matthewddiazhelper.mybluemix.net/data/allDocsSortedByCommit
-
-    var projectInfoArr = allDocsInfo.rows.filter(function(project){
-      return (project.doc.projectName);
-    });
-    console.log(projectInfoArr);
-    var totalNumOfProjects = allDocsInfo.total_rows;
-
-    function retrieveCompleteProject(partialProject){
-      var projectDocs = partialProject.doc;
-      var projectID = partialProject.id;
-      var attachmentName = 'image';
-      return new Promise(function(resolve, reject){
-        getDocumentAttachment(projectID, attachmentName, function(err, attachment){
-          if(err){
-            reject(err);
-          }
-
-          var completeProjectDescription = {
-              projectName : projectDocs.projectName,
-              projectDescription : projectDocs.projectDescription,
-              projectUrl : projectDocs.projectUrl,
-              projectImage : attachment.toString('Base64')
-          };
-          resolve(completeProjectDescription);
-        });
-      });
+/**
+* [retrieveCompleteProject description]
+* @param  {[type]} project [description]
+* @return {[type]}         [description]
+*/
+function retrieveCompleteProject(project){
+  return new Promise(function(resolve, reject){
+    var projectObject = project.value;
+    var decodedProject = {
+      projectName : projectObject.projectName,
+      projectUrl : projectObject.projectUrl,
+      projectDescription : projectObject.projectDescription,
+      lastCommit : projectObject.lastCommit
     };
 
-    var projectDocs = projectInfoArr.map(retrieveCompleteProject);
-    Promise.all(projectDocs)
-        .then(function(result){
-          callback(err, result);
-        }).catch(function(err) {
-          // Will catch failure of first failed promise
-          console.log("Failed:", err);
-        });
+    var attachments = projectObject._attachments;
+    var attachmentsNames = Object.keys(attachments);
+
+    var decodedImagesPromises = attachmentsNames.map(function(attachmentName){
+      return getDocumentAttachment(projectObject._id, attachmentName);
+    });
+
+    Promise.all(decodedImagesPromises)
+    .then(function(bufferedImagesArray){
+      decodedProject['frontDisplayPhoto'] = bufferedImagesArray[0];
+      decodedProject['popUpInfoPhoto'] = bufferedImagesArray[1];
+      resolve(decodedProject);
+    }).catch(function(err){
+      reject(err);
+    });
   });
+}
+
+/**
+* [mapProjects description]
+* @param  {[type]} projectsArray [description]
+* @return {[type]}               [description]
+*/
+function mapProjects(projectsArray){
+  if(utils.checkObjectType(projectsArray) === "[object String]"){
+    projectsArray = JSON.parse(projectsArray);
+  }
+  var decodedProjectsArrayPromises = projectsArray.map(retrieveCompleteProject);
+  return Promise.all(decodedProjectsArrayPromises);
+}
+
+/**
+* getDocumentsWithAttachments gets all documents along with their attachments using docName
+* @param  {Function} callback is the callback function that returns an err and the documents array
+* @return {object}   returns either a err or docAndAtt object
+*/
+function getAllDocumentsWithAttachments(callback){
+  getAllProjectsSortedByLastCommit()
+  .then(mapProjects)
+  .then(function(completeProjects){
+    console.log(completeProjects);
+  }).catch(function(error){
+    console.log(error);
+  });
+
+  // var projectInfoArr = allDocsInfo.rows.filter(function(project){
+  //   return (project.doc.projectName);
+  // });
+  // console.log(projectInfoArr);
+  // var totalNumOfProjects = allDocsInfo.total_rows;
+  //
+  // var projectDocs = projectInfoArr.map(retrieveCompleteProject);
+  // Promise.all(projectDocs)
+  //     .then(function(result){
+  //       callback(err, result);
+  //     }).catch(function(err) {
+  //       // Will catch failure of first failed promise
+  //       console.log("Failed:", err);
+  //     });
+  //});
 }
 exports.getAllDocumentsWithAttachments = getAllDocumentsWithAttachments;
