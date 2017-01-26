@@ -2,19 +2,14 @@
   { "term" : "Spring 2017",
     "courses" : [
       {
-        "name" : "AI FOR COMPUTER GAMES",
-        "courseNumber" : "CAP 4053",
-        "courseUrl" : "CAP4053"
+        "name" : "MALWARE REVERSE ENGINEERING",
+        "courseNumber" : "CIS 6960",
+        "courseUrl" : "CIS4930"
       },
       {
         "name" : "SENIOR PROJECT",
         "courseNumber" : "CIS 4914",
         "courseUrl" : "CIS4914"
-      },
-      {
-        "name" : "GRADUATE COMP SCIENCE SEMINAR",
-        "courseNumber" : "CIS 6935",
-        "courseUrl" : "CIS4930"
       },
       {
         "name" : "DIGITAL LOGIC & COMP SYSTEMS",

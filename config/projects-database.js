@@ -132,35 +132,12 @@ function getDocumentAttachment(documentName, attachmentName){
 }
 exports.getDocumentAttachment = getDocumentAttachment;
 
-// /**
-//  * [retrieveCompleteProject description]
-//  * @param  {[type]} partialProject [description]
-//  * @return {[type]}                [description]
-//  */
-// function retrieveCompleteProject(partialProject){
-//   var projectDocs = partialProject.doc;
-//   var projectID = partialProject.id;
-//   var attachmentName = 'image';
-//   return new Promise(function(resolve, reject){
-//     getDocumentAttachment(projectID, attachmentName, function(err, attachment){
-//       if(err){
-//         reject(err);
-//       }
-//
-//       var completeProjectDescription = {
-//           projectName : projectDocs.projectName,
-//           projectDescription : projectDocs.projectDescription,
-//           projectUrl : projectDocs.projectUrl,
-//           projectImage : attachment.toString('Base64')
-//       };
-//       resolve(completeProjectDescription);
-//     });
-//   });
-// };
-
 /**
-* [getAllProjectsSortedByLastCommit description]
-* @return {[type]} [description]
+* This method will send a request to the helper site to retrieve
+* the list of all the projects in the database in reverse order
+* by their lastCommit attribute
+* @return {Promise} this Promise object can their be fulfilled (if request is successful)
+*                   or rejected (if error with request)
 */
 function getAllProjectsSortedByLastCommit(){
   var requestObject = {
@@ -177,9 +154,15 @@ function getAllProjectsSortedByLastCommit(){
 }
 
 /**
-* [retrieveCompleteProject description]
-* @param  {[type]} project [description]
-* @return {[type]}         [description]
+* Creates a json object decodedProject with project information ready
+* for the front end to read. Then for each attachment image the document
+* has calls an async task getDocumentAttachment to acquire the attachment
+* as a buffer. Once complete the image buffers are added to the decodedProject
+* object as attributes.
+* @param  {JSON} project this is the partial project though does not contain the
+*                        full attachments
+* @return {Promise}      This promise if fulfilled will it return the complete
+*                        decodedProject; if reject return an error
 */
 function retrieveCompleteProject(project){
   return new Promise(function(resolve, reject){
@@ -200,8 +183,8 @@ function retrieveCompleteProject(project){
 
     Promise.all(decodedImagesPromises)
     .then(function(bufferedImagesArray){
-      decodedProject['frontDisplayPhoto'] = bufferedImagesArray[0];
-      decodedProject['popUpInfoPhoto'] = bufferedImagesArray[1];
+      decodedProject['frontDisplayPhoto'] = bufferedImagesArray[0].toString('Base64');
+      decodedProject['popUpInfoPhoto'] = bufferedImagesArray[1].toString('Base64');
       resolve(decodedProject);
     }).catch(function(err){
       reject(err);
@@ -210,11 +193,17 @@ function retrieveCompleteProject(project){
 }
 
 /**
-* [mapProjects description]
-* @param  {[type]} projectsArray [description]
-* @return {[type]}               [description]
+* This method given a list of all partial projects tries to generate the complete
+* projects. This is done using Array.map(function()) where the function (retrieveCompleteProject)
+* in this case is an  async task and returns a Promise. That is this .map() returns an Array
+* of Promises decodedProjectsArrayPromises. Prmoise.all(Iterable) tries to resolve all Promises
+* in the array. If all resolved in the array of completed projects is returned. 
+* @param  {Array} projectsArray this is an array of partial projects in JSON represented
+*                               in an array.
+* @return {Promise}             if this promise is fulfilled will return the full list
+*                               of complete projects; else rejected error.
 */
-function mapProjects(projectsArray){
+function generateCompleteProjects(projectsArray){
   if(utils.checkObjectType(projectsArray) === "[object String]"){
     projectsArray = JSON.parse(projectsArray);
   }
@@ -227,22 +216,6 @@ function mapProjects(projectsArray){
 * @return {object}   returns either a err or docAndAtt object
 */
 function getAllDocumentsWithAttachments(){
-  return getAllProjectsSortedByLastCommit().then(mapProjects);
-
-  // var projectInfoArr = allDocsInfo.rows.filter(function(project){
-  //   return (project.doc.projectName);
-  // });
-  // console.log(projectInfoArr);
-  // var totalNumOfProjects = allDocsInfo.total_rows;
-  //
-  // var projectDocs = projectInfoArr.map(retrieveCompleteProject);
-  // Promise.all(projectDocs)
-  //     .then(function(result){
-  //       callback(err, result);
-  //     }).catch(function(err) {
-  //       // Will catch failure of first failed promise
-  //       console.log("Failed:", err);
-  //     });
-  //});
+  return getAllProjectsSortedByLastCommit().then(generateCompleteProjects);
 }
 exports.getAllDocumentsWithAttachments = getAllDocumentsWithAttachments;

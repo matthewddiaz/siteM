@@ -14,7 +14,7 @@ router.post('/login', function(req, res){
 });
 
 /**
-*  router.get
+*  HTTP Method GET
 * @param  {path} '/retrieveProjectPics' path to get project images from imageFile.json
 * @param  {function} req == get request. and res == response that will be returned
 * @return {object}  res will send the content of imageFile.json in the form of data
@@ -30,7 +30,7 @@ router.get('/retrieveProjectPics', function(req, res, next){
 });
 
 /**
-*  router.get
+*  HTTP Method GET
 * @param  {path} '/retrieveCourses' path to get courses from coursesFile.json
 * @param  {function} req == get request. and res == response that will be returned
 * @return {object}  res will send the content of coursesFile.json in the form of data
@@ -46,7 +46,7 @@ router.get('/retrieveCourses', function(req, res, next){
 });
 
 /**
-* router.post
+* HTTP Method POST
 * @param  {path} '/upload' is the path to upload a document to blog_db
 * @param  {function} req == request to post contains the content that the client
 * wants to insert to the projects_Database. The res == response; nothing in this case
@@ -174,6 +174,7 @@ function sendCompleteDocsWithAttachmentToDatabase(project){
 }
 
 /**
+* HTTP Method POST
 * Route path to upload a doc that has an attachment
 * @param  {path} '/uploadDocWithAttachment' is the path to upload documents that have attachments
 * to blog_db
@@ -218,7 +219,7 @@ router.post('/uploadDocWithAttachment', function(req, res, next){
 });
 
 /**
-* router.post
+* HTTP Method POST
 * @param  {path} '/document' is the path to retrieve a document from blog_db
 * @param  {function} req == post request that contains a docName of the document
 *         in blog_db that the cient wants to retrieve
@@ -241,6 +242,7 @@ router.post('/document', function(req, res, next){
 });
 
 /**
+*HTTP Method GET
 *This route returns a list of all the projects in projects_Database
 *NOTE: projects do not come with their attachment included.
 * @param  {route} '/allDocuments'   [description]
@@ -258,6 +260,7 @@ router.get('/allDocuments', function(request, response, next){
 });
 
 /**
+* HTTP Method GET
 * This route returns the full list of all projects in projects_database.
 * Each project comes with their attachment included.
 * @param  {path} '/allDocumentswithAttachments' [description]
@@ -267,7 +270,6 @@ router.get('/allDocuments', function(request, response, next){
 router.get('/allDocumentsWithAttachments', function(request, response){
 	projects_Database.getAllDocumentsWithAttachments()
 	.then(function(result){
-		console.log(result);
 		response.send(result);
 	}).catch(function(err){
 		response.send(err);
@@ -275,7 +277,7 @@ router.get('/allDocumentsWithAttachments', function(request, response){
 });
 
 /**
-* router.post
+* HTTP Method POST
 * @param  {path} '/documentWithAttachment' [description]
 * @param  {function} req == post request whicn contains docName to retrieve
 * desired document with attachment
@@ -295,6 +297,7 @@ router.post('/documentWithAttachment', function(req, res, next){
 });
 
 /**
+ * HTTP Method POST
  * retrieves a document attachment for a given doc
  * @param  {route} '/documentAttachment'
  * @param  {callback}
