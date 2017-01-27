@@ -165,13 +165,21 @@ function getAllProjectsSortedByLastCommit(){
 *                        decodedProject; if reject return an error
 */
 function retrieveCompleteProject(project){
+
   return new Promise(function(resolve, reject){
     var projectObject = project.value;
+
+    var lastCommitDate = projectObject.lastCommit;
+    if(utils.checkObjectType(lastCommitDate) === "[object String]"){
+      lastCommitDate = new Date(lastCommitDate);
+    }
+    var lastCommitDateFormatted = lastCommitDate.toLocaleDateString();
+
     var decodedProject = {
       projectName : projectObject.projectName,
       projectUrl : projectObject.projectUrl,
       projectDescription : projectObject.projectDescription,
-      lastCommit : projectObject.lastCommit
+      lastCommit : lastCommitDateFormatted
     };
 
     var attachments = projectObject._attachments;
@@ -197,7 +205,7 @@ function retrieveCompleteProject(project){
 * projects. This is done using Array.map(function()) where the function (retrieveCompleteProject)
 * in this case is an  async task and returns a Promise. That is this .map() returns an Array
 * of Promises decodedProjectsArrayPromises. Prmoise.all(Iterable) tries to resolve all Promises
-* in the array. If all resolved in the array of completed projects is returned. 
+* in the array. If all resolved in the array of completed projects is returned.
 * @param  {Array} projectsArray this is an array of partial projects in JSON represented
 *                               in an array.
 * @return {Promise}             if this promise is fulfilled will return the full list

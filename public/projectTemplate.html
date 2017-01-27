@@ -34,15 +34,23 @@
       </div>
     </div>
 
-    <div class="project-footer row no-margin">
-      <div class="col-xs-6 no-padding full-height vertical-center">
-        <p class="paragraph-style">Created by: <span>Matthew Diaz</span> </p>
+    <div class="row project-footer no-margin">
+      <div class="col-lg-4 col-xs-6 no-padding full-height vertical-center">
+            <p class="paragraph-style">Created by: <span>Matthew Diaz</span>  </p>
       </div>
-      <div class="col-xs-6 no-padding full-height vertical-center">
+
+      <div class="col-lg-4 visible-lg no-padding full-height pop-up-date vertical-center">
+          <div class= "full-height vertical-center">
+        <p class="paragraph-style">Last updated on: {{project.lastCommit}} </p>
+          </div>
+      </div>
+
+      <div class="col-lg-4 col-xs-6 no-padding full-height vertical-center">
         <a href="{{project.projectUrl}}">
           <img class="git-linkedIn-link" src="images/github.gif">
         </a>
       </div>
     </div>
+
   </div>
 </div>

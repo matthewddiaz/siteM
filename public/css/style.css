@@ -473,6 +473,10 @@ div#popup-overlay.ng-hide {
   .pop-up-project-container .paragraph-style{
     font-size: 2em;
   }
+
+  .pop-up-project-container .pop-up-date{
+    display : none;
+  }
 }
 
 @media screen and (max-device-width: 768px) and (orientation: landscape){
@@ -482,6 +486,10 @@ div#popup-overlay.ng-hide {
 
   .pop-up-project-container .esc-pop-up-col{
     font-size: 2em;
+  }
+  
+  .pop-up-project-container .pop-up-date{
+    display : none;
   }
 }
 
