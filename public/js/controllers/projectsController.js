@@ -6,9 +6,12 @@ function(projectDescription, $scope, $http){
   $scope.rowLength = 3;
 
   /**
-   * [displayProjectFrontImage description]
-   * @param  {[type]} projects [description]
-   * @return {[type]}          [description]
+   * This method splits the projectsArray into Rows.
+   * Each Row contains three elements.
+   * NOTE: this is used to display the UI and have
+   * just 3 projects per row.
+   * @param  {Array} projects obtained from backend
+   * @return {None}
    */
   function displayProjectFrontImage(projects){
     for(var i = 0; i < projects.length; i = i + $scope.rowLength){
@@ -17,15 +20,27 @@ function(projectDescription, $scope, $http){
   }
 
   /**
-   * [get description]
-   * @param  {[type]} '/data/allDocumentsWithAttachments' [description]
-   * @return {[type]}                                     [description]
+   * Once all of the date is loaded (from async tasks) we remove the
+   * preloader
+   * @return {None}
+   */
+  function closePreloader(){
+    $('body').addClass('loaded');
+  }
+
+  /**
+   * This method sends a http get request to the route /data/allDoc...
+   * NOTE: this method is applying Promise chaining and thus
+   * in the first Promise projectsArray is returned and passed to
+   * displayProjectFrontImage function
+   * @param  {Route} '/data/allDocumentsWithAttachments'
+   * @return {None}
    */
   $http.get('/data/allDocumentsWithAttachments')
   .then(function(projects){
     return $scope.projectsArray = projects.data;
-    console.log(projects);
   }).then(displayProjectFrontImage)
+  .then(closePreloader)
   .catch(function(err){
     console.log(err);
   });

@@ -120,13 +120,13 @@ function formatAttachment(fields){
 }
 
 /**
- * Adds the last commit date to a project that is going to be submitted
- * @param {JSON} project contains two attributes doc and attachments.
- *                       This parameter is passed on my the promise chain.
- * @return {Promise}        insertDocWithAttachment is an asynchronous tasks
- *                          which returns a promise that will get resolved or
- *                          rejected.
- */
+* Adds the last commit date to a project that is going to be submitted
+* @param {JSON} project contains two attributes doc and attachments.
+*                       This parameter is passed on my the promise chain.
+* @return {Promise}        insertDocWithAttachment is an asynchronous tasks
+*                          which returns a promise that will get resolved or
+*                          rejected.
+*/
 function addLastCommitToProject(project){
 	var projectDoc = project.doc;
 	var projectGitHubUrl = projectDoc.projectUrl;
@@ -160,13 +160,13 @@ function addLastCommitToProject(project){
 }
 
 /**
- *
- * @param  {JSON} project contains two attributes doc and attacments this
- *                        method is the final method in the promise chain
- *                        started by the route /uploadDocWithAttachment
- * @return {Promise}  Promise tries to fulfill the task of inserting the doc
- *                    with attachment to db.
- */
+*
+* @param  {JSON} project contains two attributes doc and attacments this
+*                        method is the final method in the promise chain
+*                        started by the route /uploadDocWithAttachment
+* @return {Promise}  Promise tries to fulfill the task of inserting the doc
+*                    with attachment to db.
+*/
 function sendCompleteDocsWithAttachmentToDatabase(project){
 	var documents = project.doc;
 	var attachments = project.attachments;
@@ -297,12 +297,12 @@ router.post('/documentWithAttachment', function(req, res, next){
 });
 
 /**
- * HTTP Method POST
- * retrieves a document attachment for a given doc
- * @param  {route} '/documentAttachment'
- * @param  {callback}
- * @return {buffer} buffer contains the attachment
- */
+* HTTP Method POST
+* retrieves a document attachment for a given doc
+* @param  {route} '/documentAttachment'
+* @param  {callback}
+* @return {buffer} buffer contains the attachment
+*/
 router.post('/documentAttachment', function(req, res, callback){
 	var attachmentDetails = req.body;
 	projects_Database.getDocumentAttachment(attachmentDetails, function(err, buffer){
@@ -310,6 +310,37 @@ router.post('/documentAttachment', function(req, res, callback){
 			console.log(err);
 		}
 		res.send(buffer);
+	});
+});
+
+/**
+*HTTP Method GET
+* retrieves last updated date for siteM
+* NOTE: this is necessary becuase Angular does not allow for easy HTTP access control (CORS)
+* 
+* For more info: https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+* @param  {Route} '/siteMLastCommit'
+* @param  {function}
+* @return {[type]}                    [description]
+*/
+router.get('/siteMLastCommit', function(req, res){
+	var requestObject = {
+		url:  'http://matthewddiazhelper.mybluemix.net/data/getProjectLastCommit/matthewddiaz/siteM',
+		method : "GET",
+		headers: {
+			'User-Agent': "siteM"
+		},
+		options: {
+			'content-type' : 'application/json'
+		}
+	};
+
+	utils.makeHttpRequest(requestObject)
+	.then(function(date){
+		res.send(date);
+	})
+	.catch(function(err){
+		res.send(err);
 	});
 });
 

@@ -52,10 +52,10 @@
 		</div>
 
 		<!-- Footer -->
-		<div class="footer">
+		<div class="footer" ng-controller="FooterController as fCtrl">
 			<div class="row no-margin footer-design full-height">
 				<div class="col-xs-4 full-height vertical-center">
-					<p class="footer-text">COPYRIGHT 2016</p>
+					<p class="footer-text">Last Updated On: {{lastCommit | date:'mediumDate'}}</p>
 				</div>
 
 				<div class="col-xs-4 full-height vertical-center">
@@ -107,6 +107,7 @@
   	<script src="/app.js"></script>
 		<script src="js/controllers/adminController.js"></script>
 		<script src="js/controllers/coursesController.js"></script>
+		<script src="js/controllers/footerController.js"></script>
 		<script src="js/controllers/loginController.js"></script>
 		<script src="js/controllers/homeController.js"></script>
 		<script src="js/controllers/navigationController.js"></script>

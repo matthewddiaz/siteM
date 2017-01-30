@@ -169,17 +169,11 @@ function retrieveCompleteProject(project){
   return new Promise(function(resolve, reject){
     var projectObject = project.value;
 
-    var lastCommitDate = projectObject.lastCommit;
-    if(utils.checkObjectType(lastCommitDate) === "[object String]"){
-      lastCommitDate = new Date(lastCommitDate);
-    }
-    var lastCommitDateFormatted = lastCommitDate.toLocaleDateString();
-
     var decodedProject = {
       projectName : projectObject.projectName,
       projectUrl : projectObject.projectUrl,
       projectDescription : projectObject.projectDescription,
-      lastCommit : lastCommitDateFormatted
+      lastCommit : projectObject.lastCommit
     };
 
     var attachments = projectObject._attachments;

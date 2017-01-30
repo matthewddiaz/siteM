@@ -5,8 +5,8 @@
 	*/
 	var app = angular.module('siteM', ['ngFileUpload', 'ngRoute', 'ui.bootstrap',
 													 'siteM.adminController', 'siteM.coursesController',
-													 'siteM.loginController', 'siteM.homeController',
-													 'siteM.navigationController',
+													 'siteM.footerController','siteM.loginController',
+													 'siteM.homeController', 'siteM.navigationController',
 													 'siteM.projectsController', 'siteM.projectsPopUpController'
 												 ]);
 
@@ -16,7 +16,7 @@
 	*/
 	app.config(['$routeProvider', function($routeProvider, $location){
 		//this function is used in the resolve for route '/admin' this route should
-		//redirect a user to home if he/she has not entered the correct credentials 
+		//redirect a user to home if he/she has not entered the correct credentials
 		 var checkLoggedin = function(Auth, $q, $location){
 			var defer = $q.defer();
 			if(Auth.isLoggedIn()){
@@ -48,15 +48,12 @@
 			.when('/projects', {
 				templateUrl : 'projects.html'
 			})
-			.when('/preloader', {
-				templateUrl : 'preloader.html'
-			})
 			.otherwise({
 				redirectTo: '/home'
 			});
 	}]);
 
-	 preloader();
+	 //
 
 	 app.service('Auth', function(){
 		 var token;
