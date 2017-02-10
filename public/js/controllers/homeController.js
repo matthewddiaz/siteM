@@ -9,10 +9,16 @@ angular.module('siteM.homeController', ['ngRoute'])
      * NOTE: This is different from coursesController and projectsController
      * @return {None}
      */
-    function closePreloader(){
-      $('body').addClass('loaded');
+
+    function loadContent(){
+        $('body').removeClass('loaded');
+
+        setTimeout(function(){
+            $('body').addClass('loaded');
+        } , 1000);
     }
-    closePreloader();
+    loadContent();
+
     /**
      * showBio is executed on hover on ids Tech and Bio in home.html
      * changes the content that is displayed using ng-show/hide

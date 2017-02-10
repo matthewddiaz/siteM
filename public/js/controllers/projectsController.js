@@ -5,6 +5,12 @@ function(projectDescription, $scope, $http){
   $scope.projectsArray = [];
   $scope.rowLength = 3;
 
+  function openPreloader(){
+      $('body').removeClass('loaded');
+  }
+
+  openPreloader();
+
   /**
    * This method splits the projectsArray into Rows.
    * Each Row contains three elements.
@@ -19,7 +25,7 @@ function(projectDescription, $scope, $http){
     }
   }
 
-  /**
+    /**
    * Once all of the date is loaded (from async tasks) we remove the
    * preloader
    * @return {None}

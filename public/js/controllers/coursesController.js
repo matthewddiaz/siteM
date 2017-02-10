@@ -6,6 +6,12 @@ angular.module('siteM.coursesController', ['ngRoute', 'ui.materialize'])
      * preloader
      * @return {None}
      */
+
+    function displayPreLoader(){
+        $('body').removeClass('loaded');
+    }
+    displayPreLoader();
+
     function closePreloader(){
       $('body').addClass('loaded');
     }

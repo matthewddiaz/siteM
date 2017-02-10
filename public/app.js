@@ -32,9 +32,8 @@
 			.when('/admin', {
 				templateUrl : 'admin.html',
 				resolve: {
-        	loggedIn: checkLoggedin
-				}
-				//console.log(loggedIn);
+                    loggedIn: checkLoggedin
+                }
 			})
 			.when('/courses', {
 				templateUrl : 'courses.html'
@@ -52,8 +51,6 @@
 				redirectTo: '/home'
 			});
 	}]);
-
-	 //
 
 	 app.service('Auth', function(){
 		 var token;
